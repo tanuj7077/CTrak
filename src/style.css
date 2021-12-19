@@ -100,6 +100,28 @@ a:link, a:visited, a:hover, a:active {
   gap: 2rem;
 }
 
+.pageContainer {
+  position: relative;
+}
+
+.page {
+  position: absolute;
+}
+.page-invisible {
+  z-index: -1;
+  left: -100vw;
+  top: -1100vh;
+}
+
+.tab {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.tab-current .tab-content-heading {
+  color: red;
+}
+
 .alertBox {
   z-index: 2000;
   position: fixed;

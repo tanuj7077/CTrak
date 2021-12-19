@@ -10,62 +10,93 @@ const AppProvider = ({ children }) => {
 
   const [alert, setAlert] = useState({});
   const [showAlert, setShowAlert] = useState(0);
-  const [tabs, setTabs] = useState();
+  const [pages, setPages] = useState([
+    {
+      id: 1,
+      type: "home",
+      isCurrent: true,
+      data: null,
+    },
+    {
+      id: 2,
+      type: "wishlist",
+      isCurrent: false,
+      data: null,
+    },
+    {
+      id: 3,
+      type: "coin",
+      isCurrent: false,
+      data: null,
+    },
+  ]);
 
   const changeAlert = (msg) => {
     setAlert(msg);
     setShowAlert(1);
   };
-  const addTab = () => {};
+  const addTab = (type, data) => {
+    let newPages = [...pages];
+    let obj = {
+      id: new Date().getTime(),
+      type: "home",
+      isCurrent: false,
+      data: null,
+    };
+    newPages.push(obj);
+    setPages(newPages);
+  };
   const checkTabExistance = (id) => {};
-  const closeTab = (id) => {};
-  const changeCurrentTab = (id) => {};
-  /*
-  const login = (loginUsername, loginPassword) => {
-    const data = {
-      username: loginUsername,
-      password: loginPassword,
-    };
-    axios
-      .post(`${process.env.REACT_APP_BASE_URL}/auth/signin`, data)
-      .then((res) => {
-        changeAlert(res.data.msg);
-        if (res.data.msg.type === "success") {
-          setUserData(res.data.userData);
-          setIsLoggedIn(true);
-          setLoginModalVisible(false);
+  const closeTab = (id) => {
+    const index = pages.findIndex((page) => page.id === id);
+    const currentIndex = pages.findIndex((page) => page.isCurrent);
+    let newPages = pages.slice();
+    newPages.splice(index, 1);
+    let newCurrentId;
+    if (newPages.length >= 1) {
+      if (currentIndex > index) {
+        newCurrentId = newPages[currentIndex - 1].id;
+      } else if (currentIndex === index) {
+        if (currentIndex - 1 >= 0) {
+          newCurrentId = newPages[currentIndex - 1].id;
+        } else {
+          newCurrentId = newPages[currentIndex].id;
         }
+      } else {
+        newCurrentId = newPages[currentIndex].id;
+      }
+      let changedValue = newPages.map((item) => {
+        let obj;
+        if (item.id === newCurrentId) {
+          obj = { ...item };
+          obj.isCurrent = true;
+        } else {
+          obj = { ...item };
+          obj.isCurrent = false;
+        }
+        return obj;
       });
-  };
-  const signup = (registerUsername, registerPassword) => {
-    const data = {
-      username: registerUsername,
-      password: registerPassword,
-    };
-    axios
-      .post(`${process.env.REACT_APP_BASE_URL}/auth/signup`, data)
-      .then((res) => {
-        changeAlert(res.data.msg);
-      });
-  };
-  const logout = async () => {
-    try {
-      await axios
-        .get(`${process.env.REACT_APP_BASE_URL}/auth/signout`)
-        .then((res) => {
-          if (res.data.success) {
-            changeAlert(res.data.msg);
-            setUserData({});
-            setIsLoggedIn(false);
-            //changeAlert(res.data.message);
-            //return <Redirect to="/" exact />;
-          }
-        });
-    } catch (err) {
-      console.log(err);
+      console.log(changedValue);
+      setPages(changedValue);
     }
-  };*/
-  const calculateTimeDifference = (date) => {};
+  };
+  const changeCurrentTab = (id) => {
+    let changedValue = pages.map((item) => {
+      let obj;
+      if (item.id === id) {
+        obj = { ...item };
+        obj.isCurrent = true;
+      } else {
+        obj = { ...item };
+        obj.isCurrent = false;
+      }
+      return obj;
+    });
+    setPages(changedValue);
+  };
+  const closeAll = () => {
+    setPages([]);
+  };
   return (
     <AppContext.Provider
       value={{
@@ -75,8 +106,12 @@ const AppProvider = ({ children }) => {
         setShowAlert,
         isLoading,
         setIsLoading,
-        tabs,
-        setTabs,
+        pages,
+        addTab,
+        checkTabExistance,
+        closeTab,
+        changeCurrentTab,
+        closeAll,
       }}
     >
       {children}

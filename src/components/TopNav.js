@@ -1,7 +1,9 @@
 import React from "react";
+import { useGlobalContext } from "../context";
 
 function TopNav() {
-  return <div>Topnav</div>;
+  const { addTab } = useGlobalContext();
+  return <div onClick={addTab}>Topnav</div>;
 }
 
 export default TopNav;

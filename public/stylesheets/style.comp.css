@@ -95,6 +95,20 @@ a:link, a:visited, a:hover, a:active {
   font-size: 2rem;
 }
 
+.tabContainer {
+  display: flex;
+  gap: 2rem;
+}
+
+.tab {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.tab-current .tab-content-heading {
+  color: red;
+}
+
 .alertBox {
   z-index: 2000;
   position: fixed;
