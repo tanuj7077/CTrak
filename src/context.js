@@ -18,7 +18,7 @@ const AppProvider = ({ children }) => {
   };
   const addTab = () => {};
   const checkTabExistance = (id) => {};
-  const closeTab = () => {};
+  const closeTab = (id) => {};
   const changeCurrentTab = (id) => {};
   /*
   const login = (loginUsername, loginPassword) => {
