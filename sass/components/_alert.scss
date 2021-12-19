@@ -1,0 +1,42 @@
+.alertBox {
+  z-index: 2000;
+  position: fixed;
+  top: 9vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: minmax(max-content, 30rem);
+  height: max-content;
+  padding: 1rem 2rem;
+  padding-right: 3.5rem;
+  border-radius: 5px;
+  &-error {
+    background-color: rgb(230, 148, 148);
+  }
+  &-success {
+    background-color: rgb(124, 216, 155);
+  }
+  display: flex;
+  flex-flow: column;
+}
+.alertText {
+  font-size: 1.4rem;
+  &-error {
+    color: rgb(138, 0, 0);
+    font-weight: 500;
+  }
+  &-success {
+    color: rgb(0, 66, 0);
+  }
+}
+.alertClose {
+  position: absolute;
+  top: 1.2rem;
+  right: 1rem;
+  color: rgb(61, 59, 59);
+  width: 1.6rem;
+  height: 1.6rem;
+  &:hover {
+    color: rgb(196, 0, 0);
+    cursor: pointer;
+  }
+}

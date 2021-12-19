@@ -1,0 +1,81 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+html {
+  font-family: "Nunito", sans-serif, courier, arial, helvetica;
+  font-weight: 400;
+  font-size: 62.5%; /*62.5% of 16px is 10px*/
+
+  @include respond(tab-land) {
+    font-size: 56.25%; //1rem=9px
+  }
+  @include respond(tab-port) {
+    font-size: 50%; //1rem=8px
+  }
+  // @include respond(medium-desk) {
+  //   font-size: 67%; //1rem=12px
+  // }
+  @include respond(big-desk) {
+    font-size: 75%; //1rem=12px
+  }
+  @include respond(large-desk) {
+    font-size: 90%; //1rem=12px
+  }
+  @include respond(2k) {
+    font-size: 100%; //1rem=12px
+  }
+  @include respond(3k) {
+    font-size: 120%; //1rem=12px
+  }
+}
+
+body {
+  box-sizing: border-box;
+  text-transform: none;
+  background-color: var(--color-white);
+  overflow-x: hidden;
+  // user-select: none;
+
+  &::-webkit-scrollbar {
+    width: 1.5rem;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgb(99, 99, 99);
+  }
+  &::-webkit-scrollbar-thumb {
+    border: 0.4rem solid rgb(99, 99, 99);
+    background: rgb(196, 196, 196);
+    border-radius: 0.75rem;
+    &:hover {
+      background: white;
+    }
+  }
+}
+input,
+textarea {
+  font-family: "Nunito", sans-serif, courier, arial, helvetica;
+}
+
+.btn {
+  &:hover {
+    cursor: pointer;
+  }
+}
+::selection {
+  // background-color: var(--color-tertiary-light);
+  // color: var(--color-white);
+}
+
+a {
+  &:link,
+  &:visited,
+  &:hover,
+  &:active {
+    text-decoration: none;
+    color: white;
+  }
+}

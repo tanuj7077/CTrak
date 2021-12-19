@@ -1,0 +1,56 @@
+{
+  "name": "cointracker",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
+    "autoprefixer": "^7.2.6",
+    "axios": "^0.21.1",
+    "chart.js": "^3.5.1",
+    "firebase": "^8.10.0",
+    "moment": "^2.27.0",
+    "node-sass": "^4.14.1",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^7.0.32",
+    "postcss-cli": "^7.1.2",
+    "react": "^17.0.2",
+    "react-chartjs-2": "^3.0.5",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.3",
+    "sass": "^1.45.0",
+    "web-vitals": "^1.1.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "compile:sass": "sass sass/main.scss public/stylesheets/style.comp.css",
+    "prefix:css": "postcss --use autoprefixer -b \"last 10 versions\" public/stylesheets/style.comp.css -o src/style.css",
+    "build:css": "npm-run-all compile:sass prefix:css",
+    "watch:sass": "sass sass/main.scss src/style.css -w",
+    "start:css": "npm-run-all --parallel watch:sass build:css"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

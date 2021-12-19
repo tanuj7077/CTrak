@@ -1,0 +1,156 @@
+/*
+0-600 phone
+600-900 tablet portrait
+900-1200 tablet landscape
+1200-1800 normal styles
+1800 big desktops
+
+breakpoint argument choices:
+- phone--600px--37.5em
+- tab-port--900px--56.25em
+- tab-land--1200px--75em
+- big-desk--1800px--112.5em
+*/
+@keyframes landingIntroClip {
+  100% {
+    -webkit-clip-path: polygon(0 0, 100% 0%, 100% 77%, 0% 100%);
+            clip-path: polygon(0 0, 100% 0%, 100% 77%, 0% 100%);
+  }
+}
+@keyframes BgAnim {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes FadeIn {
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes FadeOut {
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+@keyframes CoverAnim {
+  0% {
+    background-position: 0% 49%;
+  }
+  50% {
+    background-position: 100% 52%;
+  }
+  100% {
+    background-position: 0% 49%;
+  }
+}
+@keyframes pulse {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-family: "Nunito", sans-serif, courier, arial, helvetica;
+  font-weight: 400;
+  font-size: 62.5%;
+  /*62.5% of 16px is 10px*/
+}
+@media only screen and (max-width: 75em) {
+  html {
+    font-size: 56.25%;
+  }
+}
+@media only screen and (max-width: 56.25em) {
+  html {
+    font-size: 50%;
+  }
+}
+@media only screen and (min-width: 112.5em) {
+  html {
+    font-size: 75%;
+  }
+}
+@media only screen and (min-width: 131.25em) {
+  html {
+    font-size: 90%;
+  }
+}
+@media only screen and (min-width: 160em) {
+  html {
+    font-size: 100%;
+  }
+}
+@media only screen and (min-width: 192em) {
+  html {
+    font-size: 120%;
+  }
+}
+
+body {
+  box-sizing: border-box;
+  text-transform: none;
+  background-color: var(--color-white);
+  overflow-x: hidden;
+}
+body::-webkit-scrollbar {
+  width: 1.5rem;
+}
+body::-webkit-scrollbar-track {
+  background: #636363;
+}
+body::-webkit-scrollbar-thumb {
+  border: 0.4rem solid #636363;
+  background: #c4c4c4;
+  border-radius: 0.75rem;
+}
+body::-webkit-scrollbar-thumb:hover {
+  background: white;
+}
+
+input,
+textarea {
+  font-family: "Nunito", sans-serif, courier, arial, helvetica;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+a:link, a:visited, a:hover, a:active {
+  text-decoration: none;
+  color: white;
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3Nhc3MvYWJzdHJhY3QvX21peGlucy5zY3NzIiwiLi4vLi4vc2Fzcy9iYXNlL19hbmltYXRpb24uc2NzcyIsInN0eWxlLmNvbXAuY3NzIiwiLi4vLi4vc2Fzcy9iYXNlL19iYXNlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7Ozs7Ozs7OztDQUFBO0FDQUE7RUFDRTtJQUNFLDJEQUFBO1lBQUEsbURBQUE7RUNjRjtBQUNGO0FEVUE7RUFDRTtJQUNFLG1CQUFBO0VDY0Y7RURaQTtJQUNFLHFCQUFBO0VDY0Y7RURaQTtJQUNFLG1CQUFBO0VDY0Y7QUFDRjtBREFBO0VBQ0U7SUFDRSxVQUFBO0lBQ0EsbUJBQUE7RUNjRjtBQUNGO0FEQUE7RUFDRTtJQUNFLFVBQUE7SUFDQSxxQkFBQTtFQ2NGO0FBQ0Y7QURXQTtFQUNFO0lBQ0UsMkJBQUE7RUNhRjtFRFhBO0lBQ0UsNkJBQUE7RUNhRjtFRFhBO0lBQ0UsMkJBQUE7RUNhRjtBQUNGO0FEWEE7RUFDRTtJQUNFLFlBQUE7RUNhRjtFRFhBO0lBQ0UsVUFBQTtFQ2FGO0VEWEE7SUFDRSxZQUFBO0VDYUY7QUFDRjtBRFZBO0VBQ0U7SUFDRSwyQkFBQTtFQ1lGO0VEVkE7SUFDRSw2QkFBQTtFQ1lGO0VEVkE7SUFDRSwyQkFBQTtFQ1lGO0FBQ0Y7QUM3SUE7OztFQUdFLFNBQUE7RUFDQSxVQUFBO0VBQ0EsbUJBQUE7QUQrSUY7O0FDN0lBO0VBQ0UsNERBQUE7RUFDQSxnQkFBQTtFQUNBLGdCQUFBO0VBQWtCLHdCQUFBO0FEaUpwQjtBRjVHSTtFR3hDSjtJQU1JLGlCQUFBO0VEa0pGO0FBQ0Y7QUZ0SEk7RUduQ0o7SUFTSSxjQUFBO0VEb0pGO0FBQ0Y7QUY1R0k7RUdsREo7SUFlSSxjQUFBO0VEbUpGO0FBQ0Y7QUY1R0k7RUd2REo7SUFrQkksY0FBQTtFRHFKRjtBQUNGO0FGNUdJO0VHNURKO0lBcUJJLGVBQUE7RUR1SkY7QUFDRjtBRjVHSTtFR2pFSjtJQXdCSSxlQUFBO0VEeUpGO0FBQ0Y7O0FDdEpBO0VBQ0Usc0JBQUE7RUFDQSxvQkFBQTtFQUNBLG9DQUFBO0VBQ0Esa0JBQUE7QUR5SkY7QUN0SkU7RUFDRSxhQUFBO0FEd0pKO0FDdEpFO0VBQ0UsbUJBQUE7QUR3Sko7QUN0SkU7RUFDRSw0QkFBQTtFQUNBLG1CQUFBO0VBQ0Esc0JBQUE7QUR3Sko7QUN2Skk7RUFDRSxpQkFBQTtBRHlKTjs7QUNySkE7O0VBRUUsNERBQUE7QUR3SkY7O0FDcEpFO0VBQ0UsZUFBQTtBRHVKSjs7QUM5SUU7RUFJRSxxQkFBQTtFQUNBLFlBQUE7QUQ4SUoiLCJmaWxlIjoic3R5bGUucHJlZml4LmNzcyJ9 */
