@@ -93,6 +93,7 @@ a:link, a:visited, a:hover, a:active {
 
 .layout {
   font-size: 2rem;
+  background-color: #f7f9fd;
 }
 
 .tabContainer {
@@ -120,6 +121,64 @@ a:link, a:visited, a:hover, a:active {
 }
 .tab-current .tab-content-heading {
   color: red;
+}
+
+.topNav {
+  background-color: white;
+  border-bottom: 1px solid #d4d4d4;
+}
+.topNav-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem 5%;
+  border-bottom: 1px solid #d4d4d4;
+}
+.topNav-content-left-logo {
+  font-weight: bold;
+  font-size: 1.8rem;
+  letter-spacing: 0.2rem;
+}
+.topNav-content-right {
+  display: flex;
+  gap: 4rem;
+  align-items: center;
+}
+.topNav-content-right-item {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  color: #3b3b3b;
+  font-weight: 700;
+}
+.topNav-global {
+  width: 90%;
+  margin: 0 5%;
+  overflow: hidden;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+.topNav-global::-webkit-scrollbar {
+  display: none;
+}
+.topNav-global-slider {
+  width: max-content;
+  display: flex;
+  gap: 2rem;
+}
+.topNav-global-slider .globalItem {
+  padding: 1rem 0;
+  line-height: 1.2rem;
+}
+.topNav-global-slider .globalItem-topic {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  color: #3b3b3b;
+  margin-right: 0.6rem;
+}
+.topNav-global-slider .globalItem-value {
+  font-size: 1.2rem;
+  color: #2762b0;
 }
 
 .alertBox {
