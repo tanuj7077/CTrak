@@ -1,0 +1,17 @@
+.search {
+  width: 100%;
+  &-input {
+    border: none;
+    outline: none;
+    border-radius: 0.5rem;
+    font-size: 1.6rem;
+    width: 100%;
+    padding: 1rem 2rem;
+    border: 1px solid hsl(0, 0, 83%);
+    letter-spacing: 0.2rem;
+    &::placeholder {
+      //text-transform: uppercase;
+      letter-spacing: 0.3rem;
+    }
+  }
+}

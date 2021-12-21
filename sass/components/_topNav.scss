@@ -4,7 +4,7 @@
   &-content {
     display: flex;
     justify-content: space-between;
-    padding: 1.5rem 5%;
+    padding: 1.5rem 10%;
     border-bottom: 1px solid hsl(0, 0%, 83%);
     &-left {
       &-logo {
@@ -27,9 +27,8 @@
     }
   }
   &-global {
-    width: 90%;
-    //padding: 0 5%;
-    margin: 0 5%;
+    width: 80%;
+    margin: 0 10%;
     overflow: hidden;
     overflow-x: scroll;
     scroll-behavior: smooth;

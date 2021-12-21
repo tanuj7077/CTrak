@@ -17,18 +17,18 @@ const AppProvider = ({ children }) => {
       isCurrent: true,
       data: null,
     },
-    {
-      id: 2,
-      type: "wishlist",
-      isCurrent: false,
-      data: null,
-    },
-    {
-      id: 3,
-      type: "coin",
-      isCurrent: false,
-      data: null,
-    },
+    // {
+    //   id: 2,
+    //   type: "wishlist",
+    //   isCurrent: false,
+    //   data: null,
+    // },
+    // {
+    //   id: 3,
+    //   type: "coin",
+    //   isCurrent: false,
+    //   data: null,
+    // },
   ]);
 
   const changeAlert = (msg) => {

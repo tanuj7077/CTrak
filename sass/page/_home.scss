@@ -1,0 +1,117 @@
+.homePage {
+  .categoryContainer {
+    margin-top: 3rem;
+    width: 100%;
+    overflow: hidden;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    &-categories {
+      width: max-content;
+      display: flex;
+      gap: 0.5rem;
+      &-category {
+        background-color: transparent;
+        font-size: 1.2rem;
+        color: hsl(218, 18%, 42%);
+        outline: none;
+        border: none;
+        padding: 0.5rem 1rem;
+        letter-spacing: 0.1rem;
+        &-current {
+          background-color: hsl(216, 100%, 97%);
+          color: hsl(227, 96%, 60%);
+        }
+        &:hover {
+          cursor: pointer;
+          background-color: hsl(216, 100%, 97%);
+        }
+      }
+    }
+  }
+  .cryptoTable {
+    margin-top: 1rem;
+    width: 100%;
+    overflow: hidden;
+    overflow-x: auto;
+    position: relative;
+    table,
+    tr,
+    td {
+      border: none;
+    }
+    table {
+      border-collapse: collapse;
+    }
+    td {
+      background-color: hsl(216, 56%, 98%);
+    }
+    .header {
+      &-data {
+        font-size: 1.6rem;
+        font-weight: bold;
+        padding-left: 0.4rem;
+        padding-right: 1rem;
+        &-fixed {
+          &-rank {
+            position: sticky;
+            z-index: 2;
+            left: 0;
+            top: 0;
+          }
+          &-name {
+            position: sticky;
+            z-index: 2;
+            left: 3.2rem;
+            top: 0;
+          }
+        }
+      }
+    }
+    .body-row-cell {
+      padding: 1rem 1rem 1rem 0.4rem;
+      font-size: 1.6rem;
+      &-fixed {
+        &-rank {
+          position: sticky;
+          z-index: 2;
+          left: 0;
+          top: 0;
+        }
+        &-coin {
+          position: sticky;
+          z-index: 2;
+          left: 3.2rem;
+          top: 0;
+        }
+      }
+    }
+    .rank {
+      font-size: 1.2rem;
+      color: hsl(218, 18%, 42%);
+    }
+    .coin {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      &-img {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+      &-name {
+        letter-spacing: 0.2rem;
+        &-full {
+          font-size: 1.6rem;
+        }
+        &-symbol {
+          font-size: 1.2rem;
+          color: hsl(218, 18%, 42%);
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+}

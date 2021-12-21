@@ -2,7 +2,7 @@ import React from "react";
 import { useGlobalContext } from "../context";
 
 function TopNav() {
-  const {} = useGlobalContext();
+  const { addTab } = useGlobalContext();
   return (
     <div className="topNav">
       <div className="topNav-content">
@@ -10,6 +10,7 @@ function TopNav() {
           <div className="topNav-content-left-logo">CoinTracker</div>
         </div>
         <div className="topNav-content-right">
+          <div className="topNav-content-right-item">Home</div>
           <div className="topNav-content-right-item">Watchlist</div>
           <div className="topNav-content-right-item">Login</div>
         </div>

@@ -1,10 +1,29 @@
 .tab {
   display: flex;
-  gap: 1rem;
+  width: 15rem;
+  background-color: white;
   align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  border-radius: 0.4rem;
+  border: 1px solid hsl(0, 0%, 83%);
+  border-bottom: 2px solid hsl(0, 0%, 83%);
+  &:hover {
+    cursor: pointer;
+  }
   &-current {
-    .tab-content-heading {
-      color: red;
+    border: 1px solid hsl(214, 76%, 56%);
+    border-bottom: 2px solid hsl(214, 76%, 56%);
+  }
+  &-content {
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    letter-spacing: 0.1rem;
+    &-heading {
     }
+    &-subheading {
+    }
+  }
+  &-close {
   }
 }

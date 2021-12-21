@@ -9,12 +9,12 @@ function TabContainer() {
   };
   return (
     <div className="tabContainer">
-      Tab Container
-      {pages.map((tab) => {
-        return <Tab key={tab.id} tabData={tab} deleteTab={deleteTab} />;
-      })}
-      <div className="a" onClick={closeAll}>
-        CloseAll
+      <div className="tabSlider">
+        <div className="tabSlider-tabs">
+          {pages.map((tab) => {
+            return <Tab key={tab.id} tabData={tab} deleteTab={deleteTab} />;
+          })}
+        </div>
       </div>
     </div>
   );

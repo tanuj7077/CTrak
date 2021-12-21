@@ -1,8 +1,12 @@
 .pageContainer {
   position: relative;
+  margin-top: 2rem;
+  width: 80%;
+  margin: 2rem 10%;
 }
 .page {
   position: absolute;
+  width: 100%;
   &-invisible {
     z-index: -1;
     left: -100vw;

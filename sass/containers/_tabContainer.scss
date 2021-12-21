@@ -1,4 +1,19 @@
 .tabContainer {
-  display: flex;
-  gap: 2rem;
+  margin-top: 2rem;
+  .tabSlider {
+    width: 80%;
+    margin: 0 10%;
+    overflow: hidden;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    &-tabs {
+      width: max-content;
+      display: flex;
+      gap: 1rem;
+    }
+  }
 }
