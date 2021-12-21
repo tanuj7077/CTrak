@@ -1,12 +1,28 @@
-.pageContainer {
+/*.pageContainer {
   position: relative;
   margin-top: 2rem;
   width: 80%;
   margin: 2rem 10%;
+  border-bottom: 1px solid hsl(0, 0%, 83%);
 }
 .page {
   position: absolute;
   width: 100%;
+  &-invisible {
+    z-index: -1;
+    left: -100vw;
+    top: -1100vh;
+  }
+}*/
+.pageContainer {
+  position: relative;
+  width: 100%;
+  padding: 0rem 10%;
+  border-bottom: 1px solid hsl(0, 0%, 83%);
+}
+.page {
+  position: absolute;
+  width: 80%;
   &-invisible {
     z-index: -1;
     left: -100vw;

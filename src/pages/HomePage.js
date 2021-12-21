@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import Search from "../components/Search";
 import axios from "axios";
 import { coinGeckoApi, coinTypes } from "../components/Utilities/constants";
+import { useGlobalContext } from "../context";
 
 function HomePage({ pageData }) {
+  const { addTab } = useGlobalContext();
   const [categories, setCategories] = useState([]);
   const [listData, setListData] = useState({
     category: "",
@@ -33,7 +35,7 @@ function HomePage({ pageData }) {
   return (
     <div className={`page ${pageData.isCurrent ? "" : "page-invisible"}`}>
       <div className="homePage">
-        <Search />
+        {/* <Search /> */}
         <div className="categoryContainer">
           <div className="categoryContainer-categories">
             {coinTypes.map((coin, idx) => {
@@ -58,10 +60,10 @@ function HomePage({ pageData }) {
             <thead>
               <tr className="header">
                 <td className="header-data header-data-fixed-rank">#</td>
-                <td className="header-data header-data-fixed-name">Name</td>
+                <td className="header-data header-data-fixed-name">Coin</td>
                 {/* decide on left position from measuring distance between 
                 table left and Name left */}
-                <td className="header-data">Price</td>
+                <td className="header-data header-data-price">Price</td>
                 <td className="header-data">24h %</td>
                 <td className="header-data">Market Cap</td>
                 <td className="header-data">Volume</td>
@@ -73,28 +75,42 @@ function HomePage({ pageData }) {
               {coins &&
                 coins.map((coin) => {
                   return (
-                    <tr className="body-row">
+                    <tr key={"coinTable" + coin.name} className="body-row">
                       <td className="body-row-cell body-row-cell-fixed-rank">
                         <p className="rank">{coin.market_cap_rank}</p>
                       </td>
                       <td className="body-row-cell body-row-cell-fixed-coin">
-                        <div className="coin">
+                        <div
+                          className="coin"
+                          onClick={() => addTab("coin", coin)}
+                        >
                           <img
                             src={coin.image}
                             alt={coin.symbol + "Img"}
                             className="coin-img"
                           />
                           <div className="coin-name">
-                            <p className="coin-name-full">{coin.name}</p>
+                            <p className="coin-name-full">
+                              {coin.name.length < 27
+                                ? coin.name
+                                : coin.name.substr(0, 26) + "..."}
+                            </p>
                             <p className="coin-name-symbol">{coin.symbol}</p>
                           </div>
                         </div>
                       </td>
                       <td className="body-row-cell">${coin.current_price}</td>
-                      <td className="body-row-cell">
-                        <p className="coin-percentage">
-                          {coin.price_change_percentage_24h}
-                        </p>
+                      <td
+                        className={`body-row-cell body-row-cell-price ${
+                          (coin.price_change_percentage_24h < 0 &&
+                            "body-row-cell-price-down") ||
+                          (coin.price_change_percentage_24h > 0 &&
+                            "body-row-cell-price-up")
+                        }`}
+                      >
+                        {coin.price_change_percentage_24h > 0
+                          ? "+" + coin.price_change_percentage_24h
+                          : coin.price_change_percentage_24h}
                       </td>
                       <td className="body-row-cell">{coin.market_cap}</td>
                       <td className="body-row-cell">{coin.total_volume}</td>

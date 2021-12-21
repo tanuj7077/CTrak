@@ -309,5 +309,93 @@ a:link, a:visited, a:hover, a:active {
   cursor: pointer;
   background-color: #f0f6ff;
 }
+.homePage .cryptoTable {
+  margin-top: 1rem;
+  width: 100%;
+  overflow: hidden;
+  overflow-x: auto;
+  position: relative;
+}
+.homePage .cryptoTable table,
+.homePage .cryptoTable tr,
+.homePage .cryptoTable td {
+  border: none;
+}
+.homePage .cryptoTable table {
+  border-collapse: collapse;
+}
+.homePage .cryptoTable td {
+  background-color: #f7f9fd;
+}
+.homePage .cryptoTable .header-data {
+  font-size: 1.6rem;
+  font-weight: bold;
+  padding-left: 0.4rem;
+  padding-right: 1rem;
+}
+.homePage .cryptoTable .header-data-fixed-rank {
+  position: sticky;
+  z-index: 2;
+  left: 0;
+  top: 0;
+}
+.homePage .cryptoTable .header-data-fixed-name {
+  position: sticky;
+  z-index: 2;
+  left: 3.5rem;
+  top: 0;
+}
+.homePage .cryptoTable .header-data-price {
+  padding-left: 0.7rem;
+}
+.homePage .cryptoTable .body-row-cell {
+  padding: 1rem 1rem 1rem 0.4rem;
+  font-size: 1.6rem;
+}
+.homePage .cryptoTable .body-row-cell-fixed-rank {
+  position: sticky;
+  z-index: 2;
+  left: 0;
+  top: 0;
+}
+.homePage .cryptoTable .body-row-cell-fixed-coin {
+  position: sticky;
+  z-index: 2;
+  left: 3.5rem;
+  top: 0;
+}
+.homePage .cryptoTable .body-row-cell-price {
+  padding-left: 0.7rem;
+}
+.homePage .cryptoTable .body-row-cell-price-up {
+  color: #16c582;
+}
+.homePage .cryptoTable .body-row-cell-price-down {
+  color: #ea3941;
+}
+.homePage .cryptoTable .rank {
+  font-size: 1.2rem;
+  color: #58667e;
+}
+.homePage .cryptoTable .coin {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.homePage .cryptoTable .coin-img {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.homePage .cryptoTable .coin-name {
+  letter-spacing: 0.2rem;
+}
+.homePage .cryptoTable .coin-name-full {
+  font-size: 1.6rem;
+}
+.homePage .cryptoTable .coin-name-symbol {
+  font-size: 1.2rem;
+  color: #58667e;
+  text-transform: uppercase;
+}
 
 /*# sourceMappingURL=style.comp.css.map */

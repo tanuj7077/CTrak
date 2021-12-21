@@ -11,6 +11,7 @@ function TopNav() {
         </div>
         <div className="topNav-content-right">
           <div className="topNav-content-right-item">Home</div>
+          <div className="topNav-content-right-item">Search</div>
           <div className="topNav-content-right-item">Watchlist</div>
           <div className="topNav-content-right-item">Login</div>
         </div>

@@ -36,11 +36,12 @@ html {
 body {
   box-sizing: border-box;
   text-transform: none;
-  background-color: hsl(216, 56%, 98%);
+  //background-color: hsl(216, 56%, 98%);
+  background-color: white;
   overflow-x: hidden;
   // user-select: none;
 
-  &::-webkit-scrollbar {
+  /*&::-webkit-scrollbar {
     width: 1.5rem;
   }
   &::-webkit-scrollbar-track {
@@ -53,7 +54,7 @@ body {
     &:hover {
       background: white;
     }
-  }
+  }*/
 }
 input,
 textarea {

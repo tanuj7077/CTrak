@@ -45,47 +45,57 @@
     }
     table {
       border-collapse: collapse;
+      min-width: 100%;
     }
     td {
-      background-color: hsl(216, 56%, 98%);
+      background-color: white;
     }
     .header {
+      border-top: 1px solid #eff2f5;
+      border-bottom: 1px solid #eff2f5;
       &-data {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
         font-weight: bold;
+        padding: 1rem 0;
         padding-left: 0.4rem;
-        padding-right: 1rem;
+        padding-right: 1.5rem;
         &-fixed {
           &-rank {
             position: sticky;
             z-index: 2;
             left: 0;
-            top: 0;
           }
           &-name {
             position: sticky;
             z-index: 2;
-            left: 3.2rem;
-            top: 0;
+            left: 0;
           }
         }
       }
     }
     .body-row-cell {
-      padding: 1rem 1rem 1rem 0.4rem;
-      font-size: 1.6rem;
+      padding: 1rem 1.5rem 1rem 0.4rem;
+      font-size: 1.4rem;
+      font-weight: 600;
       &-fixed {
         &-rank {
           position: sticky;
           z-index: 2;
           left: 0;
-          top: 0;
         }
         &-coin {
           position: sticky;
           z-index: 2;
-          left: 3.2rem;
-          top: 0;
+          left: 0;
+        }
+      }
+      &-price {
+        color: black;
+        &-up {
+          color: hsl(157, 80%, 43%);
+        }
+        &-down {
+          color: hsl(357, 81%, 57%);
         }
       }
     }
@@ -97,6 +107,7 @@
       display: flex;
       gap: 1rem;
       align-items: center;
+      font-weight: normal;
       &-img {
         width: 2.5rem;
         height: 2.5rem;
@@ -111,6 +122,9 @@
           color: hsl(218, 18%, 42%);
           text-transform: uppercase;
         }
+      }
+      &:hover {
+        cursor: pointer;
       }
     }
   }

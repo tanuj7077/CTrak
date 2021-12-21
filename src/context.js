@@ -39,12 +39,23 @@ const AppProvider = ({ children }) => {
     let newPages = [...pages];
     let obj = {
       id: new Date().getTime(),
-      type: "home",
-      isCurrent: false,
-      data: null,
+      type: type,
+      isCurrent: true,
+      data: data,
     };
     newPages.push(obj);
-    setPages(newPages);
+    let changedValue = newPages.map((item) => {
+      let newObj;
+      if (item.id !== obj.id) {
+        newObj = { ...item };
+        newObj.isCurrent = false;
+      } else {
+        newObj = { ...item };
+      }
+      return newObj;
+    });
+    setPages(changedValue);
+    //setPages(newPages);
   };
   const checkTabExistance = (id) => {};
   const closeTab = (id) => {
