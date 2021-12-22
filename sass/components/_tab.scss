@@ -10,12 +10,16 @@
   position: relative;
   &:hover {
     cursor: pointer;
+    border: 2px solid hsl(214, 76%, 76%);
   }
   &-current {
     border: 2px solid hsl(214, 76%, 56%);
     //border-bottom: 2px solid hsl(214, 76%, 56%);
     .tab-content-heading {
       color: hsl(214, 76%, 56%);
+    }
+    &:hover {
+      border: 2px solid hsl(214, 76%, 56%);
     }
   }
   &-content {

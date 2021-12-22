@@ -50,6 +50,9 @@
     td {
       background-color: white;
     }
+    .body-row:hover td {
+      background-color: hsl(216, 100%, 97%);
+    }
     .header {
       border-top: 1px solid #eff2f5;
       border-bottom: 1px solid #eff2f5;
@@ -59,6 +62,9 @@
         padding: 1rem 0;
         padding-left: 0.4rem;
         padding-right: 1.5rem;
+        &:last-of-type {
+          padding-right: 0;
+        }
         &-fixed {
           &-rank {
             position: sticky;
@@ -77,6 +83,9 @@
       padding: 1rem 1.5rem 1rem 0.4rem;
       font-size: 1.4rem;
       font-weight: 600;
+      &:last-of-type {
+        padding-right: 0;
+      }
       &-fixed {
         &-rank {
           position: sticky;

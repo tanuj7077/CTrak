@@ -8,8 +8,9 @@ function CoinPage({ pageData }) {
       .get(`${process.env.REACT_APP_BASE_URL}/coin/coin/${pageData.data.id}`)
       .then((res) => {
         setCoinData(res.data);
+        console.log(res.data);
       });
-  }, []);
+  }, [pageData.id]);
   return (
     <div className={`page ${pageData.isCurrent ? "" : "page-invisible"}`}>
       <div className="coinPage">

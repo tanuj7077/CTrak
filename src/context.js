@@ -17,18 +17,6 @@ const AppProvider = ({ children }) => {
       isCurrent: true,
       data: null,
     },
-    // {
-    //   id: 2,
-    //   type: "wishlist",
-    //   isCurrent: false,
-    //   data: null,
-    // },
-    // {
-    //   id: 3,
-    //   type: "coin",
-    //   isCurrent: false,
-    //   data: null,
-    // },
   ]);
 
   const changeAlert = (msg) => {
@@ -41,7 +29,10 @@ const AppProvider = ({ children }) => {
       id: new Date().getTime(),
       type: type,
       isCurrent: true,
-      data: data,
+      data: {
+        id: data.id,
+        symbol: data.symbol,
+      },
     };
     newPages.push(obj);
     let changedValue = newPages.map((item) => {
@@ -87,7 +78,6 @@ const AppProvider = ({ children }) => {
         }
         return obj;
       });
-      console.log(changedValue);
       setPages(changedValue);
     }
   };

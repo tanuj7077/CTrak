@@ -179,12 +179,16 @@ a:link, a:visited, a:hover, a:active {
 }
 .tab:hover {
   cursor: pointer;
+  border: 2px solid #93bcf0;
 }
 .tab-current {
   border: 2px solid #3a83e4;
 }
 .tab-current .tab-content-heading {
   color: #3a83e4;
+}
+.tab-current:hover {
+  border: 2px solid #3a83e4;
 }
 .tab-content {
   text-transform: uppercase;
@@ -223,6 +227,9 @@ a:link, a:visited, a:hover, a:active {
   letter-spacing: 0.1rem;
   color: #3b3b3b;
   font-weight: 700;
+}
+.topNav-content-right-item:hover {
+  cursor: pointer;
 }
 .topNav-global {
   width: 80%;
@@ -369,6 +376,9 @@ a:link, a:visited, a:hover, a:active {
 .homePage .cryptoTable td {
   background-color: white;
 }
+.homePage .cryptoTable .body-row:hover td {
+  background-color: #f0f6ff;
+}
 .homePage .cryptoTable .header {
   border-top: 1px solid #eff2f5;
   border-bottom: 1px solid #eff2f5;
@@ -379,6 +389,9 @@ a:link, a:visited, a:hover, a:active {
   padding: 1rem 0;
   padding-left: 0.4rem;
   padding-right: 1.5rem;
+}
+.homePage .cryptoTable .header-data:last-of-type {
+  padding-right: 0;
 }
 .homePage .cryptoTable .header-data-fixed-rank {
   position: sticky;
@@ -394,6 +407,9 @@ a:link, a:visited, a:hover, a:active {
   padding: 1rem 1.5rem 1rem 0.4rem;
   font-size: 1.4rem;
   font-weight: 600;
+}
+.homePage .cryptoTable .body-row-cell:last-of-type {
+  padding-right: 0;
 }
 .homePage .cryptoTable .body-row-cell-fixed-rank {
   position: sticky;

@@ -59,22 +59,22 @@ html {
 body {
   box-sizing: border-box;
   text-transform: none;
-  background-color: #f7f9fd;
+  background-color: white;
   overflow-x: hidden;
-}
-body::-webkit-scrollbar {
-  width: 1.5rem;
-}
-body::-webkit-scrollbar-track {
-  background: #636363;
-}
-body::-webkit-scrollbar-thumb {
-  border: 0.4rem solid #636363;
-  background: #c4c4c4;
-  border-radius: 0.75rem;
-}
-body::-webkit-scrollbar-thumb:hover {
-  background: white;
+  /*&::-webkit-scrollbar {
+    width: 1.5rem;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgb(99, 99, 99);
+  }
+  &::-webkit-scrollbar-thumb {
+    border: 0.4rem solid rgb(99, 99, 99);
+    background: rgb(196, 196, 196);
+    border-radius: 0.75rem;
+    &:hover {
+      background: white;
+    }
+  }*/
 }
 
 input,
@@ -97,18 +97,35 @@ a:link, a:visited, a:hover, a:active {
 }
 
 .tabContainer {
-  margin-top: 2rem;
+  padding: 1rem 0 0.5rem 0;
 }
 .tabContainer .tabSlider {
   width: 80%;
   margin: 0 10%;
+  padding-bottom: 0.5rem;
   overflow: hidden;
   overflow-x: auto;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 }
 .tabContainer .tabSlider::-webkit-scrollbar {
-  display: none;
+  height: 1rem;
+  background: #e6e6e6;
+}
+.tabContainer .tabSlider::-webkit-scrollbar-track {
+  background: transparent;
+}
+.tabContainer .tabSlider::-webkit-scrollbar-thumb {
+  border: 0.2rem solid #e6e6e6;
+  background: #c4c4c4;
+}
+.tabContainer .tabSlider::-webkit-scrollbar-thumb:hover {
+  background: #b3b3b3;
+}
+@media only screen and (max-width: 37.5em) {
+  .tabContainer .tabSlider::-webkit-scrollbar {
+    display: none;
+  }
 }
 .tabContainer .tabSlider-tabs {
   width: max-content;
@@ -116,16 +133,32 @@ a:link, a:visited, a:hover, a:active {
   gap: 1rem;
 }
 
-.pageContainer {
+/*.pageContainer {
   position: relative;
   margin-top: 2rem;
   width: 80%;
   margin: 2rem 10%;
+  border-bottom: 1px solid hsl(0, 0%, 83%);
+}
+.page {
+  position: absolute;
+  width: 100%;
+  &-invisible {
+    z-index: -1;
+    left: -100vw;
+    top: -1100vh;
+  }
+}*/
+.pageContainer {
+  position: relative;
+  width: 100%;
+  padding: 0rem 10%;
+  border-bottom: 1px solid #d4d4d4;
 }
 
 .page {
   position: absolute;
-  width: 100%;
+  width: 80%;
 }
 .page-invisible {
   z-index: -1;
@@ -141,20 +174,32 @@ a:link, a:visited, a:hover, a:active {
   justify-content: space-between;
   padding: 0.5rem 1rem;
   border-radius: 0.4rem;
-  border: 1px solid #d4d4d4;
-  border-bottom: 2px solid #d4d4d4;
+  border: 2px solid #d4d4d4;
+  position: relative;
 }
 .tab:hover {
   cursor: pointer;
+  border: 2px solid #93bcf0;
 }
 .tab-current {
-  border: 1px solid #3a83e4;
-  border-bottom: 2px solid #3a83e4;
+  border: 2px solid #3a83e4;
+}
+.tab-current .tab-content-heading {
+  color: #3a83e4;
+}
+.tab-current:hover {
+  border: 2px solid #3a83e4;
 }
 .tab-content {
   text-transform: uppercase;
   font-size: 1.4rem;
   letter-spacing: 0.1rem;
+}
+.tab-content-heading {
+  font-size: 1rem;
+}
+.tab-content-subheading {
+  font-weight: bold;
 }
 .topNav {
   background-color: white;
@@ -163,7 +208,7 @@ a:link, a:visited, a:hover, a:active {
 .topNav-content {
   display: flex;
   justify-content: space-between;
-  padding: 1.5rem 10%;
+  padding: 1.8rem 10% 1.5rem 10%;
   border-bottom: 1px solid #d4d4d4;
 }
 .topNav-content-left-logo {
@@ -182,6 +227,9 @@ a:link, a:visited, a:hover, a:active {
   letter-spacing: 0.1rem;
   color: #3b3b3b;
   font-weight: 700;
+}
+.topNav-content-right-item:hover {
+  cursor: pointer;
 }
 .topNav-global {
   width: 80%;
@@ -323,49 +371,49 @@ a:link, a:visited, a:hover, a:active {
 }
 .homePage .cryptoTable table {
   border-collapse: collapse;
+  min-width: 100%;
 }
 .homePage .cryptoTable td {
-  background-color: #f7f9fd;
+  background-color: white;
+}
+.homePage .cryptoTable .header {
+  border-top: 1px solid #eff2f5;
+  border-bottom: 1px solid #eff2f5;
 }
 .homePage .cryptoTable .header-data {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: bold;
+  padding: 1rem 0;
   padding-left: 0.4rem;
-  padding-right: 1rem;
+  padding-right: 1.5rem;
 }
 .homePage .cryptoTable .header-data-fixed-rank {
   position: sticky;
   z-index: 2;
   left: 0;
-  top: 0;
 }
 .homePage .cryptoTable .header-data-fixed-name {
   position: sticky;
   z-index: 2;
-  left: 3.5rem;
-  top: 0;
-}
-.homePage .cryptoTable .header-data-price {
-  padding-left: 0.7rem;
+  left: 0;
 }
 .homePage .cryptoTable .body-row-cell {
-  padding: 1rem 1rem 1rem 0.4rem;
-  font-size: 1.6rem;
+  padding: 1rem 1.5rem 1rem 0.4rem;
+  font-size: 1.4rem;
+  font-weight: 600;
 }
 .homePage .cryptoTable .body-row-cell-fixed-rank {
   position: sticky;
   z-index: 2;
   left: 0;
-  top: 0;
 }
 .homePage .cryptoTable .body-row-cell-fixed-coin {
   position: sticky;
   z-index: 2;
-  left: 3.5rem;
-  top: 0;
+  left: 0;
 }
 .homePage .cryptoTable .body-row-cell-price {
-  padding-left: 0.7rem;
+  color: black;
 }
 .homePage .cryptoTable .body-row-cell-price-up {
   color: #16c582;
@@ -381,6 +429,7 @@ a:link, a:visited, a:hover, a:active {
   display: flex;
   gap: 1rem;
   align-items: center;
+  font-weight: normal;
 }
 .homePage .cryptoTable .coin-img {
   width: 2.5rem;
@@ -396,6 +445,18 @@ a:link, a:visited, a:hover, a:active {
   font-size: 1.2rem;
   color: #58667e;
   text-transform: uppercase;
+}
+.homePage .cryptoTable .coin:hover {
+  cursor: pointer;
+}
+
+.coinPage {
+  padding-top: 3rem;
+}
+.coinPage a {
+  color: inherit;
+  text-decoration: none;
+  pointer-events: none;
 }
 
 /*# sourceMappingURL=style.comp.css.map */
