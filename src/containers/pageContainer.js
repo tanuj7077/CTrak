@@ -18,25 +18,5 @@ function PageContainer() {
     </div>
   );
 }
-/*
-function PageContainer() {
-  const { pages } = useGlobalContext();
-  return (
-    <div className="pageContainer">
-      {pages.map((pageData) => {
-        return (
-          <>
-            {pageData.type === "home" && (
-              <HomePage key={pageData.id} pageData={pageData} />
-            )}
-            {pageData.type === "coin" && (
-              <CoinPage key={pageData.id} pageData={pageData} />
-            )}
-          </>
-        );
-      })}
-    </div>
-  );
-}*/
 
 export default PageContainer;

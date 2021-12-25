@@ -108,14 +108,24 @@ function HomePage({ pageData }) {
                             "body-row-cell-price-up")
                         }`}
                       >
-                        {coin.price_change_percentage_24h > 0
-                          ? "+" + coin.price_change_percentage_24h
-                          : coin.price_change_percentage_24h}
+                        {coin.price_change_percentage_24h !== null &&
+                          coin.price_change_percentage_24h > 0 &&
+                          "+" + coin.price_change_percentage_24h.toFixed(2)}
+                        {coin.price_change_percentage_24h !== null &&
+                          coin.price_change_percentage_24h <= 0 &&
+                          coin.price_change_percentage_24h.toFixed(2)}
+                        {coin.price_change_percentage_24h === null && "-"}
                       </td>
                       <td className="body-row-cell">{coin.market_cap}</td>
                       <td className="body-row-cell">{coin.total_volume}</td>
-                      <td className="body-row-cell">{coin.high_24h}</td>
-                      <td className="body-row-cell">{coin.low_24h}</td>
+                      <td className="body-row-cell">
+                        {coin.high_24h}
+                        {coin.high_24h === null && "-"}
+                      </td>
+                      <td className="body-row-cell">
+                        {coin.low_24h}
+                        {coin.low_24h === null && "-"}
+                      </td>
                     </tr>
                   );
                 })}
