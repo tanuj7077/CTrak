@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Line } from "react-chartjs-2";
 
 const Coin = ({ coinInfo }) => {
   let img = coinInfo.image.large,
@@ -190,6 +191,127 @@ const Supply = ({ coinInfo }) => {
     </>
   );
 };
+const Chart = ({ coinId }) => {
+  const [historicalData, setHistoricalData] = useState();
+  const [days, setDays] = useState(1);
+  let options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+    elements: {
+      point: {
+        radius: 1,
+      },
+    },
+    scales: {
+      x: {
+        grid: {
+          //display: false,
+          color: "#e1e4ea",
+        },
+      },
+      y: {
+        grid: {
+          color: "#e1e4ea",
+        },
+      },
+    },
+  };
+  const getHistoricData = () => {
+    axios
+      .get(
+        `${process.env.REACT_APP_BASE_URL}/coin/coinHistorical?id=${coinId}&days=${days}`
+      )
+      .then((res) => {
+        setHistoricalData(res.data);
+      });
+  };
+  useEffect(() => {
+    getHistoricData();
+  }, [days]);
+  return (
+    <div className="chartContainer">
+      <div className="chartContainer-buttons">
+        <button
+          className={`chartContainer-buttons-btn ${
+            days === 1 && "chartContainer-buttons-btn-current"
+          }`}
+          onClick={() => setDays(1)}
+        >
+          24 hours
+        </button>
+        <button
+          className={`chartContainer-buttons-btn ${
+            days === 7 && "chartContainer-buttons-btn-current"
+          }`}
+          onClick={() => setDays(7)}
+        >
+          1 Week
+        </button>
+        <button
+          className={`chartContainer-buttons-btn ${
+            days === 30 && "chartContainer-buttons-btn-current"
+          }`}
+          onClick={() => setDays(30)}
+        >
+          1 Month
+        </button>
+        <button
+          className={`chartContainer-buttons-btn ${
+            days === 180 && "chartContainer-buttons-btn-current"
+          }`}
+          onClick={() => setDays(180)}
+        >
+          6 Months
+        </button>
+        <button
+          className={`chartContainer-buttons-btn ${
+            days === 365 && "chartContainer-buttons-btn-current"
+          }`}
+          onClick={() => setDays(365)}
+        >
+          1 Year
+        </button>
+      </div>
+      <div className="chartContainer-chart">
+        {historicalData && (
+          <Line
+            data={{
+              labels: historicalData.prices.map((coin) => {
+                let date = new Date(coin[0]);
+                let time =
+                  date.getHours() > 12
+                    ? `${date.getHours() - 12}:${date.getMinutes()} PM`
+                    : `${date.getHours()}:${date.getMinutes()} AM`;
+                return days === 1 ? time : date.toLocaleDateString();
+              }),
+              datasets: [
+                {
+                  data: historicalData.prices.map((coin) => coin[1]),
+                  borderColor: "#3a83e4",
+                },
+              ],
+            }}
+            options={options}
+          />
+        )}
+      </div>
+    </div>
+  );
+};
+const Converter = ({ coinInfo }) => {
+  return (
+    <div className="converter">
+      <p className="converter-heading">
+        <span>{coinInfo.symbol} </span>
+        to USD Converter
+      </p>
+    </div>
+  );
+};
 
 function CoinPage({ pageData }) {
   const [coinData, setCoinData] = useState();
@@ -221,8 +343,16 @@ function CoinPage({ pageData }) {
               <Supply coinInfo={coinData} />
             </div>
           </div>
-          <div className="coinPage-graph"></div>
-          <div className="coinPage-converter"></div>
+
+          {coinData && (
+            <div className="coinPage-graph">
+              <Chart coinId={coinData.id} />
+            </div>
+          )}
+
+          <div className="coinPage-converter">
+            <Converter coinInfo={coinData} />
+          </div>
         </div>
       )}
     </div>

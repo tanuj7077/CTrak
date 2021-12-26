@@ -466,11 +466,23 @@ a:link, a:visited, a:hover, a:active {
   display: flex;
   justify-content: space-between;
 }
+@media only screen and (max-width: 37.5em) {
+  .coinPage-coin-info {
+    flex-flow: column;
+    gap: 2rem;
+  }
+}
 .coinPage-coin-info .left {
   display: flex;
   flex-flow: column;
   gap: 1rem;
   width: max-content;
+}
+@media only screen and (max-width: 37.5em) {
+  .coinPage-coin-info .left {
+    width: 100%;
+    align-items: flex-start;
+  }
 }
 .coinPage-coin-info .left .coin {
   display: flex;
@@ -478,8 +490,8 @@ a:link, a:visited, a:hover, a:active {
   gap: 1.5rem;
 }
 .coinPage-coin-info .left .coin-img {
-  width: 8rem;
-  height: 8rem;
+  width: 15rem;
+  height: 15rem;
 }
 .coinPage-coin-info .left .coin-textual-name {
   font-size: 3rem;
@@ -507,34 +519,16 @@ a:link, a:visited, a:hover, a:active {
   color: #58667e;
   border-radius: 0.2rem;
 }
-.coinPage-coin-info .left .info {
-  margin-top: 1rem;
-}
-.coinPage-coin-info .left .info-item {
-  margin-bottom: 1rem;
-}
-.coinPage-coin-info .left .info-item-heading {
-  color: #595959;
-  font-size: 1.6rem;
-  text-transform: uppercase;
-  margin-right: 1rem;
-}
-.coinPage-coin-info .left .info-item-value {
-  font-weight: 700;
-  font-size: 1.6rem;
-}
-.coinPage-coin-info .left .info .btn {
-  margin-top: 1.5rem;
+.coinPage-coin-info .left .coin-textual .btn {
   outline: none;
   border: none;
-  background-color: #f0f6ff;
+  background-color: transparent;
   color: #58667e;
-  font-size: 1.6rem;
-  padding: 1rem 3rem;
+  font-size: 1.4rem;
   letter-spacing: 0.2rem;
   border-radius: 0.5rem;
 }
-.coinPage-coin-info .left .info .btn:hover {
+.coinPage-coin-info .left .coin-textual .btn:hover {
   color: #3762fb;
 }
 .coinPage-coin-info .right {
@@ -542,6 +536,12 @@ a:link, a:visited, a:hover, a:active {
   flex-flow: column;
   align-items: flex-end;
   gap: 1.5rem;
+}
+@media only screen and (max-width: 37.5em) {
+  .coinPage-coin-info .right {
+    width: 100%;
+    align-items: flex-start;
+  }
 }
 .coinPage-coin-info .right .coin-price {
   font-size: 4rem;
@@ -623,13 +623,109 @@ a:link, a:visited, a:hover, a:active {
 }
 .coinPage-coin-extraInfo {
   display: flex;
-  gap: 5rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
   margin-top: 4rem;
   padding-top: 4rem;
   border-top: 1px solid #d4d4d4;
 }
+@media only screen and (max-width: 75em) {
+  .coinPage-coin-extraInfo {
+    padding-top: 0rem;
+  }
+}
 .coinPage-coin-extraInfo .coinExtraInfo {
   width: 24%;
+}
+@media only screen and (max-width: 75em) {
+  .coinPage-coin-extraInfo .coinExtraInfo {
+    width: 48%;
+    padding-top: 4rem;
+    border-bottom: 1px solid #d4d4d4;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .coinPage-coin-extraInfo .coinExtraInfo {
+    width: 100%;
+  }
+}
+.coinPage-coin-extraInfo .coinExtraInfo-item {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+.coinPage-coin-extraInfo .coinExtraInfo-item-inline {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.coinPage-coin-extraInfo .coinExtraInfo-topic {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+}
+.coinPage-coin-extraInfo .coinExtraInfo-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.coinPage-coin-extraInfo .coinExtraInfo-percent {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+.coinPage-coin-extraInfo .coinExtraInfo-percent .percent {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.coinPage-coin-extraInfo .coinExtraInfo-percent .percent-up {
+  color: #16c582;
+}
+.coinPage-coin-extraInfo .coinExtraInfo-percent .percent-down {
+  color: #ea3941;
+}
+.coinPage-coin-extraInfo .coinExtraInfo-percent .time {
+  font-size: 1.2rem;
+  background-color: #f0f6ff;
+  color: #58667e;
+  width: 5rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 0.4rem;
+}
+.coinPage-coin-extraInfo .coinExtraInfo-graph {
+  margin-top: 1rem;
+  width: 100%;
+  height: 1rem;
+  border-radius: 0.5rem;
+  background-color: #d2d7e0;
+  position: relative;
+  overflow: hidden;
+}
+.coinPage-coin-extraInfo .coinExtraInfo-graph span {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #8d99b0;
+}
+.coinPage-coin-extraInfo .marketCap .coinExtraInfo-item {
+  text-align: center;
+}
+@media only screen and (max-width: 75em) {
+  .coinPage-coin-extraInfo .marketCap .coinExtraInfo-item {
+    text-align: unset;
+  }
+}
+.coinPage-coin-extraInfo .marketCap .coinExtraInfo-percent {
+  justify-content: center;
+}
+@media only screen and (max-width: 75em) {
+  .coinPage-coin-extraInfo .marketCap .coinExtraInfo-percent {
+    justify-content: unset;
+  }
 }
 
 /*# sourceMappingURL=style.comp.css.map */
