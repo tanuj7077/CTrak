@@ -55,8 +55,8 @@ const CurrentPrice = ({ coinInfo }) => {
       </div>
       <div className="coin-progress">
         <p className="coin-progress-level">
-          <p className="heading">Low</p>
-          <p className="value">{price24hLow}</p>
+          <span className="heading">Low</span>
+          <span className="value">{price24hLow}</span>
         </p>
         <div className="coin-progress-graph">
           <span
@@ -83,7 +83,7 @@ const MarketCap = ({ coinInfo }) => {
             <p className="coinExtraInfo-value">{marketCap}</p>
             {marketCapPercent && (
               <p className="coinExtraInfo-percent">
-                <div
+                <span
                   className={`percent ${
                     marketCapPercent > 0 ? "percent-up" : "percent-down"
                   }`}
@@ -91,8 +91,8 @@ const MarketCap = ({ coinInfo }) => {
                   {marketCapPercent > 0
                     ? "+" + marketCapPercent.toFixed(2)
                     : marketCapPercent.toFixed(2)}
-                </div>
-                <div className="time">24h</div>
+                </span>
+                <span className="time">24h</span>
               </p>
             )}
           </div>
@@ -167,13 +167,13 @@ const Supply = ({ coinInfo }) => {
     <>
       <div className="coinExtraInfo allTimeData">
         {maxSupply && (
-          <div className="coinExtraInfo-item">
+          <div className="coinExtraInfo-item coinExtraInfo-item-inline">
             <p className="coinExtraInfo-topic">Max Supply: </p>
             <p className="coinExtraInfo-value">{maxSupply}</p>
           </div>
         )}
         {circulatinSupply && (
-          <div className="coinExtraInfo-item">
+          <div className="coinExtraInfo-item coinExtraInfo-item-inline">
             <p className="coinExtraInfo-topic">Circulating Supply: </p>
             <p className="coinExtraInfo-value">{circulatinSupply}</p>
           </div>
@@ -209,12 +209,13 @@ const Chart = ({ coinId }) => {
     scales: {
       x: {
         grid: {
-          //display: false,
+          display: false,
           color: "#e1e4ea",
         },
       },
       y: {
         grid: {
+          display: false,
           color: "#e1e4ea",
         },
       },
@@ -350,9 +351,9 @@ function CoinPage({ pageData }) {
             </div>
           )}
 
-          <div className="coinPage-converter">
+          {/* <div className="coinPage-converter">
             <Converter coinInfo={coinData} />
-          </div>
+          </div> */}
         </div>
       )}
     </div>

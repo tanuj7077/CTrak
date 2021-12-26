@@ -8,6 +8,10 @@
     overflow-x: auto;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
+    @include respond(phone) {
+      width: 90%;
+      margin: 0 5%;
+    }
     &::-webkit-scrollbar {
       //display: none;
     }

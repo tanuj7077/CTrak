@@ -19,10 +19,16 @@
   width: 100%;
   padding: 0rem 10%;
   border-bottom: 1px solid hsl(0, 0%, 83%);
+  @include respond(phone) {
+    padding: 0rem 5%;
+  }
 }
 .page {
   position: absolute;
   width: 80%;
+  @include respond(phone) {
+    width: 90%;
+  }
   &-invisible {
     z-index: -1;
     left: -100vw;

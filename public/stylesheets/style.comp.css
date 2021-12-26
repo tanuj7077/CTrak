@@ -493,9 +493,21 @@ a:link, a:visited, a:hover, a:active {
   width: 15rem;
   height: 15rem;
 }
+@media only screen and (max-width: 37.5em) {
+  .coinPage-coin-info .left .coin-img {
+    width: 6rem;
+    height: 6rem;
+  }
+}
 .coinPage-coin-info .left .coin-textual-name {
   font-size: 3rem;
   letter-spacing: 0.2rem;
+}
+@media only screen and (max-width: 37.5em) {
+  .coinPage-coin-info .left .coin-textual-name {
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+  }
 }
 .coinPage-coin-info .left .coin-textual-info {
   display: flex;
@@ -531,6 +543,11 @@ a:link, a:visited, a:hover, a:active {
 .coinPage-coin-info .left .coin-textual .btn:hover {
   color: #3762fb;
 }
+@media only screen and (max-width: 37.5em) {
+  .coinPage-coin-info .left .coin-textual .btn {
+    display: none;
+  }
+}
 .coinPage-coin-info .right {
   display: flex;
   flex-flow: column;
@@ -554,9 +571,12 @@ a:link, a:visited, a:hover, a:active {
   align-items: center;
 }
 .coinPage-coin-info .right .coin-priceChange-topic {
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   text-transform: uppercase;
   color: #595959;
+}
+.coinPage-coin-info .right .coin-priceChange-change {
+  font-size: 1.6rem;
 }
 .coinPage-coin-info .right .coin-priceChange-change-low {
   color: #ea3941;
@@ -598,12 +618,17 @@ a:link, a:visited, a:hover, a:active {
   gap: 1rem;
   align-items: center;
 }
+.coinPage-coin-info .right .coin-progress-level {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
 .coinPage-coin-info .right .coin-progress-level .heading {
   text-transform: uppercase;
   font-size: 1.2rem;
 }
 .coinPage-coin-info .right .coin-progress-level .value {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 .coinPage-coin-info .right .coin-progress-graph {
   width: 14rem;
@@ -625,8 +650,8 @@ a:link, a:visited, a:hover, a:active {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-top: 4rem;
-  padding-top: 4rem;
+  margin-top: 3rem;
+  padding-top: 3rem;
   border-top: 1px solid #d4d4d4;
 }
 @media only screen and (max-width: 75em) {
@@ -634,14 +659,28 @@ a:link, a:visited, a:hover, a:active {
     padding-top: 0rem;
   }
 }
+@media only screen and (max-width: 37.5em) {
+  .coinPage-coin-extraInfo {
+    width: 100%;
+  }
+}
 .coinPage-coin-extraInfo .coinExtraInfo {
-  width: 24%;
+  width: 25%;
+  padding: 1.5rem;
+  border-right: 1px solid #d4d4d4;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+.coinPage-coin-extraInfo .coinExtraInfo:last-of-type {
+  border-right: none;
 }
 @media only screen and (max-width: 75em) {
   .coinPage-coin-extraInfo .coinExtraInfo {
     width: 48%;
     padding-top: 4rem;
     border-bottom: 1px solid #d4d4d4;
+    border-right: none;
   }
 }
 @media only screen and (max-width: 37.5em) {
@@ -661,7 +700,7 @@ a:link, a:visited, a:hover, a:active {
   margin-bottom: 0.5rem;
 }
 .coinPage-coin-extraInfo .coinExtraInfo-topic {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   text-transform: uppercase;
 }
 .coinPage-coin-extraInfo .coinExtraInfo-value {
@@ -726,6 +765,36 @@ a:link, a:visited, a:hover, a:active {
   .coinPage-coin-extraInfo .marketCap .coinExtraInfo-percent {
     justify-content: unset;
   }
+}
+.coinPage-graph .chartContainer {
+  margin: 4rem 0 4rem 0;
+}
+.coinPage-graph .chartContainer-buttons {
+  width: max-content;
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+.coinPage-graph .chartContainer-buttons-btn {
+  background-color: transparent;
+  font-size: 1.2rem;
+  color: #58667e;
+  outline: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  letter-spacing: 0.1rem;
+  background-color: white;
+}
+.coinPage-graph .chartContainer-buttons-btn-current {
+  background-color: #f0f6ff;
+  color: #3762fb;
+}
+.coinPage-graph .chartContainer-buttons-btn:hover {
+  cursor: pointer;
+  background-color: #f0f6ff;
+}
+.coinPage-converter .converter-heading span {
+  text-transform: uppercase;
 }
 
 /*# sourceMappingURL=style.comp.css.map */
