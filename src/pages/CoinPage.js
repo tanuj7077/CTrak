@@ -64,8 +64,8 @@ const CurrentPrice = ({ coinInfo }) => {
           ></span>
         </div>
         <p className="coin-progress-level">
-          <p className="heading">High</p>
-          <p className="value">{price24hHigh}</p>
+          <span className="heading">High</span>
+          <span className="value">{price24hHigh}</span>
         </p>
       </div>
     </>

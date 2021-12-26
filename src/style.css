@@ -353,6 +353,12 @@ a:link, a:visited, a:hover, a:active {
   letter-spacing: 0.3rem;
 }
 
+.homePage {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  margin-bottom: 4rem;
+}
 .homePage .categoryContainer {
   margin-top: 3rem;
   width: 100%;
@@ -486,6 +492,20 @@ a:link, a:visited, a:hover, a:active {
 }
 .homePage .cryptoTable .coin:hover {
   cursor: pointer;
+}
+.homePage .more {
+  margin: 0 auto;
+  margin-top: 1rem;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  text-transform: uppercase;
+  font-size: 1.6rem;
+  color: #58667e;
+}
+.homePage .more:hover {
+  cursor: pointer;
+  color: #3762fb;
 }
 
 .coinPage {

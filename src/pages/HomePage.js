@@ -1,8 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import Search from "../components/Search";
 import axios from "axios";
 import { coinGeckoApi, coinTypes } from "../components/Utilities/constants";
 import { useGlobalContext } from "../context";
+import { FaChevronDown } from "react-icons/fa";
 
 function HomePage({ pageData }) {
   const { addTab } = useGlobalContext();
@@ -28,16 +30,16 @@ function HomePage({ pageData }) {
     }
   };
   const getCoins = async () => {
+    console.log("ADD coins executed");
     axios
       .post(`${process.env.REACT_APP_BASE_URL}/coin/coinList`, listData)
       .then((res) => {
-        setCoins(res.data);
-        console.log(res.data);
+        setCoins([...coins, ...res.data]);
       });
   };
   useEffect(() => {
     getCoins();
-  }, [listData]);
+  }, [listData.category, listData.page]);
   return (
     <div className={`page ${pageData.isCurrent ? "" : "page-invisible"}`}>
       <div className="homePage">
@@ -52,7 +54,10 @@ function HomePage({ pageData }) {
                       ? "categoryContainer-categories-category-current"
                       : ""
                   }`}
-                  onClick={() => changeListData("category", coin.value)}
+                  onClick={() => {
+                    setCoins([]);
+                    changeListData("category", coin.value);
+                  }}
                 >
                   {coin.name}
                 </button>
@@ -143,11 +148,11 @@ function HomePage({ pageData }) {
           <button
             className="more"
             onClick={() => {
-              setCoins([]);
+              //setCoins([]);
               changeListData("page", listData.page + 1);
             }}
           >
-            Next Page
+            Load more
           </button>
         )}
       </div>

@@ -1,4 +1,8 @@
 .homePage {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  margin-bottom: 4rem;
   .categoryContainer {
     margin-top: 3rem;
     width: 100%;
@@ -135,6 +139,20 @@
       &:hover {
         cursor: pointer;
       }
+    }
+  }
+  .more {
+    margin: 0 auto;
+    margin-top: 1rem;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    text-transform: uppercase;
+    font-size: 1.6rem;
+    color: hsl(218, 18%, 42%);
+    &:hover {
+      cursor: pointer;
+      color: hsl(227, 96%, 60%);
     }
   }
 }
