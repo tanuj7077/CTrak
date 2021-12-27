@@ -424,7 +424,7 @@ a:link, a:visited, a:hover, a:active {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 1rem;
+  padding: 0.7rem 1rem;
 }
 .searchModal-trendingSection-list-item:hover {
   background-color: #f0f6ff;
@@ -441,6 +441,7 @@ a:link, a:visited, a:hover, a:active {
 }
 .searchModal-trendingSection-list-item .left .name {
   font-size: 1.6rem;
+  font-weight: 700;
 }
 .searchModal-trendingSection-list-item .left .symbol {
   font-size: 1.2rem;
@@ -448,6 +449,59 @@ a:link, a:visited, a:hover, a:active {
   color: #6f7f9b;
 }
 .searchModal-trendingSection-list-item .rank {
+  font-size: 1.4rem;
+  color: #6f7f9b;
+}
+.searchModal-results {
+  margin-top: 1rem;
+  width: 100%;
+}
+.searchModal-results-heading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+.searchModal-results-heading .text {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+.searchModal-results-list {
+  margin-top: 0.5rem;
+  width: 100%;
+  list-style: none;
+  display: flex;
+  flex-flow: column;
+}
+.searchModal-results-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 1rem;
+}
+.searchModal-results-list-item:hover {
+  background-color: #f0f6ff;
+  cursor: pointer;
+}
+.searchModal-results-list-item .left {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.searchModal-results-list-item .left .img {
+  width: 2rem;
+  height: 2rem;
+}
+.searchModal-results-list-item .left .name {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.searchModal-results-list-item .left .symbol {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  color: #6f7f9b;
+}
+.searchModal-results-list-item .rank {
   font-size: 1.4rem;
   color: #6f7f9b;
 }
