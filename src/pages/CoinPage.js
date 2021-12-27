@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
@@ -303,6 +304,7 @@ const Chart = ({ coinId }) => {
     </div>
   );
 };
+/*
 const Converter = ({ coinInfo }) => {
   return (
     <div className="converter">
@@ -312,7 +314,7 @@ const Converter = ({ coinInfo }) => {
       </p>
     </div>
   );
-};
+};*/
 
 function CoinPage({ pageData }) {
   const [coinData, setCoinData] = useState();

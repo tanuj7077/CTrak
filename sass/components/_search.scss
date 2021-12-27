@@ -1,17 +1,99 @@
-.search {
-  width: 100%;
-  &-input {
-    border: none;
-    outline: none;
-    border-radius: 0.5rem;
-    font-size: 1.6rem;
+.searchModal {
+  position: fixed;
+  top: 6rem;
+  right: 10%;
+  width: 42.5rem;
+  height: max-content;
+  background-color: white;
+  z-index: 11;
+  border-radius: 1rem;
+  padding: 1rem 2rem 2rem 2rem;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  &-inputContainer {
     width: 100%;
-    padding: 1rem 2rem;
-    border: 1px solid hsl(0, 0, 83%);
-    letter-spacing: 0.2rem;
-    &::placeholder {
-      //text-transform: uppercase;
-      letter-spacing: 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .searchIcon {
+      width: 2rem;
+      height: 2rem;
+      color: hsl(218, 18%, 62%);
+    }
+    input {
+      width: calc(100% - 5rem);
+      outline: none;
+      border: none;
+      padding: 0.5rem 0;
+      font-size: 1.6rem;
+    }
+    .closeIcon {
+      width: 2rem;
+      height: 2rem;
+      color: hsl(218, 18%, 52%);
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  &-noInput {
+    margin-top: 1rem;
+    width: 100%;
+  }
+  &-trendingSection {
+    width: 100%;
+    &-heading {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0 1rem;
+      .text {
+        font-size: 1.2rem;
+        text-transform: uppercase;
+      }
+      .icon {
+        width: 1.2rem;
+        height: 1.2rem;
+        color: rgb(209, 63, 26);
+      }
+    }
+    &-list {
+      margin-top: 0.5rem;
+      width: 100%;
+      list-style: none;
+      display: flex;
+      flex-flow: column;
+      //gap: 1rem;
+      &-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        &:hover {
+          background-color: hsl(216, 100%, 97%);
+          cursor: pointer;
+        }
+        .left {
+          display: flex;
+          align-items: center;
+          gap: 0.8rem;
+          .img {
+            width: 2rem;
+            height: 2rem;
+          }
+          .name {
+            font-size: 1.6rem;
+          }
+          .symbol {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            color: hsl(218, 18%, 52%);
+          }
+        }
+        .rank {
+          font-size: 1.4rem;
+          color: hsl(218, 18%, 52%);
+        }
+      }
     }
   }
 }

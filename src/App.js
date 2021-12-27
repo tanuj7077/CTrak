@@ -9,6 +9,8 @@ import Layout from "./Layout";
 import Alert from "./components/Alert";
 import Loading from "./components/Loading";
 import { useGlobalContext } from "./context";
+import LoginModal from "./components/Modals/LoginModal";
+import SearchModal from "./components/Modals/SearchModal";
 
 axios.defaults.withCredentials = true;
 function App() {
@@ -42,7 +44,8 @@ function App() {
       <Route path="/" exact>
         <Alert />
         <Loading />
-        {/* <LoginModal /> */}
+        <LoginModal />
+        <SearchModal />
         <Layout />
       </Route>
     </Switch>

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 
 const AppContext = React.createContext();
@@ -7,14 +7,27 @@ const AppProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState();
-  const [loginModalVisible, setLoginModalVisible] = useState(false);
+  const [trending, setTrending] = useState([]);
 
+  const [loginModalVisible, setLoginModalVisible] = useState(false);
   const toggleLoginModalVisibility = () => {
     setLoginModalVisible(!loginModalVisible);
   };
 
+  const [searchModalVisibility, setSearchModalVisibility] = useState(false);
+  const toggleSearchModalVisibility = () => {
+    setSearchModalVisibility(!searchModalVisibility);
+  };
+
+  const [watchlistModalVisibility, setWatchlistModalVisibility] =
+    useState(false);
+  const toggleWatchlistModalVisibility = () => {
+    setWatchlistModalVisibility(!watchlistModalVisibility);
+  };
+
   const [alert, setAlert] = useState({});
   const [showAlert, setShowAlert] = useState(0);
+
   const [pages, setPages] = useState([
     {
       id: 1,
@@ -72,32 +85,57 @@ const AppProvider = ({ children }) => {
     setAlert(msg);
     setShowAlert(1);
   };
-  const addTab = (type, data) => {
-    let newPages = [...pages];
-    let obj = {
-      id: new Date().getTime(),
-      type: type,
-      isCurrent: true,
-      data: {
-        id: data.id,
-        symbol: data.symbol,
-      },
-    };
-    newPages.push(obj);
-    let changedValue = newPages.map((item) => {
-      let newObj;
-      if (item.id !== obj.id) {
-        newObj = { ...item };
-        newObj.isCurrent = false;
-      } else {
-        newObj = { ...item };
-      }
-      return newObj;
+  const getTrending = () => {
+    axios.get(`${process.env.REACT_APP_BASE_URL}/coin/trending`).then((res) => {
+      setTrending(res.data);
+      console.log(res.data);
     });
-    setPages(changedValue);
+  };
+  useEffect(() => {
+    getTrending();
+  }, []);
+  const addTab = (type, data) => {
+    if (checkTabExistance(type, data)) {
+      if (type === "coin") {
+        let obj = pages.find((item) => {
+          return item.data != null && item.data.id === data.id;
+        });
+        changeCurrentTab(obj.id);
+      }
+    } else {
+      let newPages = [...pages];
+      let obj = {
+        id: new Date().getTime(),
+        type: type,
+        isCurrent: true,
+        data: {
+          id: data.id,
+          symbol: data.symbol,
+        },
+      };
+      newPages.push(obj);
+      let changedValue = newPages.map((item) => {
+        let newObj;
+        if (item.id !== obj.id) {
+          newObj = { ...item };
+          newObj.isCurrent = false;
+        } else {
+          newObj = { ...item };
+        }
+        return newObj;
+      });
+      setPages(changedValue);
+    }
     //setPages(newPages);
   };
-  const checkTabExistance = (id) => {};
+  const checkTabExistance = (type, data) => {
+    if (type === "coin") {
+      const index = pages.findIndex((page) => {
+        return page.data != null && page.data.id === data.id;
+      });
+      return index >= 0;
+    }
+  };
   const closeTab = (id) => {
     const index = pages.findIndex((page) => page.id === id);
     const currentIndex = pages.findIndex((page) => page.isCurrent);
@@ -153,6 +191,7 @@ const AppProvider = ({ children }) => {
         isLoggedIn,
         setIsLoggedIn,
         setUserData,
+        userData,
         changeAlert,
         setShowAlert,
         isLoading,
@@ -170,6 +209,11 @@ const AppProvider = ({ children }) => {
         logout,
         alert,
         showAlert,
+        searchModalVisibility,
+        toggleSearchModalVisibility,
+        watchlistModalVisibility,
+        toggleWatchlistModalVisibility,
+        trending,
       }}
     >
       {children}

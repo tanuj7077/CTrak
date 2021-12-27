@@ -353,21 +353,103 @@ a:link, a:visited, a:hover, a:active {
   cursor: pointer;
 }
 
-.search {
-  width: 100%;
+.searchModal {
+  position: fixed;
+  top: 6rem;
+  right: 10%;
+  width: 42.5rem;
+  height: max-content;
+  background-color: white;
+  z-index: 11;
+  border-radius: 1rem;
+  padding: 1rem 2rem 2rem 2rem;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 }
-.search-input {
-  border: none;
+.searchModal-inputContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.searchModal-inputContainer .searchIcon {
+  width: 2rem;
+  height: 2rem;
+  color: #8d99b0;
+}
+.searchModal-inputContainer input {
+  width: calc(100% - 5rem);
   outline: none;
-  border-radius: 0.5rem;
+  border: none;
+  padding: 0.5rem 0;
   font-size: 1.6rem;
-  width: 100%;
-  padding: 1rem 2rem;
-  border: 1px solid #d4d4d4;
-  letter-spacing: 0.2rem;
 }
-.search-input::placeholder {
-  letter-spacing: 0.3rem;
+.searchModal-inputContainer .closeIcon {
+  width: 2rem;
+  height: 2rem;
+  color: #6f7f9b;
+}
+.searchModal-inputContainer .closeIcon:hover {
+  cursor: pointer;
+}
+.searchModal-noInput {
+  margin-top: 1rem;
+  width: 100%;
+}
+.searchModal-trendingSection {
+  width: 100%;
+}
+.searchModal-trendingSection-heading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+.searchModal-trendingSection-heading .text {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+.searchModal-trendingSection-heading .icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  color: #d13f1a;
+}
+.searchModal-trendingSection-list {
+  margin-top: 0.5rem;
+  width: 100%;
+  list-style: none;
+  display: flex;
+  flex-flow: column;
+}
+.searchModal-trendingSection-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+.searchModal-trendingSection-list-item:hover {
+  background-color: #f0f6ff;
+  cursor: pointer;
+}
+.searchModal-trendingSection-list-item .left {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.searchModal-trendingSection-list-item .left .img {
+  width: 2rem;
+  height: 2rem;
+}
+.searchModal-trendingSection-list-item .left .name {
+  font-size: 1.6rem;
+}
+.searchModal-trendingSection-list-item .left .symbol {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  color: #6f7f9b;
+}
+.searchModal-trendingSection-list-item .rank {
+  font-size: 1.4rem;
+  color: #6f7f9b;
 }
 
 .loginModalContainer {
