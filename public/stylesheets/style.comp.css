@@ -108,6 +108,12 @@ a:link, a:visited, a:hover, a:active {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 }
+@media only screen and (max-width: 37.5em) {
+  .tabContainer .tabSlider {
+    width: 90%;
+    margin: 0 5%;
+  }
+}
 .tabContainer .tabSlider::-webkit-scrollbar {
   height: 1rem;
   background: #e6e6e6;
@@ -155,10 +161,20 @@ a:link, a:visited, a:hover, a:active {
   padding: 0rem 10%;
   border-bottom: 1px solid #d4d4d4;
 }
+@media only screen and (max-width: 37.5em) {
+  .pageContainer {
+    padding: 0rem 5%;
+  }
+}
 
 .page {
   position: absolute;
   width: 80%;
+}
+@media only screen and (max-width: 37.5em) {
+  .page {
+    width: 90%;
+  }
 }
 .page-invisible {
   z-index: -1;
@@ -211,6 +227,12 @@ a:link, a:visited, a:hover, a:active {
   padding: 1.8rem 10% 1.5rem 10%;
   border-bottom: 1px solid #d4d4d4;
 }
+@media only screen and (max-width: 37.5em) {
+  .topNav-content {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}
 .topNav-content-left-logo {
   font-weight: bold;
   font-size: 1.8rem;
@@ -238,6 +260,12 @@ a:link, a:visited, a:hover, a:active {
   overflow-x: scroll;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+}
+@media only screen and (max-width: 37.5em) {
+  .topNav-global {
+    width: 90%;
+    margin: 0 5%;
+  }
 }
 .topNav-global::-webkit-scrollbar {
   display: none;
@@ -324,6 +352,12 @@ a:link, a:visited, a:hover, a:active {
   letter-spacing: 0.3rem;
 }
 
+.homePage {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  margin-bottom: 4rem;
+}
 .homePage .categoryContainer {
   margin-top: 3rem;
   width: 100%;
@@ -458,6 +492,20 @@ a:link, a:visited, a:hover, a:active {
 .homePage .cryptoTable .coin:hover {
   cursor: pointer;
 }
+.homePage .more {
+  margin: 0 auto;
+  margin-top: 1rem;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  text-transform: uppercase;
+  font-size: 1.6rem;
+  color: #58667e;
+}
+.homePage .more:hover {
+  cursor: pointer;
+  color: #3762fb;
+}
 
 .coinPage {
   padding-top: 3rem;
@@ -552,7 +600,7 @@ a:link, a:visited, a:hover, a:active {
   display: flex;
   flex-flow: column;
   align-items: flex-end;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 @media only screen and (max-width: 37.5em) {
   .coinPage-coin-info .right {
@@ -573,7 +621,6 @@ a:link, a:visited, a:hover, a:active {
 .coinPage-coin-info .right .coin-priceChange-topic {
   font-size: 1.2rem;
   text-transform: uppercase;
-  color: #595959;
 }
 .coinPage-coin-info .right .coin-priceChange-change {
   font-size: 1.6rem;
@@ -615,13 +662,27 @@ a:link, a:visited, a:hover, a:active {
 }
 .coinPage-coin-info .right .coin-progress {
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
   align-items: center;
+}
+@media only screen and (max-width: 37.5em) {
+  .coinPage-coin-info .right .coin-progress {
+    flex-flow: column;
+    align-items: flex-start;
+    width: 100%;
+  }
 }
 .coinPage-coin-info .right .coin-progress-level {
   display: flex;
   flex-flow: column;
   align-items: center;
+}
+@media only screen and (max-width: 37.5em) {
+  .coinPage-coin-info .right .coin-progress-level {
+    width: 100%;
+    flex-flow: row;
+    justify-content: space-between;
+  }
 }
 .coinPage-coin-info .right .coin-progress-level .heading {
   text-transform: uppercase;
@@ -630,6 +691,12 @@ a:link, a:visited, a:hover, a:active {
 .coinPage-coin-info .right .coin-progress-level .value {
   font-size: 1.2rem;
 }
+@media only screen and (max-width: 37.5em) {
+  .coinPage-coin-info .right .coin-progress-level .value {
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+}
 .coinPage-coin-info .right .coin-progress-graph {
   width: 14rem;
   height: 1rem;
@@ -637,6 +704,13 @@ a:link, a:visited, a:hover, a:active {
   background-color: #d2d7e0;
   position: relative;
   overflow: hidden;
+}
+@media only screen and (max-width: 37.5em) {
+  .coinPage-coin-info .right .coin-progress-graph {
+    margin-top: 0.5rem;
+    order: 1;
+    width: 100%;
+  }
 }
 .coinPage-coin-info .right .coin-progress-graph span {
   position: absolute;
@@ -686,6 +760,7 @@ a:link, a:visited, a:hover, a:active {
 @media only screen and (max-width: 37.5em) {
   .coinPage-coin-extraInfo .coinExtraInfo {
     width: 100%;
+    padding: 1rem 0;
   }
 }
 .coinPage-coin-extraInfo .coinExtraInfo-item {

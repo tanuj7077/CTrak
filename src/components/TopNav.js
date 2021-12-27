@@ -2,7 +2,7 @@ import React from "react";
 import { useGlobalContext } from "../context";
 
 function TopNav() {
-  const { addTab } = useGlobalContext();
+  const { toggleLoginModalVisibility, isLoggedIn, logout } = useGlobalContext();
   return (
     <div className="topNav">
       <div className="topNav-content">
@@ -10,10 +10,24 @@ function TopNav() {
           <div className="topNav-content-left-logo">CoinTracker</div>
         </div>
         <div className="topNav-content-right">
-          <div className="topNav-content-right-item">Home</div>
+          {/* <div className="topNav-content-right-item">Home</div> */}
           <div className="topNav-content-right-item">Search</div>
-          <div className="topNav-content-right-item">Watchlist</div>
-          <div className="topNav-content-right-item">Login</div>
+          {isLoggedIn && (
+            <div className="topNav-content-right-item">Watchlist</div>
+          )}
+
+          {isLoggedIn ? (
+            <div className="topNav-content-right-item" onClick={logout}>
+              Logout
+            </div>
+          ) : (
+            <div
+              className="topNav-content-right-item"
+              onClick={toggleLoginModalVisibility}
+            >
+              Login
+            </div>
+          )}
         </div>
       </div>
       <div className="topNav-global">

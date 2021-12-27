@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from "react";
+import { Switch, Route } from "react-router-dom";
 import axios from "axios";
 
 // import LoginModal from "./components/Modals/LoginModal";
@@ -11,7 +12,8 @@ import { useGlobalContext } from "./context";
 
 axios.defaults.withCredentials = true;
 function App() {
-  const { setIsLoading } = useGlobalContext();
+  const { setIsLoading, setIsLoggedIn, setUserData, isLoggedIn } =
+    useGlobalContext();
   axios.interceptors.request.use((request) => {
     setIsLoading(true);
     return request;
@@ -20,6 +22,21 @@ function App() {
     setIsLoading(false);
     return response;
   });
+  const getLoggedIn = async () => {
+    const loggedInRes = await axios.get(
+      `${process.env.REACT_APP_BASE_URL}/auth/loggedIn`
+    );
+    if (loggedInRes.data.loggedIn) {
+      setIsLoggedIn(true);
+      setUserData(loggedInRes.data.userData);
+    }
+  };
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      getLoggedIn();
+    }
+  }, []);
   return (
     <Switch>
       <Route path="/" exact>

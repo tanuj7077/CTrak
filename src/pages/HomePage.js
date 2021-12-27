@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
-import Search from "../components/Search";
+//import Search from "../components/Search";
 import axios from "axios";
-import { coinGeckoApi, coinTypes } from "../components/Utilities/constants";
+import { coinTypes } from "../components/Utilities/constants";
 import { useGlobalContext } from "../context";
-import { FaChevronDown } from "react-icons/fa";
+//import { FaChevronDown } from "react-icons/fa";
 
 function HomePage({ pageData }) {
   const { addTab } = useGlobalContext();
-  const [categories, setCategories] = useState([]);
+  //const [categories, setCategories] = useState([]);
   const [listData, setListData] = useState({
     category: "",
     order: "market_cap_desc",
