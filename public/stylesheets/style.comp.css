@@ -365,6 +365,13 @@ a:link, a:visited, a:hover, a:active {
   padding: 1rem 2rem 2rem 2rem;
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 }
+@media only screen and (max-width: 37.5em) {
+  .searchModal {
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+}
 .searchModal-inputContainer {
   width: 100%;
   display: flex;
@@ -457,6 +464,9 @@ a:link, a:visited, a:hover, a:active {
 }
 .searchModal-recentSection {
   width: 100%;
+  display: flex;
+  flex-flow: column;
+  gap: 0.7rem;
 }
 .searchModal-recentSection-heading {
   display: flex;
@@ -474,19 +484,23 @@ a:link, a:visited, a:hover, a:active {
   color: #2d5eb9;
 }
 .searchModal-recentSection-listContainer {
-  width: 100%;
+  width: calc(100% - 2rem);
   overflow: hidden;
   overflow-x: auto;
+  align-self: center;
 }
 .searchModal-recentSection-listContainer-list {
   list-style: none;
   display: flex;
   gap: 1rem;
+  width: max-content;
+  padding: 0.5rem 0rem;
 }
 .searchModal-recentSection-listContainer-list .listItem {
-  width: 7rem;
-  height: 7rem;
+  width: 8rem;
+  height: 8rem;
   border-radius: 1rem;
+  background-color: #fafcff;
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -557,6 +571,11 @@ a:link, a:visited, a:hover, a:active {
 .searchModal-results-list-item .rank {
   font-size: 1.4rem;
   color: #6f7f9b;
+}
+.searchModal-notFound {
+  background-color: #6f7f9b;
+  width: 100%;
+  height: 30rem;
 }
 
 .loginModalContainer {

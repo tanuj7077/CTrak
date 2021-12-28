@@ -11,6 +11,7 @@ import Loading from "./components/Loading";
 import { useGlobalContext } from "./context";
 import LoginModal from "./components/Modals/LoginModal";
 import SearchModal from "./components/Modals/SearchModal";
+import WatchListModal from "./components/Modals/WatchListModal";
 
 axios.defaults.withCredentials = true;
 function App() {
@@ -46,6 +47,7 @@ function App() {
         <Loading />
         <LoginModal />
         <SearchModal />
+        <WatchListModal />
         <Layout />
       </Route>
     </Switch>

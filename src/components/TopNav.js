@@ -5,6 +5,7 @@ function TopNav() {
   const {
     toggleSearchModalVisibility,
     toggleLoginModalVisibility,
+    toggleWatchlistModalVisibility,
     isLoggedIn,
     logout,
   } = useGlobalContext();
@@ -23,7 +24,12 @@ function TopNav() {
             Search
           </div>
           {isLoggedIn && (
-            <div className="topNav-content-right-item">Watchlist</div>
+            <div
+              className="topNav-content-right-item"
+              onClick={toggleWatchlistModalVisibility}
+            >
+              Watchlist
+            </div>
           )}
 
           {isLoggedIn ? (

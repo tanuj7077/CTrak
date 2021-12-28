@@ -4,7 +4,7 @@ import { IoSearch } from "react-icons/io5";
 import { IoIosCloseCircle } from "react-icons/io";
 import { FaFire } from "react-icons/fa";
 import axios from "axios";
-import ScrollObserver from "../Utilities/ScrollObserver";
+//import ScrollObserver from "../Utilities/ScrollObserver";
 
 function SearchModal() {
   const {
@@ -17,9 +17,8 @@ function SearchModal() {
   } = useGlobalContext();
   console.log(userData);
   const [searchText, setSearchText] = useState("");
-  const [isSearchLoading, setIsSearchLoading] = useState(false);
+  //const [isSearchLoading, setIsSearchLoading] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
-  const [recent, setRecent] = useState([]);
   const handleSearch = (text) => {
     setSearchText(text);
     text.length > 0 &&
@@ -172,7 +171,18 @@ function SearchModal() {
             </div>
           )}
           {searchText.length > 0 && searchResults.length === 0 && (
-            <div className="searchModal-notFound">Not Found</div>
+            <div className="searchModal-notFound">
+              <div className="searchModal-notFound-container">
+                <div className="iconContainer">
+                  <IoSearch className="icon" />
+                </div>
+                <p className="heading">No results for '{searchText}'</p>
+                <p className="desc">
+                  We couldn't find anything matching your search. Try again with
+                  a different term.
+                </p>
+              </div>
+            </div>
           )}
         </div>
       )}

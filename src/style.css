@@ -360,7 +360,7 @@ a:link, a:visited, a:hover, a:active {
   width: 42.5rem;
   height: max-content;
   background-color: white;
-  z-index: 11;
+  z-index: 12;
   border-radius: 1rem;
   padding: 1rem 2rem 2rem 2rem;
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
@@ -377,6 +377,7 @@ a:link, a:visited, a:hover, a:active {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 12;
 }
 .searchModal-inputContainer .searchIcon {
   width: 2rem;
@@ -571,6 +572,42 @@ a:link, a:visited, a:hover, a:active {
 .searchModal-results-list-item .rank {
   font-size: 1.4rem;
   color: #6f7f9b;
+}
+.searchModal-notFound {
+  width: 100%;
+  height: 25rem;
+  display: grid;
+  place-items: center;
+}
+.searchModal-notFound-container {
+  display: flex;
+  flex-flow: column;
+  width: 27rem;
+  align-items: center;
+  gap: 0.5rem;
+}
+.searchModal-notFound-container .iconContainer {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  background-color: #e1e4ea;
+  display: grid;
+  place-items: center;
+}
+.searchModal-notFound-container .iconContainer .icon {
+  width: 3rem;
+  height: 3rem;
+  color: #7887a1;
+}
+.searchModal-notFound-container .heading {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #495569;
+}
+.searchModal-notFound-container .desc {
+  text-align: center;
+  font-size: 1.6rem;
+  color: #5e6d87;
 }
 
 .loginModalContainer {
@@ -878,6 +915,251 @@ a:link, a:visited, a:hover, a:active {
 }
 .loginModalContainer-loginModal-signup .loginModalContainer-loginModal-optionBg {
   left: calc(-100% + 1rem);
+}
+
+.watchlistModal {
+  position: fixed;
+  top: 6rem;
+  right: 10%;
+  width: 42.5rem;
+  height: max-content;
+  background-color: white;
+  z-index: 11;
+  border-radius: 1rem;
+  padding: 1rem 2rem 2rem 2rem;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+}
+@media only screen and (max-width: 37.5em) {
+  .watchlistModal {
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+}
+.watchlistModal-heading {
+  width: 100%;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  padding: 0.5rem 0 1.5rem 0;
+  border-bottom: 1px solid #d4d4d4;
+  text-transform: uppercase;
+}
+.watchlistModal-noWatchlists {
+  width: 100%;
+  height: 25rem;
+  display: grid;
+  place-items: center;
+}
+.watchlistModal-noWatchlists-container {
+  display: flex;
+  flex-flow: column;
+  width: 35rem;
+  align-items: center;
+  gap: 0.5rem;
+}
+.watchlistModal-noWatchlists-container .iconContainer {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  background-color: #e7eaee;
+  display: grid;
+  place-items: center;
+}
+.watchlistModal-noWatchlists-container .iconContainer .icon {
+  width: 3rem;
+  height: 3rem;
+  color: #7887a1;
+}
+.watchlistModal-noWatchlists-container .heading {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #495569;
+}
+.watchlistModal-noWatchlists-container .desc {
+  text-align: center;
+  font-size: 1.6rem;
+  color: #5e6d87;
+}
+.watchlistModal-noWatchlists-container button {
+  margin-top: 1rem;
+  outline: none;
+  border: none;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  background-color: #f0f2f5;
+  color: #343d4b;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+.watchlistModal-noWatchlists-container button:hover {
+  background-color: #5e6d87;
+  color: #f6f7f9;
+  cursor: pointer;
+}
+.watchlistModal-createSection {
+  height: max-content;
+  padding-top: 2em;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  gap: 1rem;
+}
+.watchlistModal-createSection .inputGrp {
+  width: 100%;
+}
+.watchlistModal-createSection .inputGrp input {
+  width: 100%;
+  border-radius: 0.4rem;
+  outline: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  background-color: #f6f7f9;
+  font-size: 1.6rem;
+  color: #495569;
+  border: 1px solid transparent;
+}
+.watchlistModal-createSection .inputGrp textarea {
+  width: 100%;
+  height: 15rem;
+  border-radius: 0.4rem;
+  outline: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  background-color: #f6f7f9;
+  font-size: 1.6rem;
+  color: #495569;
+  border: 1px solid transparent;
+}
+.watchlistModal-createSection .inputGrp label {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  color: #495569;
+}
+.watchlistModal-createSection .inputGrp label span {
+  text-transform: initial;
+}
+.watchlistModal-createSection .inputGrp:focus-within label {
+  font-weight: bold;
+}
+.watchlistModal-createSection .inputGrp:focus-within input, .watchlistModal-createSection .inputGrp:focus-within textarea {
+  border: 1px solid #b4bccb;
+}
+.watchlistModal-createSection .buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.watchlistModal-createSection .buttons button {
+  width: 48%;
+  outline: none;
+  border: none;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  background-color: #f0f2f5;
+  color: #343d4b;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+.watchlistModal-createSection .buttons button:hover {
+  background-color: #5e6d87;
+  color: #f6f7f9;
+  cursor: pointer;
+}
+.watchlistModal-createSection .buttons button:focus {
+  background-color: #5e6d87;
+  color: #f6f7f9;
+  cursor: pointer;
+}
+.watchlistModal-createSection .buttons .disabled {
+  color: #7887a1;
+}
+.watchlistModal-createSection .buttons .disabled:hover {
+  background-color: #f0f2f5;
+  color: #7887a1;
+  cursor: unset;
+}
+.watchlistModal-createSection .buttons .disabled:focus {
+  background-color: #f0f2f5;
+  color: #7887a1;
+  cursor: unset;
+}
+.watchlistModal-watchlistSection {
+  width: 100%;
+  margin-top: 2rem;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+.watchlistModal-watchlistSection-list {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+}
+.watchlistModal-watchlistSection-list .watchlist {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  gap: 1rem;
+}
+.watchlistModal-watchlistSection-list .watchlist-heading {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f0f2f5;
+  padding: 1rem;
+  border-radius: 0.4rem;
+}
+.watchlistModal-watchlistSection-list .watchlist-heading .name {
+  font-size: 1.6rem;
+  color: #343d4b;
+  font-weight: 700;
+}
+.watchlistModal-watchlistSection-list .watchlist-heading .name:hover {
+  color: #1968f0;
+  cursor: pointer;
+}
+.watchlistModal-watchlistSection-list .watchlist-heading .actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.watchlistModal-watchlistSection-list .watchlist-heading .actions-icon {
+  width: 1.6rem;
+  height: 1.6rem;
+  color: #343d4b;
+}
+.watchlistModal-watchlistSection-list .watchlist-heading .actions-icon:hover {
+  cursor: pointer;
+}
+.watchlistModal-watchlistSection button {
+  width: 100%;
+  outline: none;
+  border: none;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  background-color: #f0f2f5;
+  color: #343d4b;
+  background-color: #5e6d87;
+  color: #f6f7f9;
+  border: 0.1rem solid #5e6d87;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+.watchlistModal-watchlistSection button:hover {
+  background-color: white;
+  color: #343d4b;
+  cursor: pointer;
+}
+.watchlistModal-watchlistSection button:focus {
+  background-color: white;
+  color: #343d4b;
+  cursor: pointer;
 }
 
 .homePage {

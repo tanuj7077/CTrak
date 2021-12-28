@@ -5,7 +5,7 @@
   width: 42.5rem;
   height: max-content;
   background-color: white;
-  z-index: 11;
+  z-index: 12;
   border-radius: 1rem;
   padding: 1rem 2rem 2rem 2rem;
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
@@ -19,6 +19,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    z-index: 12;
     .searchIcon {
       width: 2rem;
       height: 2rem;
@@ -214,6 +215,42 @@
           font-size: 1.4rem;
           color: hsl(218, 18%, 52%);
         }
+      }
+    }
+  }
+  &-notFound {
+    width: 100%;
+    height: 25rem;
+    display: grid;
+    place-items: center;
+    &-container {
+      display: flex;
+      flex-flow: column;
+      width: 27rem;
+      align-items: center;
+      gap: 0.5rem;
+      .iconContainer {
+        width: 6rem;
+        height: 6rem;
+        border-radius: 50%;
+        background-color: hsl(218, 18%, 90%);
+        display: grid;
+        place-items: center;
+        .icon {
+          width: 3rem;
+          height: 3rem;
+          color: hsl(218, 18%, 55%);
+        }
+      }
+      .heading {
+        font-size: 2rem;
+        font-weight: 700;
+        color: hsl(218, 18%, 35%);
+      }
+      .desc {
+        text-align: center;
+        font-size: 1.6rem;
+        color: hsl(218, 18%, 45%);
       }
     }
   }
