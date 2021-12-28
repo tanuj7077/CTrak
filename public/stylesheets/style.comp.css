@@ -11,6 +11,24 @@ breakpoint argument choices:
 - tab-land--1200px--75em
 - big-desk--1800px--112.5em
 */
+@-webkit-keyframes FadeIn {
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@-moz-keyframes FadeIn {
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes FadeIn {
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 *,
 *::after,
 *::before {
@@ -335,21 +353,517 @@ a:link, a:visited, a:hover, a:active {
   cursor: pointer;
 }
 
-.search {
+.searchModal {
+  position: fixed;
+  top: 6rem;
+  right: 10%;
+  width: 42.5rem;
+  height: max-content;
+  background-color: white;
+  z-index: 11;
+  border-radius: 1rem;
+  padding: 1rem 2rem 2rem 2rem;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+}
+.searchModal-inputContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.searchModal-inputContainer .searchIcon {
+  width: 2rem;
+  height: 2rem;
+  color: #8d99b0;
+}
+.searchModal-inputContainer input {
+  width: calc(100% - 5rem);
+  outline: none;
+  border: none;
+  padding: 0.5rem 0;
+  font-size: 1.6rem;
+}
+.searchModal-inputContainer .closeIcon {
+  width: 2rem;
+  height: 2rem;
+  color: #6f7f9b;
+}
+.searchModal-inputContainer .closeIcon:hover {
+  cursor: pointer;
+}
+.searchModal-noInput {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  gap: 2rem;
+}
+.searchModal-trendingSection {
   width: 100%;
 }
-.search-input {
+.searchModal-trendingSection-heading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+.searchModal-trendingSection-heading .text {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+.searchModal-trendingSection-heading .icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  color: #d13f1a;
+}
+.searchModal-trendingSection-list {
+  margin-top: 0.5rem;
+  width: 100%;
+  list-style: none;
+  display: flex;
+  flex-flow: column;
+}
+.searchModal-trendingSection-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 1rem;
+}
+.searchModal-trendingSection-list-item:hover {
+  background-color: #f0f6ff;
+  cursor: pointer;
+}
+.searchModal-trendingSection-list-item .left {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.searchModal-trendingSection-list-item .left .img {
+  width: 2rem;
+  height: 2rem;
+}
+.searchModal-trendingSection-list-item .left .name {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.searchModal-trendingSection-list-item .left .symbol {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  color: #6f7f9b;
+}
+.searchModal-trendingSection-list-item .rank {
+  font-size: 1.4rem;
+  color: #6f7f9b;
+}
+.searchModal-recentSection {
+  width: 100%;
+}
+.searchModal-recentSection-heading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+.searchModal-recentSection-heading .text {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+.searchModal-recentSection-heading .icon {
+  width: 1.4rem;
+  height: 1.4rem;
+  color: #2d5eb9;
+}
+.searchModal-recentSection-listContainer {
+  width: 100%;
+  overflow: hidden;
+  overflow-x: auto;
+}
+.searchModal-recentSection-listContainer-list {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+.searchModal-recentSection-listContainer-list .listItem {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 0.5rem;
+}
+.searchModal-recentSection-listContainer-list .listItem:hover {
+  cursor: pointer;
+  background-color: #f0f6ff;
+}
+.searchModal-recentSection-listContainer-list .listItem .img {
+  width: 3rem;
+  height: 3rem;
+}
+.searchModal-recentSection-listContainer-list .listItem .symbol {
+  text-transform: uppercase;
+  font-size: 1.4rem;
+}
+.searchModal-results {
+  margin-top: 1rem;
+  width: 100%;
+}
+.searchModal-results-heading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+.searchModal-results-heading .text {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+.searchModal-results-list {
+  margin-top: 0.5rem;
+  width: 100%;
+  list-style: none;
+  display: flex;
+  flex-flow: column;
+}
+.searchModal-results-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 1rem;
+}
+.searchModal-results-list-item:hover {
+  background-color: #f0f6ff;
+  cursor: pointer;
+}
+.searchModal-results-list-item .left {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.searchModal-results-list-item .left .img {
+  width: 2rem;
+  height: 2rem;
+}
+.searchModal-results-list-item .left .name {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.searchModal-results-list-item .left .symbol {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  color: #6f7f9b;
+}
+.searchModal-results-list-item .rank {
+  font-size: 1.4rem;
+  color: #6f7f9b;
+}
+
+.loginModalContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 11;
+}
+.loginModalContainer button {
+  z-index: 20;
+}
+.loginModalContainer-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 11;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.loginModalContainer-loginModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 45rem;
+  height: 34rem;
+  background-color: white;
+  border-radius: 1rem;
+  z-index: 11;
+  overflow: hidden;
+  display: flex;
+}
+.loginModalContainer-loginModal-closeIcon {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: black;
+  z-index: 12;
+}
+.loginModalContainer-loginModal-closeIcon:hover {
+  cursor: pointer;
+  color: red;
+}
+.loginModalContainer-loginModal-optionBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  z-index: 13;
+  background-color: #0367ea;
+  color: white;
+  transition: all 0.3s ease;
+}
+.loginModalContainer-loginModal-optionBg-login {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translate(-3rem, -50%);
+  background-color: inherit;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  padding: 0.5rem;
+  z-index: 11;
+}
+.loginModalContainer-loginModal-optionBg-login span {
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+}
+.loginModalContainer-loginModal-optionBg-login span:hover {
+  cursor: pointer;
+}
+.loginModalContainer-loginModal-optionBg-login:hover {
+  cursor: pointer;
+}
+.loginModalContainer-loginModal-optionBg-register {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translate(3rem, -50%);
+  background-color: inherit;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  padding: 0.5rem;
+  z-index: 11;
+}
+.loginModalContainer-loginModal-optionBg-register span {
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+}
+.loginModalContainer-loginModal-optionBg-register:hover {
+  cursor: pointer;
+}
+.loginModalContainer-loginModal-loginSection {
+  visibility: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 100%;
+  z-index: 10;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 1.5rem;
+}
+.loginModalContainer-loginModal-loginSection-heading {
+  opacity: 0;
+  font-size: 2.5rem;
+  color: #585858;
+  letter-spacing: 0.3rem;
+  font-weight: bold;
+  margin-bottom: 7rem;
+}
+.loginModalContainer-loginModal-loginSection-form {
+  opacity: 0;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: 7rem;
+  width: 100%;
+}
+.loginModalContainer-loginModal-signupSection {
+  visibility: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 100%;
+  z-index: 10;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 1.5rem;
+}
+.loginModalContainer-loginModal-signupSection-heading {
+  opacity: 0;
+  font-size: 2.5rem;
+  color: #585858;
+  letter-spacing: 0.3rem;
+  font-weight: bold;
+  margin-bottom: 7rem;
+}
+.loginModalContainer-loginModal-signupSection-form {
+  opacity: 0;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: 7rem;
+  width: 100%;
+}
+.loginModalContainer-loginModal-loginSectionVisible {
+  visibility: visible;
+  z-index: 12;
+}
+.loginModalContainer-loginModal-loginSectionVisible .loginModalContainer-loginModal-loginSection-heading {
+  transform: scale(0.5);
+  -webkit-animation: FadeIn 0.3s ease-in-out forwards;
+  -moz-animation: FadeIn 0.3s ease-in-out forwards;
+  animation: FadeIn 0.3s ease-in-out forwards;
+}
+.loginModalContainer-loginModal-loginSectionVisible .loginModalContainer-loginModal-loginSection-form {
+  transform: scale(0.5);
+  -webkit-animation: FadeIn 0.3s ease-in-out forwards;
+  -moz-animation: FadeIn 0.3s ease-in-out forwards;
+  animation: FadeIn 0.3s ease-in-out forwards;
+}
+.loginModalContainer .loginFormGrp {
+  width: 100%;
+}
+.loginModalContainer .loginFormGrp-input {
+  width: 100%;
+  position: relative;
+}
+.loginModalContainer .loginFormGrp-input-label {
+  position: absolute;
+  font-size: 1.6rem;
+  top: 0.5rem;
+  left: 3.2rem;
+  z-index: 10;
+  visibility: hidden;
+  color: #747474;
+  transition: all 0.3s ease;
+}
+.loginModalContainer .loginFormGrp-input-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 2.2rem;
+  height: 2.2rem;
+  color: #a7a7a7;
+}
+.loginModalContainer .loginFormGrp-input input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   border: none;
   outline: none;
-  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  padding-left: 3.2rem;
+  border-bottom: 1px solid #cacaca;
   font-size: 1.6rem;
-  width: 100%;
-  padding: 1rem 2rem;
-  border: 1px solid #d4d4d4;
-  letter-spacing: 0.2rem;
 }
-.search-input::placeholder {
-  letter-spacing: 0.3rem;
+.loginModalContainer .loginFormGrp-input input:focus + label {
+  visibility: visible;
+  top: -1.7rem;
+  color: #0692c9;
+  transition: all 0.3s ease;
+}
+.loginModalContainer .loginFormGrp-input input:focus {
+  border-color: #0692c9;
+}
+.loginModalContainer .loginFormGrp-input input::placeholder {
+  font-size: 1.6rem;
+  color: #747474;
+  opacity: 1;
+  transition: all 0s 0.3s ease;
+}
+.loginModalContainer .loginFormGrp-input input:focus::placeholder {
+  opacity: 0;
+  transition: none;
+}
+.loginModalContainer .loginFormGrp-input input:valid + label {
+  visibility: visible;
+  top: -1.7rem;
+  color: #0692c9;
+  transition: all 0.3s ease;
+}
+.loginModalContainer .loginFormGrp-input-msg-error {
+  font-size: 1.2rem;
+  position: absolute;
+  top: 3.2rem;
+  color: red;
+}
+.loginModalContainer .loginFormGrp-input-msg-success {
+  font-size: 1.2rem;
+  position: absolute;
+  top: 3.2rem;
+  color: green;
+}
+.loginModalContainer .loginFormGrp-btn {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: 0.7rem;
+  /*width: 20rem;
+  padding: 0.7rem;
+  outline: none;
+  border: none;
+  border-radius: 0.5rem;
+  color: white;
+  text-transform: uppercase;
+  background-color: rgb(3, 103, 234);
+  &:hover {
+    cursor: pointer;
+  }
+  &-disabled {
+    background-color: rgb(153, 153, 153);
+    &:hover {
+      cursor: unset;
+    }
+  }*/
+}
+.loginModalContainer .loginFormGrp-btn .btn {
+  width: 20rem;
+  padding: 0.7rem;
+  outline: none;
+  border: none;
+  border-radius: 0.5rem;
+  color: white;
+  text-transform: uppercase;
+  background-color: #0367ea;
+}
+.loginModalContainer .loginFormGrp-btn .btn:hover {
+  cursor: pointer;
+}
+.loginModalContainer .loginFormGrp-btn .btn-disabled {
+  background-color: #999999;
+}
+.loginModalContainer .loginFormGrp-btn .btn-disabled:hover {
+  cursor: unset;
+}
+.loginModalContainer .loginFormGrp-btn .additional {
+  font-size: 1.6rem;
+  color: #0367ea;
+}
+.loginModalContainer .loginFormGrp-btn .additional:hover {
+  cursor: pointer;
+}
+.loginModalContainer-loginModal-login .loginModalContainer-loginModal-optionBg {
+  left: calc(100% - 1rem);
+}
+.loginModalContainer-loginModal-signup .loginModalContainer-loginModal-optionBg {
+  left: calc(-100% + 1rem);
 }
 
 .homePage {

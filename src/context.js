@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import axios from "axios";
 
 const AppContext = React.createContext();
@@ -185,6 +185,25 @@ const AppProvider = ({ children }) => {
   const closeAll = () => {
     setPages([]);
   };
+
+  /*const prevScrollY = useRef(0);
+  const [goingUp, setGoingUp] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (prevScrollY.current < currentScrollY && goingUp) {
+        setGoingUp(false);
+        setSearchModalVisibility(false);
+      }
+      if (prevScrollY.current > currentScrollY && !goingUp) {
+        setGoingUp(true);
+      }
+      prevScrollY.current = currentScrollY;
+      console.log(goingUp, currentScrollY);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [goingUp]);*/
   return (
     <AppContext.Provider
       value={{
@@ -213,6 +232,7 @@ const AppProvider = ({ children }) => {
         toggleSearchModalVisibility,
         watchlistModalVisibility,
         toggleWatchlistModalVisibility,
+        setSearchModalVisibility,
         trending,
       }}
     >

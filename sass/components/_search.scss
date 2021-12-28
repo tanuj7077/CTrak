@@ -9,6 +9,11 @@
   border-radius: 1rem;
   padding: 1rem 2rem 2rem 2rem;
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  @include respond(phone) {
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
   &-inputContainer {
     width: 100%;
     display: flex;
@@ -38,6 +43,9 @@
   &-noInput {
     margin-top: 1rem;
     width: 100%;
+    display: flex;
+    flex-flow: column;
+    gap: 2rem;
   }
   &-trendingSection {
     width: 100%;
@@ -93,6 +101,64 @@
         .rank {
           font-size: 1.4rem;
           color: hsl(218, 18%, 52%);
+        }
+      }
+    }
+  }
+  &-recentSection {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    gap: 0.7rem;
+    &-heading {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0 1rem;
+      .text {
+        font-size: 1.2rem;
+        text-transform: uppercase;
+      }
+      .icon {
+        width: 1.4rem;
+        height: 1.4rem;
+        color: hsl(219, 61%, 45%);
+      }
+    }
+    &-listContainer {
+      width: calc(100% - 2rem);
+      overflow: hidden;
+      overflow-x: auto;
+      align-self: center;
+
+      &-list {
+        list-style: none;
+        display: flex;
+        gap: 1rem;
+        width: max-content;
+        padding: 0.5rem 0rem;
+        .listItem {
+          width: 8rem;
+          height: 8rem;
+          border-radius: 1rem;
+          background-color: hsl(216, 100%, 99%);
+          display: flex;
+          flex-flow: column;
+          align-items: center;
+          justify-content: space-evenly;
+          padding: 0.5rem;
+          &:hover {
+            cursor: pointer;
+            background-color: hsl(216, 100%, 97%);
+          }
+          .img {
+            width: 3rem;
+            height: 3rem;
+          }
+          .symbol {
+            text-transform: uppercase;
+            font-size: 1.4rem;
+          }
         }
       }
     }

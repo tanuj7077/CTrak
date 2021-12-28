@@ -4,32 +4,52 @@ import { IoSearch } from "react-icons/io5";
 import { IoIosCloseCircle } from "react-icons/io";
 import { FaFire } from "react-icons/fa";
 import axios from "axios";
+import ScrollObserver from "../Utilities/ScrollObserver";
 
 function SearchModal() {
   const {
     searchModalVisibility,
     toggleSearchModalVisibility,
     userData,
+    setUserData,
     trending,
     addTab,
   } = useGlobalContext();
+  console.log(userData);
   const [searchText, setSearchText] = useState("");
   const [isSearchLoading, setIsSearchLoading] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
+  const [recent, setRecent] = useState([]);
   const handleSearch = (text) => {
     setSearchText(text);
-
     text.length > 0 &&
       axios
         .get(`${process.env.REACT_APP_BASE_URL}/coin/search/${text}`)
         .then((res) => {
           setSearchResults(res.data);
+          console.log(res.data);
         });
+  };
+  const addToHistory = (coin) => {
+    let obj = {
+      userId: userData._id,
+      id: coin.id,
+      name: coin.name,
+      symbol: coin.symbol,
+      image: coin.image,
+    };
+    axios
+      .post(`${process.env.REACT_APP_BASE_URL}/user/addRecent`, obj)
+      .then((res) => {
+        console.log(res.data);
+        setUserData(res.data.userData);
+      });
   };
   return (
     <>
       {searchModalVisibility && (
         <div className="searchModal">
+          {/* <ScrollObserver /> */}
           <div className="searchModal-inputContainer">
             <IoSearch className="searchIcon" />
             <input
@@ -55,6 +75,7 @@ function SearchModal() {
                     {trending.coins.map((coin) => {
                       return (
                         <li
+                          key={`treding_${coin.item.id}`}
                           className="searchModal-trendingSection-list-item"
                           onClick={() => {
                             toggleSearchModalVisibility();
@@ -77,6 +98,41 @@ function SearchModal() {
                   </ul>
                 </div>
               )}
+              {userData && userData.recentSearches.length > 0 && (
+                <div className="searchModal-recentSection">
+                  <p className="searchModal-recentSection-heading">
+                    <span className="text">Recent Searches</span>
+                    <IoSearch className="icon" />
+                  </p>
+                  <div className="searchModal-recentSection-listContainer">
+                    <ul className="searchModal-recentSection-listContainer-list">
+                      {userData.recentSearches.map((coin) => {
+                        return (
+                          <li
+                            key={`recent_${coin.id}`}
+                            className="listItem"
+                            onClick={() => {
+                              toggleSearchModalVisibility();
+                              addTab("coin", coin);
+                            }}
+                          >
+                            <img
+                              src={coin.image}
+                              alt={"recent_" + coin.id + "_img"}
+                              className="img"
+                            />
+                            <p className="symbol">
+                              {coin.symbol.length < 8
+                                ? coin.symbol
+                                : coin.symbol.substr(0, 6) + "..."}
+                            </p>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                </div>
+              )}
             </div>
           )}
           {searchText.length > 0 && searchResults.length > 0 && (
@@ -88,9 +144,11 @@ function SearchModal() {
                 {searchResults.map((coin) => {
                   return (
                     <li
+                      key={`searchResults_${coin.id}`}
                       className="searchModal-results-list-item"
                       onClick={() => {
                         toggleSearchModalVisibility();
+                        userData && addToHistory(coin);
                         addTab("coin", coin);
                         setSearchText("");
                       }}
