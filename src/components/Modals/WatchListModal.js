@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useGlobalContext } from "../../context";
 import axios from "axios";
 import { GrClear } from "react-icons/gr";
@@ -58,6 +58,60 @@ function CreateSection({ toggleCreateMode }) {
     </div>
   );
 }
+function WatchlistCoins({ coinList }) {
+  const { addTab, toggleWatchlistModalVisibility } = useGlobalContext();
+  const [coins, setCoins] = useState([]);
+  let ids = coinList.reduce((prev, curr, idx) => prev + "%2C" + curr, "");
+  const getWatchListCoinsData = async () => {
+    axios
+      .get(`${process.env.REACT_APP_BASE_URL}/coin/getCoinsByIds/${ids}`)
+      .then((res) => {
+        setCoins(res.data);
+      });
+  };
+  useEffect(() => {
+    getWatchListCoinsData();
+  }, []);
+  return (
+    <div className="watchlist-content-list">
+      {coins.map((coin) => {
+        return (
+          <div
+            key={`topNavWatchlistCoin_${coin.id}`}
+            className="watchlist-content-list-item"
+            onClick={() => {
+              toggleWatchlistModalVisibility();
+              addTab("coin", coin);
+            }}
+          >
+            <div className="left">
+              <img src={coin.image} alt={coin.id + "img"} className="img" />
+              <div className="textual">
+                <p className="textual-name">{coin.name}</p>
+                <p className="textual-symbol">{coin.symbol}</p>
+              </div>
+            </div>
+            <div className="right">
+              <p className="price">{coin.current_price}</p>
+              <p
+                className={`change ${
+                  (coin.price_change_percentage_24h > 0 && "change-up") ||
+                  (coin.price_change_percentage_24h < 0 && "change-down")
+                }`}
+              >
+                {coin.price_change_percentage_24h <= 0 &&
+                  coin.price_change_percentage_24h.toFixed(2)}
+                {coin.price_change_percentage_24h > 0 &&
+                  "+" + coin.price_change_percentage_24h.toFixed(2)}
+                %
+              </p>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
 function Watchlist({ watchlistData }) {
   const { userData, setUserData, addTab } = useGlobalContext();
   const handleDelete = async () => {
@@ -108,7 +162,7 @@ function Watchlist({ watchlistData }) {
             </div>
           </div>
         ) : (
-          <div className="watchlist-content-list"></div>
+          <WatchlistCoins coinList={watchlistData.coins} />
         )}
       </div>
     </div>
