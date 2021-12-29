@@ -2,8 +2,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
+import { useGlobalContext } from "../context";
+import AddToWatchlist from "../components/Modals/WatchListModals/AddToWatchlist";
 
 const Coin = ({ coinInfo }) => {
+  const { toggleSelectWatchlistModal } = useGlobalContext();
   let img = coinInfo.image.large,
     name = coinInfo.name,
     symbol = coinInfo.symbol,
@@ -17,8 +20,11 @@ const Coin = ({ coinInfo }) => {
           <p className="coin-textual-symbol">{symbol}</p>
           <p className="coin-textual-rank">{rank}</p>
         </div>
-        <button className="info-item btn">Add to Watchlist</button>
+        <button className="info-item btn" onClick={toggleSelectWatchlistModal}>
+          Add to Watchlist
+        </button>
       </div>
+      <AddToWatchlist coin={coinInfo} />
     </div>
   );
 };

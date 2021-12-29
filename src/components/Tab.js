@@ -18,6 +18,7 @@ function Tab({ tabData, deleteTab }) {
         <div className="tab-content-subheading">
           {tabData.type === "home" && "Home"}
           {tabData.type === "coin" && tabData.data.symbol}
+          {tabData.type === "watchlist" && "Watchlist"}
         </div>
       </div>
       {tabData.type !== "home" && (

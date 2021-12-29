@@ -59,7 +59,7 @@ function CreateSection({ toggleCreateMode }) {
   );
 }
 function Watchlist({ watchlistData }) {
-  const { userData, setUserData } = useGlobalContext();
+  const { userData, setUserData, addTab } = useGlobalContext();
   const handleDelete = async () => {
     let obj = {
       userId: userData._id,
@@ -72,17 +72,45 @@ function Watchlist({ watchlistData }) {
         setUserData(res.data.userData);
       });
   };
+  const [showContent, setShowContent] = useState(false);
+  const toggleContentVisibility = () => {
+    setShowContent(!showContent);
+  };
   return (
     <div className="watchlist">
       <div className="watchlist-heading">
-        <p className="name">{watchlistData.name}</p>
+        <p className="name" onClick={() => addTab("watchlist", watchlistData)}>
+          {watchlistData.name}
+        </p>
         <div className="actions">
           <MdEdit className="actions-icon" />
           <MdDelete className="actions-icon" onClick={handleDelete} />
-          <FaChevronDown className="actions-icon" />
+          <FaChevronDown
+            className="actions-icon"
+            onClick={toggleContentVisibility}
+          />
         </div>
       </div>
-      <div className="watchlist-content"></div>
+      <div
+        className={`watchlist-content ${
+          showContent && "watchlist-content-visible"
+        }`}
+      >
+        {watchlistData.coins.length === 0 ? (
+          <div className="watchlist-content-empty">
+            <div className="watchlist-content-empty-container">
+              <p className="heading">Watchlist Empty</p>
+              <p className="desc">
+                You can add coins to watchlist by visiting any coin page. You
+                can visit a coin page by using the search feature as well.
+              </p>
+              <button className="btn">Add</button>
+            </div>
+          </div>
+        ) : (
+          <div className="watchlist-content-list"></div>
+        )}
+      </div>
     </div>
   );
 }
@@ -116,12 +144,15 @@ function WatchListModal() {
           {createMode && <CreateSection toggleCreateMode={toggleCreateMode} />}
           {!createMode && userData && userData.watchList.length > 0 && (
             <div className="watchlistModal-watchlistSection">
-              <div className="watchlistModal-watchlistSection-list">
-                {userData.watchList.map((item) => {
-                  return <Watchlist key={item._id} watchlistData={item} />;
-                })}
+              <div className="watchlistContainer">
+                <div className="watchlistModal-watchlistSection-list">
+                  {userData.watchList.map((item) => {
+                    return <Watchlist key={item._id} watchlistData={item} />;
+                  })}
+                </div>
               </div>
-              <button onClick={toggleCreateMode}>Create</button>
+
+              <button onClick={toggleCreateMode}>New</button>
             </div>
           )}
         </div>

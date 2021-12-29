@@ -25,6 +25,11 @@ const AppProvider = ({ children }) => {
     setWatchlistModalVisibility(!watchlistModalVisibility);
   };
 
+  const [selectWatchlistModal, setSelectWatchlistModal] = useState(false);
+  const toggleSelectWatchlistModal = () => {
+    setSelectWatchlistModal(!selectWatchlistModal);
+  };
+
   const [alert, setAlert] = useState({});
   const [showAlert, setShowAlert] = useState(0);
 
@@ -102,17 +107,34 @@ const AppProvider = ({ children }) => {
         });
         changeCurrentTab(obj.id);
       }
+      if (type === "watchlist") {
+        let obj = pages.find((item) => {
+          return item.type === type;
+        });
+        changeCurrentTab(obj.id);
+      }
     } else {
       let newPages = [...pages];
-      let obj = {
-        id: new Date().getTime(),
-        type: type,
-        isCurrent: true,
-        data: {
-          id: data.id,
-          symbol: data.symbol,
-        },
-      };
+      let obj;
+      if (type === "coin") {
+        obj = {
+          id: new Date().getTime(),
+          type: type,
+          isCurrent: true,
+          data: {
+            id: data.id,
+            symbol: data.symbol,
+          },
+        };
+      }
+      if (type === "watchlist") {
+        obj = {
+          id: new Date().getTime(),
+          type: type,
+          isCurrent: true,
+          data: data,
+        };
+      }
       newPages.push(obj);
       let changedValue = newPages.map((item) => {
         let newObj;
@@ -126,12 +148,17 @@ const AppProvider = ({ children }) => {
       });
       setPages(changedValue);
     }
-    //setPages(newPages);
   };
   const checkTabExistance = (type, data) => {
     if (type === "coin") {
       const index = pages.findIndex((page) => {
         return page.data != null && page.data.id === data.id;
+      });
+      return index >= 0;
+    }
+    if (type === "watchlist") {
+      const index = pages.findIndex((page) => {
+        return page.type === type;
       });
       return index >= 0;
     }
@@ -185,25 +212,6 @@ const AppProvider = ({ children }) => {
   const closeAll = () => {
     setPages([]);
   };
-
-  /*const prevScrollY = useRef(0);
-  const [goingUp, setGoingUp] = useState(false);
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (prevScrollY.current < currentScrollY && goingUp) {
-        setGoingUp(false);
-        setSearchModalVisibility(false);
-      }
-      if (prevScrollY.current > currentScrollY && !goingUp) {
-        setGoingUp(true);
-      }
-      prevScrollY.current = currentScrollY;
-      console.log(goingUp, currentScrollY);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [goingUp]);*/
   return (
     <AppContext.Provider
       value={{
@@ -233,6 +241,8 @@ const AppProvider = ({ children }) => {
         watchlistModalVisibility,
         toggleWatchlistModalVisibility,
         setSearchModalVisibility,
+        selectWatchlistModal,
+        toggleSelectWatchlistModal,
         trending,
       }}
     >
