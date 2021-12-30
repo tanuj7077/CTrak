@@ -96,44 +96,46 @@ function SearchModal() {
                   </ul>
                 </div>
               )}
-              {userData && userData.recentSearches.length > 0 && (
-                <div className="searchModal-recentSection">
-                  <p className="searchModal-recentSection-heading">
-                    <span className="text">Recent Searches</span>
-                    <IoSearch className="icon" />
-                  </p>
-                  <div className="searchModal-recentSection-listContainer">
-                    <ul className="searchModal-recentSection-listContainer-list">
-                      {userData.recentSearches.map((coin) => {
-                        return (
-                          <li
-                            key={`recent_${coin.id}`}
-                            className="listItem"
-                            onClick={() => {
-                              toggleSearchModalVisibility();
-                              addTab("coin", coin);
-                            }}
-                          >
-                            <img
-                              src={coin.image}
-                              alt={"recent_" + coin.id + "_img"}
-                              className="img"
-                            />
-                            <p className="symbol">
-                              {coin.symbol.length < 8
-                                ? coin.symbol
-                                : coin.symbol.substr(0, 6) + "..."}
-                            </p>
-                          </li>
-                        );
-                      })}
-                    </ul>
+              {userData &&
+                userData.recentSearches &&
+                userData.recentSearches.length > 0 && (
+                  <div className="searchModal-recentSection">
+                    <p className="searchModal-recentSection-heading">
+                      <span className="text">Recent Searches</span>
+                      <IoSearch className="icon" />
+                    </p>
+                    <div className="searchModal-recentSection-listContainer">
+                      <ul className="searchModal-recentSection-listContainer-list">
+                        {userData.recentSearches.map((coin) => {
+                          return (
+                            <li
+                              key={`recent_${coin.id}`}
+                              className="listItem"
+                              onClick={() => {
+                                toggleSearchModalVisibility();
+                                addTab("coin", coin);
+                              }}
+                            >
+                              <img
+                                src={coin.image}
+                                alt={"recent_" + coin.id + "_img"}
+                                className="img"
+                              />
+                              <p className="symbol">
+                                {coin.symbol.length < 8
+                                  ? coin.symbol
+                                  : coin.symbol.substr(0, 6) + "..."}
+                              </p>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
             </div>
           )}
-          {searchText.length > 0 && searchResults.length > 0 && (
+          {searchText && searchText.length > 0 && searchResults.length > 0 && (
             <div className="searchModal-results">
               <p className="searchModal-results-heading">
                 <span className="text">Crypto Coins</span>
@@ -146,7 +148,8 @@ function SearchModal() {
                       className="searchModal-results-list-item"
                       onClick={() => {
                         toggleSearchModalVisibility();
-                        userData && addToHistory(coin);
+                        console.log(userData);
+                        userData && userData._id && addToHistory(coin);
                         addTab("coin", coin);
                         setSearchText("");
                       }}
