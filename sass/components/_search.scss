@@ -254,4 +254,10 @@
       }
     }
   }
+  &-watchList {
+    top: 50%;
+    right: unset;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }

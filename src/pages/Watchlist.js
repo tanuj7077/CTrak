@@ -4,14 +4,143 @@ import axios from "axios";
 import { useGlobalContext } from "../context";
 import { FaChevronDown, FaStar } from "react-icons/fa";
 import { MdEdit, MdDelete } from "react-icons/md";
+import { IoSearch } from "react-icons/io5";
+import { IoIosCloseCircle } from "react-icons/io";
 
+function SearchModal({
+  searchModalVisibility,
+  toggleSearchModalVisibility,
+  handleAdd,
+}) {
+  const { trending } = useGlobalContext();
+  const [searchText, setSearchText] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const handleSearch = (text) => {
+    setSearchText(text);
+    text.length > 0 &&
+      axios
+        .get(`${process.env.REACT_APP_BASE_URL}/coin/search/${text}`)
+        .then((res) => {
+          setSearchResults(res.data);
+          console.log(res.data);
+        });
+  };
+  return (
+    <>
+      {searchModalVisibility && (
+        <div className="searchModal searchModal-watchList">
+          <div className="searchModal-inputContainer">
+            <IoSearch className="searchIcon" />
+            <input
+              type="text"
+              value={searchText}
+              onChange={(e) => handleSearch(e.target.value)}
+              placeholder="What are you looking for?"
+            />
+            <IoIosCloseCircle
+              className="closeIcon"
+              onClick={toggleSearchModalVisibility}
+            />
+          </div>
+          {searchText.length === 0 && (
+            <div className="searchModal-noInput">
+              {trending && (
+                <div className="searchModal-trendingSection">
+                  <p className="searchModal-trendingSection-heading">
+                    <span className="text">Trending Coins</span>
+                  </p>
+                  <ul className="searchModal-trendingSection-list">
+                    {trending.coins.map((coin) => {
+                      return (
+                        <li
+                          key={`treding_${coin.item.id}`}
+                          className="searchModal-trendingSection-list-item"
+                          onClick={() => {
+                            handleAdd(coin.item.id);
+                          }}
+                        >
+                          <div className="left">
+                            <img src={coin.item.thumb} alt="" className="img" />
+                            <div className="name">{coin.item.name}</div>
+                            <div className="symbol">{coin.item.symbol}</div>
+                          </div>
+                          <div className="right">
+                            <div className="rank">
+                              #{coin.item.market_cap_rank}
+                            </div>
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              )}
+            </div>
+          )}
+          {searchText.length > 0 && searchResults.length > 0 && (
+            <div className="searchModal-results">
+              <p className="searchModal-results-heading">
+                <span className="text">Crypto Coins</span>
+              </p>
+              <ul className="searchModal-results-list">
+                {searchResults.map((coin) => {
+                  return (
+                    <li
+                      key={`searchResults_${coin.id}`}
+                      className="searchModal-results-list-item"
+                      onClick={() => {
+                        handleAdd(coin.id);
+                        setSearchText("");
+                      }}
+                    >
+                      <div className="left">
+                        <img src={coin.image} alt="" className="img" />
+                        <div className="name">
+                          {coin.name.length <= 21
+                            ? coin.name
+                            : coin.name.substr(0, 17) + "..."}
+                        </div>
+                        <div className="symbol">{coin.symbol}</div>
+                      </div>
+                      <div className="right">
+                        <div className="rank">#{coin.market_cap_rank}</div>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          )}
+          {searchText.length > 0 && searchResults.length === 0 && (
+            <div className="searchModal-notFound">
+              <div className="searchModal-notFound-container">
+                <div className="iconContainer">
+                  <IoSearch className="icon" />
+                </div>
+                <p className="heading">No results for '{searchText}'</p>
+                <p className="desc">
+                  We couldn't find anything matching your search. Try again with
+                  a different term.
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+    </>
+  );
+}
 function Watchlist({ pageData }) {
-  const { userData, addTab, setUserData } = useGlobalContext();
+  const { userData, addTab, setUserData, changeAlert } = useGlobalContext();
   const [watchlistData, setWatchlistData] = useState();
   const [coins, setCoins] = useState([]);
   const [selectCoin, setSelectCoin] = useState(false);
+  const [searchModalVisibility, setSearchModalVisibility] = useState(false);
   const toggleSelectCoin = () => {
     setSelectCoin(!selectCoin);
+  };
+  const toggleSearchModalVisibility = () => {
+    setSearchModalVisibility(!searchModalVisibility);
   };
   const getWatchListCoinsData = async (coinList) => {
     if (coinList && coinList.length > 0) {
@@ -41,6 +170,33 @@ function Watchlist({ pageData }) {
         console.log(res.data);
         setUserData(res.data.userData);
       });
+  };
+  const checkCoinExistanceInWatchlist = (watchlistId, coinId) => {
+    let watchlist = userData.watchList.find((item) => {
+      return item._id === watchlistId;
+    });
+    return watchlist.coins.includes(coinId);
+  };
+  const handleAdd = async (coinId) => {
+    let obj = {
+      userId: userData._id,
+      watchlistId: watchlistData._id,
+      coinId: coinId,
+    };
+    if (!checkCoinExistanceInWatchlist(watchlistData._id, coinId)) {
+      axios
+        .post(`${process.env.REACT_APP_BASE_URL}/user/addtoWatchlist`, obj)
+        .then((res) => {
+          setUserData(res.data.userData);
+          changeAlert(res.data.message);
+          toggleSearchModalVisibility();
+        });
+    } else {
+      changeAlert({
+        type: "error",
+        messages: ["Coin already exists in selected watchlist"],
+      });
+    }
   };
   useEffect(() => {
     console.log(pageData);
@@ -72,7 +228,7 @@ function Watchlist({ pageData }) {
                     <MdDelete className="icons-icon" />
                   </div>
                   <FaChevronDown
-                    className="icons-icon"
+                    className="icons-icon-chevron"
                     onClick={toggleSelectCoin}
                   />
                 </div>
@@ -94,10 +250,14 @@ function Watchlist({ pageData }) {
                         );
                       })}
                     </ul>
+                    <button className="btn">New</button>
                   </div>
                 )}
               </div>
               <p className="desc">{watchlistData.desc}</p>
+              <button className="btn" onClick={toggleSearchModalVisibility}>
+                Add Coin
+              </button>
             </div>
             <div className="watchlistPage-watchlist-table">
               <div className="cryptoTable">
@@ -206,13 +366,23 @@ function Watchlist({ pageData }) {
                       You can add coins to watchlist by clicking on the button
                       below
                     </p>
-                    <button className="btn">Add</button>
+                    <button
+                      className="btn"
+                      onClick={toggleSearchModalVisibility}
+                    >
+                      Add
+                    </button>
                   </div>
                 </div>
               )}
             </div>
           </div>
         )}
+        <SearchModal
+          searchModalVisibility={searchModalVisibility}
+          toggleSearchModalVisibility={toggleSearchModalVisibility}
+          handleAdd={handleAdd}
+        />
       </div>
     </div>
   );

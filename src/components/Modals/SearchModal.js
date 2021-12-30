@@ -135,7 +135,7 @@ function SearchModal() {
                 )}
             </div>
           )}
-          {searchText && searchText.length > 0 && searchResults.length > 0 && (
+          {searchText.length > 0 && searchResults.length > 0 && (
             <div className="searchModal-results">
               <p className="searchModal-results-heading">
                 <span className="text">Crypto Coins</span>
