@@ -941,8 +941,7 @@ a:link, a:visited, a:hover, a:active {
   text-align: center;
   font-size: 1.6rem;
   font-weight: 700;
-  padding: 0.5rem 0 1.5rem 0;
-  border-bottom: 1px solid #d4d4d4;
+  padding: 0.5rem 0 0.5rem 0;
   text-transform: uppercase;
 }
 .watchlistModal-noWatchlists {
@@ -1154,7 +1153,6 @@ a:link, a:visited, a:hover, a:active {
   width: 100%;
   height: 0;
   display: none;
-  padding: 1rem;
 }
 .watchlistModal-watchlistSection-list .watchlist-content-visible {
   height: max-content;
@@ -1203,6 +1201,55 @@ a:link, a:visited, a:hover, a:active {
   background-color: #f0f2f5;
   cursor: pointer;
 }
+.watchlistModal-watchlistSection-list .watchlist-content-list {
+  display: flex;
+  flex-flow: column;
+}
+.watchlistModal-watchlistSection-list .watchlist-content-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+.watchlistModal-watchlistSection-list .watchlist-content-list-item .left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.watchlistModal-watchlistSection-list .watchlist-content-list-item .left .img {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+.watchlistModal-watchlistSection-list .watchlist-content-list-item .left .textual-name {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+.watchlistModal-watchlistSection-list .watchlist-content-list-item .left .textual-symbol {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  color: #6f7f9b;
+}
+.watchlistModal-watchlistSection-list .watchlist-content-list-item .right {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-end;
+}
+.watchlistModal-watchlistSection-list .watchlist-content-list-item .right .price {
+  font-size: 1.6rem;
+}
+.watchlistModal-watchlistSection-list .watchlist-content-list-item .right .change {
+  font-size: 1.2rem;
+}
+.watchlistModal-watchlistSection-list .watchlist-content-list-item .right .change-up {
+  color: #16c582;
+}
+.watchlistModal-watchlistSection-list .watchlist-content-list-item .right .change-down {
+  color: #ea3941;
+}
+.watchlistModal-watchlistSection-list .watchlist-content-list-item:hover {
+  background-color: #f0f6ff;
+  cursor: pointer;
+}
 .watchlistModal-watchlistSection button {
   width: 100%;
   outline: none;
@@ -1228,6 +1275,272 @@ a:link, a:visited, a:hover, a:active {
   background-color: white;
   color: #343d4b;
   cursor: pointer;
+}
+
+.addToWatchlistModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 11;
+}
+
+.selectWatchlist {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 12;
+  width: 42.5rem;
+  height: max-content;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 1rem 2rem 2rem 2rem;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+}
+@media only screen and (max-width: 37.5em) {
+  .selectWatchlist {
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+}
+.selectWatchlist-heading {
+  width: 100%;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  padding: 0.5rem 0 1.5rem 0;
+  text-transform: uppercase;
+}
+.selectWatchlist-list {
+  list-style: none;
+  display: flex;
+  flex-flow: column;
+  gap: 1rem;
+  width: 100%;
+}
+.selectWatchlist-list-item {
+  background-color: #f0f2f5;
+  padding: 1rem;
+  border-radius: 0.4rem;
+  font-size: 1.6rem;
+  color: #343d4b;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+.selectWatchlist-list-item:hover {
+  background-color: #343d4b;
+  color: white;
+  cursor: pointer;
+}
+.selectWatchlist button {
+  margin-top: 1rem;
+  width: 100%;
+  outline: none;
+  border: none;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  background-color: #f0f2f5;
+  color: #343d4b;
+  background-color: #5e6d87;
+  color: #f6f7f9;
+  border: 0.1rem solid #5e6d87;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+.selectWatchlist button:hover {
+  background-color: white;
+  color: #343d4b;
+  cursor: pointer;
+}
+.selectWatchlist button:focus {
+  background-color: white;
+  color: #343d4b;
+  cursor: pointer;
+}
+
+.createWatchlist {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 12;
+  width: 42.5rem;
+  height: max-content;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 1rem 2rem 2rem 2rem;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  display: flex;
+  flex-flow: column;
+  gap: 1rem;
+}
+@media only screen and (max-width: 37.5em) {
+  .createWatchlist {
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+}
+.createWatchlist .inputGrp {
+  width: 100%;
+}
+.createWatchlist .inputGrp input {
+  width: 100%;
+  border-radius: 0.4rem;
+  outline: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  background-color: #f6f7f9;
+  font-size: 1.6rem;
+  color: #495569;
+  border: 1px solid transparent;
+}
+.createWatchlist .inputGrp textarea {
+  width: 100%;
+  height: 15rem;
+  border-radius: 0.4rem;
+  outline: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  background-color: #f6f7f9;
+  font-size: 1.6rem;
+  color: #495569;
+  border: 1px solid transparent;
+}
+.createWatchlist .inputGrp label {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  color: #495569;
+}
+.createWatchlist .inputGrp label span {
+  text-transform: initial;
+}
+.createWatchlist .inputGrp:focus-within label {
+  font-weight: bold;
+}
+.createWatchlist .inputGrp:focus-within input, .createWatchlist .inputGrp:focus-within textarea {
+  border: 1px solid #b4bccb;
+}
+.createWatchlist .buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.createWatchlist .buttons button {
+  width: 48%;
+  outline: none;
+  border: none;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  background-color: #f0f2f5;
+  color: #343d4b;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+.createWatchlist .buttons button:hover {
+  background-color: #5e6d87;
+  color: #f6f7f9;
+  cursor: pointer;
+}
+.createWatchlist .buttons button:focus {
+  background-color: #5e6d87;
+  color: #f6f7f9;
+  cursor: pointer;
+}
+.createWatchlist .buttons .disabled {
+  color: #7887a1;
+}
+.createWatchlist .buttons .disabled:hover {
+  background-color: #f0f2f5;
+  color: #7887a1;
+  cursor: unset;
+}
+.createWatchlist .buttons .disabled:focus {
+  background-color: #f0f2f5;
+  color: #7887a1;
+  cursor: unset;
+}
+
+.emptyWatchlist {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 12;
+  width: 42.5rem;
+  height: max-content;
+  background-color: white;
+  border-radius: 1rem;
+  padding: 1rem 2rem 2rem 2rem;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  height: 25rem;
+  display: grid;
+  place-items: center;
+}
+.emptyWatchlist-container {
+  display: flex;
+  flex-flow: column;
+  width: 35rem;
+  align-items: center;
+  gap: 0.5rem;
+}
+.emptyWatchlist-container .iconContainer {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  background-color: #e7eaee;
+  display: grid;
+  place-items: center;
+}
+.emptyWatchlist-container .iconContainer .icon {
+  width: 3rem;
+  height: 3rem;
+  color: #7887a1;
+}
+.emptyWatchlist-container .heading {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #495569;
+}
+.emptyWatchlist-container .desc {
+  text-align: center;
+  font-size: 1.6rem;
+  color: #5e6d87;
+}
+.emptyWatchlist-container button {
+  margin-top: 1rem;
+  outline: none;
+  border: none;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  background-color: #f0f2f5;
+  color: #343d4b;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+.emptyWatchlist-container button:hover {
+  background-color: #5e6d87;
+  color: #f6f7f9;
+  cursor: pointer;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
 }
 
 .homePage {

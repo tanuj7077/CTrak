@@ -111,7 +111,21 @@ const AppProvider = ({ children }) => {
         let obj = pages.find((item) => {
           return item.type === type;
         });
-        changeCurrentTab(obj.id);
+        let newPages = [...pages];
+        let changedValue = newPages.map((item) => {
+          let newObj;
+          if (item.id !== obj.id) {
+            newObj = { ...item };
+            newObj.isCurrent = false;
+          } else {
+            newObj = { ...item };
+            newObj.data = data;
+            newObj.isCurrent = true;
+          }
+          return newObj;
+        });
+        setPages(changedValue);
+        //changeCurrentTab(obj.id);
       }
     } else {
       let newPages = [...pages];

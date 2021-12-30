@@ -1,0 +1,163 @@
+.watchlistPage {
+  width: 100%;
+  margin-bottom: 4rem;
+  &-watchlist {
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 4rem;
+    &-top {
+      margin-top: 3rem;
+      .heading {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        .name {
+          font-size: 3rem;
+          font-weight: 700;
+        }
+        .icons {
+          display: flex;
+          gap: 1rem;
+          align-items: center;
+          &-iconContainer {
+            background-color: hsl(218, 18%, 92.5%);
+            border-radius: 0.4rem;
+            padding: 0.2rem 0.5rem;
+          }
+          &-icon {
+            width: 1.6rem;
+            height: 1.6rem;
+            color: hsl(218, 18%, 50%);
+            &:hover {
+              cursor: pointer;
+              color: hsl(218, 84%, 51%);
+            }
+          }
+        }
+      }
+      .desc {
+        font-size: 1.6rem;
+        color: hsl(0, 0, 25%);
+        max-width: 45rem;
+      }
+    }
+    &-table {
+      margin-top: 2rem;
+      width: 100%;
+      .cryptoTable {
+        width: 100%;
+        overflow: hidden;
+        overflow-x: auto;
+        position: relative;
+        table,
+        tr,
+        td {
+          border: none;
+        }
+        table {
+          border-collapse: collapse;
+          min-width: 100%;
+        }
+        td {
+          background-color: white;
+        }
+        .body-row:hover td {
+          background-color: hsl(216, 100%, 97%);
+        }
+        .header {
+          border-top: 1px solid #eff2f5;
+          border-bottom: 1px solid #eff2f5;
+          &-data {
+            font-size: 1.4rem;
+            font-weight: bold;
+            padding: 1rem 0;
+            padding-left: 0.4rem;
+            padding-right: 1.5rem;
+            white-space: nowrap;
+            &:last-of-type {
+              padding-right: 0;
+            }
+            &-fixed {
+              &-rank {
+                position: sticky;
+                z-index: 2;
+                left: 0;
+              }
+              &-name {
+                position: sticky;
+                z-index: 2;
+                left: 0;
+              }
+            }
+          }
+        }
+        .body-row-cell {
+          padding: 1rem 1.5rem 1rem 0.4rem;
+          font-size: 1.4rem;
+          font-weight: 600;
+          &:last-of-type {
+            padding-right: 0;
+          }
+          &-fixed {
+            &-rank {
+              position: sticky;
+              z-index: 2;
+              left: 0;
+            }
+            &-coin {
+              position: sticky;
+              z-index: 2;
+              left: 0;
+            }
+          }
+          &-price {
+            color: black;
+            &-up {
+              color: hsl(157, 80%, 43%);
+            }
+            &-down {
+              color: hsl(357, 81%, 57%);
+            }
+          }
+        }
+        .rank {
+          font-size: 1.2rem;
+          color: hsl(218, 18%, 42%);
+        }
+        .coin {
+          display: flex;
+          gap: 1rem;
+          align-items: center;
+          font-weight: normal;
+          &-img {
+            width: 2.5rem;
+            height: 2.5rem;
+          }
+          &-name {
+            letter-spacing: 0.2rem;
+            &-full {
+              font-size: 1.6rem;
+            }
+            &-symbol {
+              font-size: 1.2rem;
+              color: hsl(218, 18%, 42%);
+              text-transform: uppercase;
+            }
+          }
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        .deleteIcon {
+          color: hsl(218, 18%, 50%);
+          width: 2rem;
+          height: 2rem;
+          &:hover {
+            cursor: pointer;
+            color: hsl(357, 81%, 57%);
+          }
+        }
+      }
+    }
+  }
+}

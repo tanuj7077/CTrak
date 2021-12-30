@@ -169,8 +169,12 @@ function Watchlist({ watchlistData }) {
   );
 }
 function WatchListModal() {
-  const { watchlistModalVisibility, toggleWatchlistModalVisibility, userData } =
-    useGlobalContext();
+  const {
+    watchlistModalVisibility,
+    toggleWatchlistModalVisibility,
+    userData,
+    addTab,
+  } = useGlobalContext();
   const [createMode, setCreateMode] = useState(false);
   const toggleCreateMode = () => {
     setCreateMode(!createMode);
@@ -179,7 +183,12 @@ function WatchListModal() {
     <>
       {watchlistModalVisibility && (
         <div className="watchlistModal">
-          <div className="watchlistModal-heading">Watchlist</div>
+          <div
+            className="watchlistModal-heading"
+            onClick={() => addTab("watchlist")}
+          >
+            Watchlists
+          </div>
           {userData && userData.watchList.length === 0 && !createMode && (
             <div className="watchlistModal-noWatchlists">
               <div className="watchlistModal-noWatchlists-container">

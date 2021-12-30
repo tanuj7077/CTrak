@@ -19,9 +19,12 @@
     text-align: center;
     font-size: 1.6rem;
     font-weight: 700;
-    padding: 0.5rem 0 1.5rem 0;
-    border-bottom: 1px solid hsl(0, 0%, 83%);
+    padding: 0.5rem 0 0.5rem 0;
+    //border-bottom: 1px solid hsl(0, 0%, 83%);
     text-transform: uppercase;
+    &:hover {
+      cursor: pointer;
+    }
   }
   &-noWatchlists {
     width: 100%;

@@ -15,7 +15,6 @@ function SearchModal() {
     trending,
     addTab,
   } = useGlobalContext();
-  console.log(userData);
   const [searchText, setSearchText] = useState("");
   //const [isSearchLoading, setIsSearchLoading] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
