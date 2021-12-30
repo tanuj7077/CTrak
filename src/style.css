@@ -2082,6 +2082,7 @@ a:link, a:visited, a:hover, a:active {
   display: flex;
   align-items: center;
   gap: 2rem;
+  position: relative;
 }
 .watchlistPage-watchlist-top .heading .name {
   font-size: 3rem;
@@ -2105,6 +2106,39 @@ a:link, a:visited, a:hover, a:active {
 .watchlistPage-watchlist-top .heading .icons-icon:hover {
   cursor: pointer;
   color: #1966eb;
+}
+.watchlistPage-watchlist-top .heading .select {
+  position: absolute;
+  top: 4.5rem;
+  left: 0;
+  width: max-content;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  background-color: white;
+  z-index: 12;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+.watchlistPage-watchlist-top .heading .select-list {
+  list-style: none;
+  width: max-content;
+  min-width: 25rem;
+}
+.watchlistPage-watchlist-top .heading .select-list-item {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #737373;
+  padding: 1rem 1rem;
+  border-radius: 0.4rem;
+}
+.watchlistPage-watchlist-top .heading .select-list-item::selection {
+  background-color: transparent;
+}
+.watchlistPage-watchlist-top .heading .select-list-item:last-of-type {
+  border-bottom: none;
+}
+.watchlistPage-watchlist-top .heading .select-list-item:hover {
+  cursor: pointer;
+  background-color: #f6f7f9;
 }
 .watchlistPage-watchlist-top .desc {
   font-size: 1.6rem;
@@ -2224,6 +2258,61 @@ a:link, a:visited, a:hover, a:active {
 .watchlistPage-watchlist-table .cryptoTable .deleteIcon:hover {
   cursor: pointer;
   color: #ea3941;
+}
+.watchlistPage-watchlist-table .empty {
+  width: 100%;
+  height: max-content;
+  padding: 4rem;
+  display: grid;
+  place-items: center;
+  border-bottom: 1px solid #eff2f5;
+}
+.watchlistPage-watchlist-table .empty-container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: 1rem;
+  width: 40rem;
+}
+.watchlistPage-watchlist-table .empty-container .iconContainer {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  background-color: #dbeaff;
+  display: grid;
+  place-items: center;
+}
+.watchlistPage-watchlist-table .empty-container .iconContainer-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  color: #58667e;
+}
+.watchlistPage-watchlist-table .empty-container .heading {
+  font-size: 3rem;
+  font-weight: 700;
+}
+.watchlistPage-watchlist-table .empty-container .desc {
+  font-size: 2rem;
+  color: #58667e;
+  text-align: center;
+}
+.watchlistPage-watchlist-table .empty-container .btn {
+  margin-top: 1rem;
+  outline: none;
+  border: none;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  background-color: #f0f2f5;
+  color: #343d4b;
+  padding: 1rem 3rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+.watchlistPage-watchlist-table .empty-container .btn:hover {
+  background-color: #5e6d87;
+  color: #f6f7f9;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */

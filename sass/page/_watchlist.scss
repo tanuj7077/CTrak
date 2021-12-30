@@ -11,6 +11,7 @@
         display: flex;
         align-items: center;
         gap: 2rem;
+        position: relative;
         .name {
           font-size: 3rem;
           font-weight: 700;
@@ -31,6 +32,40 @@
             &:hover {
               cursor: pointer;
               color: hsl(218, 84%, 51%);
+            }
+          }
+        }
+        .select {
+          position: absolute;
+          top: 4.5rem;
+          left: 0;
+          width: max-content;
+          box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+          background-color: white;
+          z-index: 12;
+          border-radius: 0.5rem;
+          padding: 1rem;
+          &-list {
+            list-style: none;
+            width: max-content;
+            min-width: 25rem;
+            &-item {
+              font-size: 1.6rem;
+              font-weight: 700;
+              color: hsl(0, 0, 45%);
+              padding: 1rem 1rem;
+              border-radius: 0.4rem;
+              &::selection {
+                background-color: transparent;
+              }
+              //border-bottom: 1px solid hsl(210, 23%, 85%);
+              &:last-of-type {
+                border-bottom: none;
+              }
+              &:hover {
+                cursor: pointer;
+                background-color: hsl(218, 18%, 97%);
+              }
             }
           }
         }
@@ -155,6 +190,61 @@
           &:hover {
             cursor: pointer;
             color: hsl(357, 81%, 57%);
+          }
+        }
+      }
+      .empty {
+        width: 100%;
+        height: max-content;
+        padding: 4rem;
+        display: grid;
+        place-items: center;
+        border-bottom: 1px solid hsl(210, 23%, 95%);
+        &-container {
+          display: flex;
+          flex-flow: column;
+          align-items: center;
+          gap: 1rem;
+          width: 40rem;
+          .iconContainer {
+            width: 8rem;
+            height: 8rem;
+            border-radius: 50%;
+            background-color: hsl(216, 100%, 93%);
+            display: grid;
+            place-items: center;
+            &-icon {
+              width: 3.5rem;
+              height: 3.5rem;
+              color: hsl(218, 18%, 42%);
+            }
+          }
+          .heading {
+            font-size: 3rem;
+            font-weight: 700;
+          }
+          .desc {
+            font-size: 2rem;
+            color: hsl(218, 18%, 42%);
+            text-align: center;
+          }
+          .btn {
+            margin-top: 1rem;
+            outline: none;
+            border: none;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            background-color: hsl(218, 18%, 95%);
+            color: hsl(218, 18%, 25%);
+            padding: 1rem 3rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            &:hover {
+              background-color: hsl(218, 18%, 45%);
+              color: hsl(218, 18%, 97%);
+              cursor: pointer;
+            }
           }
         }
       }
