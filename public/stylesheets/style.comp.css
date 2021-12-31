@@ -609,6 +609,12 @@ a:link, a:visited, a:hover, a:active {
   font-size: 1.6rem;
   color: #5e6d87;
 }
+.searchModal-watchList {
+  top: 50%;
+  right: unset;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 .loginModalContainer {
   position: fixed;
@@ -943,6 +949,9 @@ a:link, a:visited, a:hover, a:active {
   font-weight: 700;
   padding: 0.5rem 0 0.5rem 0;
   text-transform: uppercase;
+}
+.watchlistModal-heading:hover {
+  cursor: pointer;
 }
 .watchlistModal-noWatchlists {
   width: 100%;
@@ -2061,6 +2070,291 @@ a:link, a:visited, a:hover, a:active {
 }
 .coinPage-converter .converter-heading span {
   text-transform: uppercase;
+}
+
+.watchlistPage {
+  width: 100%;
+  margin-bottom: 4rem;
+}
+.watchlistPage-watchlist {
+  display: flex;
+  flex-flow: column;
+  margin-bottom: 4rem;
+}
+.watchlistPage-watchlist-top {
+  margin-top: 3rem;
+}
+.watchlistPage-watchlist-top .heading {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+}
+.watchlistPage-watchlist-top .heading .name {
+  font-size: 3rem;
+  font-weight: 700;
+}
+.watchlistPage-watchlist-top .heading .icons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.watchlistPage-watchlist-top .heading .icons-icon {
+  width: 1.6rem;
+  height: 1.6rem;
+  color: #697996;
+}
+.watchlistPage-watchlist-top .heading .icons-iconContainer {
+  background-color: #e8ebef;
+  border-radius: 0.4rem;
+  padding: 0.2rem 0.5rem;
+}
+.watchlistPage-watchlist-top .heading .icons-iconContainer:hover {
+  cursor: pointer;
+  background-color: #5e6d87;
+}
+.watchlistPage-watchlist-top .heading .icons-iconContainer:hover .icons-icon {
+  color: #f6f7f9;
+}
+.watchlistPage-watchlist-top .heading .icons-icon-chevron {
+  width: 1.6rem;
+  height: 1.6rem;
+  color: #697996;
+}
+.watchlistPage-watchlist-top .heading .icons-icon-chevron:hover {
+  cursor: pointer;
+  color: #1966eb;
+}
+.watchlistPage-watchlist-top .heading .select {
+  position: absolute;
+  top: 4.5rem;
+  left: 0;
+  width: max-content;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  background-color: white;
+  z-index: 12;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+.watchlistPage-watchlist-top .heading .select-list {
+  list-style: none;
+  width: max-content;
+  min-width: 25rem;
+}
+.watchlistPage-watchlist-top .heading .select-list-item {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #737373;
+  padding: 1rem 1rem;
+  border-radius: 0.4rem;
+}
+.watchlistPage-watchlist-top .heading .select-list-item::selection {
+  background-color: transparent;
+}
+.watchlistPage-watchlist-top .heading .select-list-item:last-of-type {
+  border-bottom: none;
+}
+.watchlistPage-watchlist-top .heading .select-list-item:hover {
+  cursor: pointer;
+  background-color: #f6f7f9;
+}
+.watchlistPage-watchlist-top .heading .select .btn {
+  width: calc(100% - 2rem);
+}
+.watchlistPage-watchlist-top .desc {
+  font-size: 1.6rem;
+  color: #404040;
+  max-width: 45rem;
+}
+.watchlistPage-watchlist-top .btn {
+  margin-top: 1rem;
+  outline: none;
+  border: none;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  background-color: #f0f2f5;
+  color: #343d4b;
+  padding: 0.7rem 2rem;
+  border-radius: 0.4rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+.watchlistPage-watchlist-top .btn:hover {
+  background-color: #5e6d87;
+  color: #f6f7f9;
+  cursor: pointer;
+}
+.watchlistPage-watchlist-table {
+  margin-top: 2rem;
+  width: 100%;
+}
+.watchlistPage-watchlist-table .cryptoTable {
+  width: 100%;
+  overflow: hidden;
+  overflow-x: auto;
+  position: relative;
+}
+.watchlistPage-watchlist-table .cryptoTable table,
+.watchlistPage-watchlist-table .cryptoTable tr,
+.watchlistPage-watchlist-table .cryptoTable td {
+  border: none;
+}
+.watchlistPage-watchlist-table .cryptoTable table {
+  border-collapse: collapse;
+  min-width: 100%;
+}
+.watchlistPage-watchlist-table .cryptoTable td {
+  background-color: white;
+}
+.watchlistPage-watchlist-table .cryptoTable .body-row:hover td {
+  background-color: #f0f6ff;
+}
+.watchlistPage-watchlist-table .cryptoTable .header {
+  border-top: 1px solid #eff2f5;
+  border-bottom: 1px solid #eff2f5;
+}
+.watchlistPage-watchlist-table .cryptoTable .header-data {
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 1rem 0;
+  padding-left: 0.4rem;
+  padding-right: 1.5rem;
+  white-space: nowrap;
+}
+.watchlistPage-watchlist-table .cryptoTable .header-data:last-of-type {
+  padding-right: 0;
+}
+.watchlistPage-watchlist-table .cryptoTable .header-data-fixed-rank {
+  position: sticky;
+  z-index: 2;
+  left: 0;
+}
+.watchlistPage-watchlist-table .cryptoTable .header-data-fixed-name {
+  position: sticky;
+  z-index: 2;
+  left: 0;
+}
+.watchlistPage-watchlist-table .cryptoTable .body-row-cell {
+  padding: 1rem 1.5rem 1rem 0.4rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.watchlistPage-watchlist-table .cryptoTable .body-row-cell:last-of-type {
+  padding-right: 0;
+}
+.watchlistPage-watchlist-table .cryptoTable .body-row-cell-fixed-rank {
+  position: sticky;
+  z-index: 2;
+  left: 0;
+}
+.watchlistPage-watchlist-table .cryptoTable .body-row-cell-fixed-coin {
+  position: sticky;
+  z-index: 2;
+  left: 0;
+}
+.watchlistPage-watchlist-table .cryptoTable .body-row-cell-price {
+  color: black;
+}
+.watchlistPage-watchlist-table .cryptoTable .body-row-cell-price-up {
+  color: #16c582;
+}
+.watchlistPage-watchlist-table .cryptoTable .body-row-cell-price-down {
+  color: #ea3941;
+}
+.watchlistPage-watchlist-table .cryptoTable .rank {
+  font-size: 1.2rem;
+  color: #58667e;
+}
+.watchlistPage-watchlist-table .cryptoTable .coin {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  font-weight: normal;
+}
+.watchlistPage-watchlist-table .cryptoTable .coin-img {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.watchlistPage-watchlist-table .cryptoTable .coin-name {
+  letter-spacing: 0.2rem;
+}
+.watchlistPage-watchlist-table .cryptoTable .coin-name-full {
+  font-size: 1.6rem;
+}
+.watchlistPage-watchlist-table .cryptoTable .coin-name-symbol {
+  font-size: 1.2rem;
+  color: #58667e;
+  text-transform: uppercase;
+}
+.watchlistPage-watchlist-table .cryptoTable .coin:hover {
+  cursor: pointer;
+}
+.watchlistPage-watchlist-table .cryptoTable .deleteIcon {
+  color: #697996;
+  width: 2rem;
+  height: 2rem;
+}
+.watchlistPage-watchlist-table .cryptoTable .deleteIcon:hover {
+  cursor: pointer;
+  color: #ea3941;
+}
+.watchlistPage-watchlist-table .empty {
+  width: 100%;
+  height: max-content;
+  padding: 4rem;
+  display: grid;
+  place-items: center;
+  border-bottom: 1px solid #eff2f5;
+}
+.watchlistPage-watchlist-table .empty-container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: 1rem;
+  width: 40rem;
+}
+.watchlistPage-watchlist-table .empty-container .iconContainer {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  background-color: #dbeaff;
+  display: grid;
+  place-items: center;
+}
+.watchlistPage-watchlist-table .empty-container .iconContainer-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  color: #58667e;
+}
+.watchlistPage-watchlist-table .empty-container .heading {
+  font-size: 3rem;
+  font-weight: 700;
+}
+.watchlistPage-watchlist-table .empty-container .desc {
+  font-size: 2rem;
+  color: #58667e;
+  text-align: center;
+}
+.watchlistPage-watchlist-table .empty-container .btn {
+  margin-top: 1rem;
+  outline: none;
+  border: none;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  background-color: #f0f2f5;
+  color: #343d4b;
+  padding: 1rem 3rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+.watchlistPage-watchlist-table .empty-container .btn:hover {
+  background-color: #5e6d87;
+  color: #f6f7f9;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.comp.css.map */

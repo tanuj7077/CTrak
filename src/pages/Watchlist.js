@@ -131,7 +131,8 @@ function SearchModal({
   );
 }
 function Watchlist({ pageData }) {
-  const { userData, addTab, setUserData, changeAlert } = useGlobalContext();
+  const { userData, addTab, setUserData, changeAlert, closeTab } =
+    useGlobalContext();
   const [watchlistData, setWatchlistData] = useState();
   const [coins, setCoins] = useState([]);
   const [selectCoin, setSelectCoin] = useState(false);
@@ -198,6 +199,20 @@ function Watchlist({ pageData }) {
       });
     }
   };
+
+  const handleDelete = async () => {
+    let obj = {
+      userId: userData._id,
+      watchlistId: watchlistData._id,
+    };
+    axios
+      .post(`${process.env.REACT_APP_BASE_URL}/user/deleteWatchlist`, obj)
+      .then((res) => {
+        console.log(res.data);
+        changeAlert(res.data.message);
+        setUserData(res.data.userData);
+      });
+  };
   useEffect(() => {
     console.log(pageData);
     console.log(userData);
@@ -205,8 +220,13 @@ function Watchlist({ pageData }) {
       let obj = userData.watchList.find((item) => {
         return item._id === pageData.data._id;
       });
-      getWatchListCoinsData(obj.coins);
-      setWatchlistData(obj);
+      console.log(obj);
+      if (obj) {
+        getWatchListCoinsData(obj.coins);
+        setWatchlistData(obj);
+      } else {
+        closeTab(pageData.id);
+      }
     }
   }, [pageData.data, userData.watchList]);
   return (
@@ -224,7 +244,7 @@ function Watchlist({ pageData }) {
                   <div className="icons-iconContainer">
                     <MdEdit className="icons-icon" />
                   </div>
-                  <div className="icons-iconContainer">
+                  <div className="icons-iconContainer" onClick={handleDelete}>
                     <MdDelete className="icons-icon" />
                   </div>
                   <FaChevronDown

@@ -101,24 +101,27 @@ function AddToWatchlist({ coin }) {
     <>
       {selectWatchlistModal && (
         <div className="addToWatchlistModal">
-          {!createMode && userData.watchList.length > 0 && (
-            <div className="selectWatchlist">
-              <div className="selectWatchlist-heading">Select watchlist</div>
-              <ul className="selectWatchlist-list">
-                {userData.watchList.map((watchlist) => {
-                  return (
-                    <div
-                      className="selectWatchlist-list-item"
-                      onClick={() => handleAdd(watchlist._id)}
-                    >
-                      {watchlist.name} ({watchlist.coins.length})
-                    </div>
-                  );
-                })}
-              </ul>
-              <button onClick={toggleCreateMode}>New</button>
-            </div>
-          )}
+          {!createMode &&
+            userData &&
+            userData.watchList &&
+            userData.watchList.length > 0 && (
+              <div className="selectWatchlist">
+                <div className="selectWatchlist-heading">Select watchlist</div>
+                <ul className="selectWatchlist-list">
+                  {userData.watchList.map((watchlist) => {
+                    return (
+                      <div
+                        className="selectWatchlist-list-item"
+                        onClick={() => handleAdd(watchlist._id)}
+                      >
+                        {watchlist.name} ({watchlist.coins.length})
+                      </div>
+                    );
+                  })}
+                </ul>
+                <button onClick={toggleCreateMode}>New</button>
+              </div>
+            )}
           {createMode && <CreateSection toggleCreateMode={toggleCreateMode} />}
           {userData && userData.watchList.length === 0 && !createMode && (
             <div className="emptyWatchlist">
