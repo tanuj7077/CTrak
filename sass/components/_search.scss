@@ -255,11 +255,13 @@
     }
   }
   &-watchList {
-    width: 80%;
     top: 50%;
     right: unset;
     left: 50%;
     transform: translate(-50%, -50%);
+    @include respond(phone) {
+      width: 80%;
+    }
   }
   &-overlay {
     position: fixed;

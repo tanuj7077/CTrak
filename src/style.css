@@ -282,9 +282,29 @@ a:link, a:visited, a:hover, a:active {
   }
 }
 .topNav-content-left-logo {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.topNav-content-left-logo .icon {
+  width: 3rem;
+  height: 3rem;
+}
+@media only screen and (max-width: 37.5em) {
+  .topNav-content-left-logo .icon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+.topNav-content-left-logo .text {
   font-weight: bold;
-  font-size: 1.8rem;
+  font-size: 2.5rem;
   letter-spacing: 0.2rem;
+}
+@media only screen and (max-width: 37.5em) {
+  .topNav-content-left-logo .text {
+    font-size: 1.8rem;
+  }
 }
 .topNav-content-right {
   display: flex;
@@ -656,11 +676,15 @@ a:link, a:visited, a:hover, a:active {
   color: #5e6d87;
 }
 .searchModal-watchList {
-  width: 80%;
   top: 50%;
   right: unset;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+@media only screen and (max-width: 37.5em) {
+  .searchModal-watchList {
+    width: 80%;
+  }
 }
 .searchModal-overlay {
   position: fixed;
@@ -986,7 +1010,7 @@ a:link, a:visited, a:hover, a:active {
   width: 42.5rem;
   height: max-content;
   background-color: white;
-  z-index: 11;
+  z-index: 12;
   border-radius: 1rem;
   padding: 1rem 2rem 2rem 2rem;
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;

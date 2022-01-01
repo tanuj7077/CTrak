@@ -1,9 +1,10 @@
 import React from "react";
 import { useGlobalContext } from "../context";
-import { IoSearch, IoListCircle } from "react-icons/io5";
+import { IoSearch } from "react-icons/io5";
 import { IoMdLogOut } from "react-icons/io";
 import { AiOutlineLogin } from "react-icons/ai";
 import { FaListUl } from "react-icons/fa";
+import Asset2 from "../assets/logo/Asset3.svg";
 
 function TopNav() {
   const {
@@ -17,7 +18,14 @@ function TopNav() {
     <div className="topNav">
       <div className="topNav-content">
         <div className="topNav-content-left">
-          <div className="topNav-content-left-logo">CoinTracker</div>
+          <div className="topNav-content-left-logo">
+            <img src={Asset2} alt="" className="icon" />
+            <p className="text">CoinTracker</p>
+            {/* <div
+              className="logo"
+              style={{ WebkitMask: `url(${Asset2}) no-repeat center` }}
+            ></div> */}
+          </div>
         </div>
         <div className="topNav-content-right">
           {/* <div className="topNav-content-right-item">Home</div> */}
