@@ -1,9 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { useGlobalContext } from "../../context";
 import axios from "axios";
 import { GrClear } from "react-icons/gr";
 import { FaChevronDown } from "react-icons/fa";
-import { MdEdit, MdDelete } from "react-icons/md";
 import { IoIosClose } from "react-icons/io";
 function CreateSection({ toggleCreateMode }) {
   const { setUserData, userData } = useGlobalContext();
@@ -19,7 +19,6 @@ function CreateSection({ toggleCreateMode }) {
     axios
       .post(`${process.env.REACT_APP_BASE_URL}/user/createWatchlist`, obj)
       .then((res) => {
-        console.log(res.data);
         setUserData(res.data.userData);
         toggleCreateMode();
       });

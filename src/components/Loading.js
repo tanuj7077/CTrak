@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useGlobalContext } from "../context";
-import { useLocation } from "react-router-dom";
 
 const Loading = () => {
   const { isLoading } = useGlobalContext();

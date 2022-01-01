@@ -18,7 +18,6 @@ function CreateSection({ toggleCreateMode }) {
     axios
       .post(`${process.env.REACT_APP_BASE_URL}/user/createWatchlist`, obj)
       .then((res) => {
-        console.log(res.data);
         setUserData(res.data.userData);
         toggleCreateMode();
       });
@@ -88,7 +87,6 @@ function AddToWatchlist({ coin }) {
       axios
         .post(`${process.env.REACT_APP_BASE_URL}/user/addtoWatchlist`, obj)
         .then((res) => {
-          console.log(res.data);
           setUserData(res.data.userData);
           changeAlert(res.data.message);
           toggleSelectWatchlistModal();
@@ -118,6 +116,7 @@ function AddToWatchlist({ coin }) {
                   {userData.watchList.map((watchlist) => {
                     return (
                       <div
+                        key={"selectWatchlist" + watchlist._id}
                         className="selectWatchlist-list-item"
                         onClick={() => handleAdd(watchlist._id)}
                       >

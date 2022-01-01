@@ -28,9 +28,15 @@
     letter-spacing: 0.1rem;
     &-heading {
       font-size: 1rem;
+      &::selection {
+        background-color: transparent;
+      }
     }
     &-subheading {
       font-weight: bold;
+      &::selection {
+        background-color: transparent;
+      }
     }
   }
   &-close {

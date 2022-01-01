@@ -4,7 +4,6 @@ import { IoSearch } from "react-icons/io5";
 import { IoIosCloseCircle } from "react-icons/io";
 import { FaFire } from "react-icons/fa";
 import axios from "axios";
-//import ScrollObserver from "../Utilities/ScrollObserver";
 
 function SearchModal() {
   const {
@@ -25,7 +24,6 @@ function SearchModal() {
         .get(`${process.env.REACT_APP_BASE_URL}/coin/search/${text}`)
         .then((res) => {
           setSearchResults(res.data);
-          console.log(res.data);
         });
   };
   const addToHistory = (coin) => {
@@ -39,7 +37,6 @@ function SearchModal() {
     axios
       .post(`${process.env.REACT_APP_BASE_URL}/user/addRecent`, obj)
       .then((res) => {
-        console.log(res.data);
         setUserData(res.data.userData);
       });
   };
@@ -48,7 +45,6 @@ function SearchModal() {
       {searchModalVisibility && (
         <>
           <div className="searchModal">
-            {/* <ScrollObserver /> */}
             <div className="searchModal-inputContainer">
               <IoSearch className="searchIcon" />
               <input
@@ -153,7 +149,6 @@ function SearchModal() {
                         className="searchModal-results-list-item"
                         onClick={() => {
                           toggleSearchModalVisibility();
-                          console.log(userData);
                           userData && userData._id && addToHistory(coin);
                           addTab("coin", coin);
                           setSearchText("");

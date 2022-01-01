@@ -5,7 +5,7 @@ import { useGlobalContext } from "../context";
 import { FaChevronDown, FaStar } from "react-icons/fa";
 import { MdEdit, MdDelete } from "react-icons/md";
 import { IoSearch } from "react-icons/io5";
-import { IoIosCloseCircle, IoIosClose } from "react-icons/io";
+import { IoIosCloseCircle } from "react-icons/io";
 
 function SearchModal({
   searchModalVisibility,
@@ -22,7 +22,6 @@ function SearchModal({
         .get(`${process.env.REACT_APP_BASE_URL}/coin/search/${text}`)
         .then((res) => {
           setSearchResults(res.data);
-          console.log(res.data);
         });
   };
   return (
@@ -144,7 +143,6 @@ function NewWatchlist({ toggleNewWatchlist, watchListData, editMode }) {
     axios
       .post(`${process.env.REACT_APP_BASE_URL}/user/createWatchlist`, obj)
       .then((res) => {
-        console.log(res.data);
         setUserData(res.data.userData);
         changeAlert(res.data.message);
         toggleNewWatchlist();
@@ -241,7 +239,6 @@ function Watchlist({ pageData }) {
       axios
         .get(`${process.env.REACT_APP_BASE_URL}/coin/getCoinsByIds/${ids}`)
         .then((res) => {
-          console.log(res.data);
           setCoins(res.data);
         });
     } else {
@@ -260,7 +257,6 @@ function Watchlist({ pageData }) {
         obj
       )
       .then((res) => {
-        console.log(res.data);
         setUserData(res.data.userData);
       });
   };
@@ -300,19 +296,15 @@ function Watchlist({ pageData }) {
     axios
       .post(`${process.env.REACT_APP_BASE_URL}/user/deleteWatchlist`, obj)
       .then((res) => {
-        console.log(res.data);
         changeAlert(res.data.message);
         setUserData(res.data.userData);
       });
   };
   useEffect(() => {
-    console.log(pageData);
-    console.log(userData);
-    if (pageData.data) {
+    if (pageData.data && userData && userData.watchList) {
       let obj = userData.watchList.find((item) => {
         return item._id === pageData.data._id;
       });
-      console.log(obj);
       if (obj) {
         getWatchListCoinsData(obj.coins);
         setWatchlistData(obj);
@@ -320,190 +312,203 @@ function Watchlist({ pageData }) {
         closeTab(pageData.id);
       }
     }
+    if (!userData || !userData.watchList) {
+      //conditionn required when logging out
+      closeTab(pageData.id);
+    }
   }, [pageData.data, userData.watchList]);
   return (
     <div className={`page ${pageData.isCurrent ? "" : "page-invisible"}`}>
       <div className="watchlistPage">
-        {userData.watchList.length === 0 && (
+        {userData && userData.watchList && userData.watchList.length === 0 && (
           <div className="watchlistPage-noWatchlist">No Watchlist</div>
         )}
-        {userData.watchList.length > 0 && pageData.data && watchlistData && (
-          <div className="watchlistPage-watchlist">
-            <div className="watchlistPage-watchlist-top">
-              <div className="heading">
-                <p className="name">{watchlistData.name}</p>
-                <div className="icons">
-                  <div
-                    className="icons-iconContainer"
-                    onClick={() => {
-                      setEditMode(true);
-                      toggleNewWatchlist();
-                    }}
-                  >
-                    <MdEdit className="icons-icon" />
-                  </div>
-                  <div className="icons-iconContainer" onClick={handleDelete}>
-                    <MdDelete className="icons-icon" />
-                  </div>
-                  <FaChevronDown
-                    className="icons-icon-chevron"
-                    onClick={toggleSelectCoin}
-                  />
-                </div>
-                {selectCoin && (
-                  <div className="select">
-                    <ul className="select-list">
-                      {userData.watchList.map((item) => {
-                        return (
-                          <li
-                            className="select-list-item"
-                            key={item._id + "watchListSelect"}
-                            onClick={() => {
-                              toggleSelectCoin();
-                              addTab("watchlist", item);
-                            }}
-                          >
-                            {item.name}
-                          </li>
-                        );
-                      })}
-                    </ul>
-                    <button
-                      className="btn"
+        {userData &&
+          userData.watchList &&
+          userData.watchList.length > 0 &&
+          pageData.data &&
+          watchlistData && (
+            <div className="watchlistPage-watchlist">
+              <div className="watchlistPage-watchlist-top">
+                <div className="heading">
+                  <p className="name">{watchlistData.name}</p>
+                  <div className="icons">
+                    <div
+                      className="icons-iconContainer"
                       onClick={() => {
-                        setEditMode(false);
+                        setEditMode(true);
                         toggleNewWatchlist();
                       }}
                     >
-                      New
-                    </button>
+                      <MdEdit className="icons-icon" />
+                    </div>
+                    <div className="icons-iconContainer" onClick={handleDelete}>
+                      <MdDelete className="icons-icon" />
+                    </div>
+                    <FaChevronDown
+                      className="icons-icon-chevron"
+                      onClick={toggleSelectCoin}
+                    />
+                  </div>
+                  {selectCoin && (
+                    <div className="select">
+                      <ul className="select-list">
+                        {userData.watchList.map((item) => {
+                          return (
+                            <li
+                              className="select-list-item"
+                              key={item._id + "watchListSelect"}
+                              onClick={() => {
+                                toggleSelectCoin();
+                                addTab("watchlist", item);
+                              }}
+                            >
+                              {item.name}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                      <button
+                        className="btn"
+                        onClick={() => {
+                          setEditMode(false);
+                          toggleNewWatchlist();
+                        }}
+                      >
+                        New
+                      </button>
+                    </div>
+                  )}
+                </div>
+                <p className="desc">{watchlistData.desc}</p>
+                <button className="btn" onClick={toggleSearchModalVisibility}>
+                  Add Coin
+                </button>
+              </div>
+              <div className="watchlistPage-watchlist-table">
+                <div className="cryptoTable">
+                  <table>
+                    <thead>
+                      <tr className="header">
+                        <td className="header-data header-data-fixed-rank">
+                          #
+                        </td>
+                        <td className="header-data header-data-fixed-name">
+                          Coin
+                        </td>
+                        <td className="header-data header-data-price">Price</td>
+                        <td className="header-data">24h %</td>
+                        <td className="header-data">Market Cap</td>
+                        <td className="header-data">Volume</td>
+                        <td className="header-data">24h High</td>
+                        <td className="header-data">24h Low</td>
+                        <td className="header-data"></td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {coins &&
+                        coins.map((coin) => {
+                          return (
+                            <tr
+                              key={"watchlist_coinTable" + coin.name}
+                              className="body-row"
+                            >
+                              <td className="body-row-cell body-row-cell-fixed-rank">
+                                <p className="rank">{coin.market_cap_rank}</p>
+                              </td>
+                              <td className="body-row-cell body-row-cell-fixed-coin">
+                                <div
+                                  className="coin"
+                                  onClick={() => addTab("coin", coin)}
+                                >
+                                  <img
+                                    src={coin.image}
+                                    alt={coin.symbol + "Img"}
+                                    className="coin-img"
+                                  />
+                                  <div className="coin-name">
+                                    <p className="coin-name-full">
+                                      {coin.name.length < 27
+                                        ? coin.name
+                                        : coin.name.substr(0, 26) + "..."}
+                                    </p>
+                                    <p className="coin-name-symbol">
+                                      {coin.symbol}
+                                    </p>
+                                  </div>
+                                </div>
+                              </td>
+                              <td className="body-row-cell">
+                                ${coin.current_price}
+                              </td>
+                              <td
+                                className={`body-row-cell body-row-cell-price ${
+                                  (coin.price_change_percentage_24h < 0 &&
+                                    "body-row-cell-price-down") ||
+                                  (coin.price_change_percentage_24h > 0 &&
+                                    "body-row-cell-price-up")
+                                }`}
+                              >
+                                {coin.price_change_percentage_24h !== null &&
+                                  coin.price_change_percentage_24h > 0 &&
+                                  "+" +
+                                    coin.price_change_percentage_24h.toFixed(2)}
+                                {coin.price_change_percentage_24h !== null &&
+                                  coin.price_change_percentage_24h <= 0 &&
+                                  coin.price_change_percentage_24h.toFixed(2)}
+                                {coin.price_change_percentage_24h === null &&
+                                  "-"}
+                              </td>
+                              <td className="body-row-cell">
+                                {coin.market_cap}
+                              </td>
+                              <td className="body-row-cell">
+                                {coin.total_volume}
+                              </td>
+                              <td className="body-row-cell">
+                                {coin.high_24h}
+                                {coin.high_24h === null && "-"}
+                              </td>
+                              <td className="body-row-cell">
+                                {coin.low_24h}
+                                {coin.low_24h === null && "-"}
+                              </td>
+                              <td className="body-row-cell">
+                                <MdDelete
+                                  className="deleteIcon"
+                                  onClick={() => deleteCoin(coin.id)}
+                                />
+                              </td>
+                            </tr>
+                          );
+                        })}
+                    </tbody>
+                  </table>
+                </div>
+
+                {coins && coins.length === 0 && (
+                  <div className="empty">
+                    <div className="empty-container">
+                      <div className="iconContainer">
+                        <FaStar className="iconContainer-icon"></FaStar>
+                      </div>
+                      <p className="heading">Watchlist Empty</p>
+                      <p className="desc">
+                        You can add coins to watchlist by clicking on the button
+                        below
+                      </p>
+                      <button
+                        className="btn"
+                        onClick={toggleSearchModalVisibility}
+                      >
+                        Add
+                      </button>
+                    </div>
                   </div>
                 )}
               </div>
-              <p className="desc">{watchlistData.desc}</p>
-              <button className="btn" onClick={toggleSearchModalVisibility}>
-                Add Coin
-              </button>
             </div>
-            <div className="watchlistPage-watchlist-table">
-              <div className="cryptoTable">
-                <table>
-                  <thead>
-                    <tr className="header">
-                      <td className="header-data header-data-fixed-rank">#</td>
-                      <td className="header-data header-data-fixed-name">
-                        Coin
-                      </td>
-                      <td className="header-data header-data-price">Price</td>
-                      <td className="header-data">24h %</td>
-                      <td className="header-data">Market Cap</td>
-                      <td className="header-data">Volume</td>
-                      <td className="header-data">24h High</td>
-                      <td className="header-data">24h Low</td>
-                      <td className="header-data"></td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {coins &&
-                      coins.map((coin) => {
-                        return (
-                          <tr
-                            key={"watchlist_coinTable" + coin.name}
-                            className="body-row"
-                          >
-                            <td className="body-row-cell body-row-cell-fixed-rank">
-                              <p className="rank">{coin.market_cap_rank}</p>
-                            </td>
-                            <td className="body-row-cell body-row-cell-fixed-coin">
-                              <div
-                                className="coin"
-                                onClick={() => addTab("coin", coin)}
-                              >
-                                <img
-                                  src={coin.image}
-                                  alt={coin.symbol + "Img"}
-                                  className="coin-img"
-                                />
-                                <div className="coin-name">
-                                  <p className="coin-name-full">
-                                    {coin.name.length < 27
-                                      ? coin.name
-                                      : coin.name.substr(0, 26) + "..."}
-                                  </p>
-                                  <p className="coin-name-symbol">
-                                    {coin.symbol}
-                                  </p>
-                                </div>
-                              </div>
-                            </td>
-                            <td className="body-row-cell">
-                              ${coin.current_price}
-                            </td>
-                            <td
-                              className={`body-row-cell body-row-cell-price ${
-                                (coin.price_change_percentage_24h < 0 &&
-                                  "body-row-cell-price-down") ||
-                                (coin.price_change_percentage_24h > 0 &&
-                                  "body-row-cell-price-up")
-                              }`}
-                            >
-                              {coin.price_change_percentage_24h !== null &&
-                                coin.price_change_percentage_24h > 0 &&
-                                "+" +
-                                  coin.price_change_percentage_24h.toFixed(2)}
-                              {coin.price_change_percentage_24h !== null &&
-                                coin.price_change_percentage_24h <= 0 &&
-                                coin.price_change_percentage_24h.toFixed(2)}
-                              {coin.price_change_percentage_24h === null && "-"}
-                            </td>
-                            <td className="body-row-cell">{coin.market_cap}</td>
-                            <td className="body-row-cell">
-                              {coin.total_volume}
-                            </td>
-                            <td className="body-row-cell">
-                              {coin.high_24h}
-                              {coin.high_24h === null && "-"}
-                            </td>
-                            <td className="body-row-cell">
-                              {coin.low_24h}
-                              {coin.low_24h === null && "-"}
-                            </td>
-                            <td className="body-row-cell">
-                              <MdDelete
-                                className="deleteIcon"
-                                onClick={() => deleteCoin(coin.id)}
-                              />
-                            </td>
-                          </tr>
-                        );
-                      })}
-                  </tbody>
-                </table>
-              </div>
-
-              {coins && coins.length === 0 && (
-                <div className="empty">
-                  <div className="empty-container">
-                    <div className="iconContainer">
-                      <FaStar className="iconContainer-icon"></FaStar>
-                    </div>
-                    <p className="heading">Watchlist Empty</p>
-                    <p className="desc">
-                      You can add coins to watchlist by clicking on the button
-                      below
-                    </p>
-                    <button
-                      className="btn"
-                      onClick={toggleSearchModalVisibility}
-                    >
-                      Add
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
+          )}
         <SearchModal
           searchModalVisibility={searchModalVisibility}
           toggleSearchModalVisibility={toggleSearchModalVisibility}

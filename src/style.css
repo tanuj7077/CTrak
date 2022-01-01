@@ -262,8 +262,14 @@ a:link, a:visited, a:hover, a:active {
 .tab-content-heading {
   font-size: 1rem;
 }
+.tab-content-heading::selection {
+  background-color: transparent;
+}
 .tab-content-subheading {
   font-weight: bold;
+}
+.tab-content-subheading::selection {
+  background-color: transparent;
 }
 .topNav {
   background-color: white;

@@ -1,7 +1,4 @@
 export const coinGeckoApi = "http://api.coingecko.com/api/v3/coins/";
-//coinMarketCap:
-//quotesLatest = globalstats
-//
 export const coinTypes = [
   { name: "All", value: "" },
   { name: "Smart Contract", value: "smart-contract-platform" },

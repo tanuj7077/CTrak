@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useGlobalContext } from "../context";
 import Tab from "../components/Tab";
 
 function TabContainer() {
-  const { pages, closeTab, closeAll } = useGlobalContext();
+  const { pages, closeTab } = useGlobalContext();
   const deleteTab = (id) => {
     closeTab(id);
   };

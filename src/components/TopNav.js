@@ -21,14 +21,9 @@ function TopNav() {
           <div className="topNav-content-left-logo">
             <img src={Asset2} alt="" className="icon" />
             <p className="text">CoinTracker</p>
-            {/* <div
-              className="logo"
-              style={{ WebkitMask: `url(${Asset2}) no-repeat center` }}
-            ></div> */}
           </div>
         </div>
         <div className="topNav-content-right">
-          {/* <div className="topNav-content-right-item">Home</div> */}
           <div
             className="topNav-content-right-item"
             onClick={toggleSearchModalVisibility}

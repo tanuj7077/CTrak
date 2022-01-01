@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import { IoClose } from "react-icons/io5";
 import { useGlobalContext } from "../context";

@@ -81,8 +81,6 @@ const AppProvider = ({ children }) => {
             changeAlert(res.data.msg);
             setUserData({});
             setIsLoggedIn(false);
-            //changeAlert(res.data.message);
-            //return <Redirect to="/" exact />;
           }
         });
     } catch (err) {
@@ -97,7 +95,6 @@ const AppProvider = ({ children }) => {
   const getTrending = () => {
     axios.get(`${process.env.REACT_APP_BASE_URL}/coin/trending`).then((res) => {
       setTrending(res.data);
-      console.log(res.data);
     });
   };
   useEffect(() => {

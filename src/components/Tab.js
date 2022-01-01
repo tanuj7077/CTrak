@@ -4,7 +4,6 @@ import { IoIosClose } from "react-icons/io";
 
 function Tab({ tabData, deleteTab }) {
   const { changeCurrentTab } = useGlobalContext();
-  //console.log(tabData);
   return (
     <div
       className={`tab ${tabData.isCurrent ? "tab-current" : ""}`}
