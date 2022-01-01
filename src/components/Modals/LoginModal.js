@@ -14,11 +14,9 @@ const LoginModal = () => {
   const [registerPassword, setRegisterPassword] = useState("");
   const [usernameExistance, setUsernameExistance] = useState(false);
 
-  const checkUsernameExistance = () => {
+  const checkUsernameExistance = (name) => {
     axios
-      .get(
-        `${process.env.REACT_APP_BASE_URL}/user/checkUser/${registerUsername}`
-      )
+      .get(`${process.env.REACT_APP_BASE_URL}/user/checkUser/${name}`)
       .then((res) => {
         setUsernameExistance(res.data.usernameExistance);
       });
@@ -28,14 +26,9 @@ const LoginModal = () => {
     setLoginMode(!loginMode);
   };
   const demoLogin = () => {
-    //setLoginUsername("demoUser");
-    //setLoginPassword("demoPassword");
     login("demoUser", "demoPassword");
   };
 
-  useEffect(() => {
-    checkUsernameExistance();
-  }, [registerUsername]);
   return (
     <>
       {loginModalVisible && (
@@ -155,6 +148,7 @@ const LoginModal = () => {
                       value={registerUsername}
                       onChange={(e) => {
                         setRegisterUsername(e.target.value);
+                        checkUsernameExistance(e.target.value);
                       }}
                       required
                     />
