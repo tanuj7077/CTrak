@@ -22,11 +22,25 @@
       gap: 4rem;
       align-items: center;
       &-item {
-        font-size: 1.2rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1rem;
-        color: hsl(0, 0%, 23%);
-        font-weight: 700;
+        span {
+          font-size: 1.2rem;
+          text-transform: uppercase;
+          letter-spacing: 0.1rem;
+          color: hsl(0, 0%, 23%);
+          font-weight: 700;
+          @include respond(phone) {
+            display: none;
+          }
+        }
+        .icon {
+          display: none;
+          width: 2rem;
+          height: 2rem;
+          color: hsl(218, 18%, 25%);
+          @include respond(phone) {
+            display: block;
+          }
+        }
         &:hover {
           cursor: pointer;
         }

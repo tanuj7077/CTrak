@@ -13,10 +13,11 @@
     top: 0;
     left: 0;
     width: 100%;
+    padding-top: 2rem;
   }
   &-heading {
     width: 100%;
-    text-align: center;
+    //text-align: center;
     font-size: 1.6rem;
     font-weight: 700;
     padding: 0.5rem 0 0.5rem 0;
@@ -24,6 +25,20 @@
     text-transform: uppercase;
     &:hover {
       cursor: pointer;
+    }
+  }
+  &-close {
+    width: 3rem;
+    height: 3rem;
+    color: hsl(218, 18%, 25%);
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    &:hover {
+      cursor: pointer;
+    }
+    @include respond(phone) {
+      top: 2rem;
     }
   }
   &-noWatchlists {
@@ -222,8 +237,13 @@
               color: hsl(218, 18%, 25%);
               &:hover {
                 cursor: pointer;
+                color: hsl(217, 89%, 66%);
               }
             }
+          }
+          &:hover {
+            cursor: pointer;
+            background-color: hsl(218, 18%, 90%);
           }
         }
         &-content {
@@ -360,5 +380,14 @@
         cursor: pointer;
       }
     }
+  }
+  &-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: transparent;
+    z-index: 11;
   }
 }

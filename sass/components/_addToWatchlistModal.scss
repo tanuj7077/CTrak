@@ -19,17 +19,24 @@
   padding: 1rem 2rem 2rem 2rem;
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
   @include respond(phone) {
-    top: 0;
-    left: 0;
-    width: 100%;
+    top: 50%;
+    left: 50%;
+    width: 80%;
   }
   &-heading {
     width: 100%;
-    text-align: center;
+    //text-align: center;
     font-size: 1.6rem;
     font-weight: 700;
     padding: 0.5rem 0 1.5rem 0;
     text-transform: uppercase;
+  }
+  .closeIcon {
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    width: 2rem;
+    height: 2rem;
   }
   &-list {
     list-style: none;
@@ -96,9 +103,21 @@
   flex-flow: column;
   gap: 1rem;
   @include respond(phone) {
-    top: 0;
-    left: 0;
-    width: 100%;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+  }
+  .heading {
+    font-size: 2rem;
+    color: hsl(218, 18%, 25%);
+    font-weight: 700;
+  }
+  .closeIcon {
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    top: 1rem;
+    right: 2rem;
   }
   .inputGrp {
     width: 100%;

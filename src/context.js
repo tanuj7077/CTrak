@@ -153,7 +153,8 @@ const AppProvider = ({ children }) => {
           data: data,
         };
       }
-      newPages.push(obj);
+      //newPages.push(obj);
+      newPages.splice(1, 0, obj);
       let changedValue = newPages.map((item) => {
         let newObj;
         if (item.id !== obj.id) {

@@ -1,5 +1,9 @@
 import React from "react";
 import { useGlobalContext } from "../context";
+import { IoSearch, IoListCircle } from "react-icons/io5";
+import { IoMdLogOut } from "react-icons/io";
+import { AiOutlineLogin } from "react-icons/ai";
+import { FaListUl } from "react-icons/fa";
 
 function TopNav() {
   const {
@@ -21,27 +25,31 @@ function TopNav() {
             className="topNav-content-right-item"
             onClick={toggleSearchModalVisibility}
           >
-            Search
+            <span>Search</span>
+            <IoSearch className="icon" />
           </div>
           {isLoggedIn && (
             <div
               className="topNav-content-right-item"
               onClick={toggleWatchlistModalVisibility}
             >
-              Watchlist
+              <span>Watchlist</span>
+              <FaListUl className="icon" />
             </div>
           )}
 
           {isLoggedIn ? (
             <div className="topNav-content-right-item" onClick={logout}>
-              Logout
+              <span>Logout</span>
+              <IoMdLogOut className="icon" />
             </div>
           ) : (
             <div
               className="topNav-content-right-item"
               onClick={toggleLoginModalVisibility}
             >
-              Login
+              <span>Login</span>
+              <AiOutlineLogin className="icon" />
             </div>
           )}
         </div>

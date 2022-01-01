@@ -43,6 +43,7 @@ function App() {
   return (
     <Switch>
       <Route path="/" exact>
+        <Loading />
         <Alert />
         <Loading />
         <LoginModal />

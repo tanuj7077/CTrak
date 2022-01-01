@@ -80,3 +80,21 @@ a {
     color: white;
   }
 }
+.loadingAnim {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 0.4rem;
+  width: 100vw;
+  background-color: white;
+  z-index: 3000;
+  opacity: 1;
+  background: linear-gradient(-45deg, #ec7956, #e64080, #21a6d6, #25d3aa);
+  background-size: 200% 200%;
+  animation: gradient 2s ease infinite;
+  transition: opacity 0.3s ease;
+  &-invisible {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+}

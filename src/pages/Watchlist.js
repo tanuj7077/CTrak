@@ -5,7 +5,7 @@ import { useGlobalContext } from "../context";
 import { FaChevronDown, FaStar } from "react-icons/fa";
 import { MdEdit, MdDelete } from "react-icons/md";
 import { IoSearch } from "react-icons/io5";
-import { IoIosCloseCircle } from "react-icons/io";
+import { IoIosCloseCircle, IoIosClose } from "react-icons/io";
 
 function SearchModal({
   searchModalVisibility,

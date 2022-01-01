@@ -4,6 +4,7 @@ import axios from "axios";
 import { GrClear } from "react-icons/gr";
 import { FaChevronDown } from "react-icons/fa";
 import { MdEdit, MdDelete } from "react-icons/md";
+import { IoIosClose } from "react-icons/io";
 function CreateSection({ toggleCreateMode }) {
   const { setUserData, userData } = useGlobalContext();
   const [name, setName] = useState("");
@@ -113,35 +114,35 @@ function WatchlistCoins({ coinList }) {
   );
 }
 function Watchlist({ watchlistData }) {
-  const { userData, setUserData, addTab } = useGlobalContext();
-  const handleDelete = async () => {
-    let obj = {
-      userId: userData._id,
-      watchlistId: watchlistData._id,
-    };
-    axios
-      .post(`${process.env.REACT_APP_BASE_URL}/user/deleteWatchlist`, obj)
-      .then((res) => {
-        console.log(res.data);
-        setUserData(res.data.userData);
-      });
-  };
+  const { addTab, toggleWatchlistModalVisibility } = useGlobalContext();
   const [showContent, setShowContent] = useState(false);
   const toggleContentVisibility = () => {
     setShowContent(!showContent);
   };
   return (
     <div className="watchlist">
-      <div className="watchlist-heading">
-        <p className="name" onClick={() => addTab("watchlist", watchlistData)}>
+      <div
+        className="watchlist-heading"
+        onClick={() => {
+          addTab("watchlist", watchlistData);
+          toggleWatchlistModalVisibility();
+        }}
+      >
+        <p
+          className="name"
+          onClick={() => {
+            addTab("watchlist", watchlistData);
+          }}
+        >
           {watchlistData.name}
         </p>
         <div className="actions">
-          <MdEdit className="actions-icon" />
-          <MdDelete className="actions-icon" onClick={handleDelete} />
           <FaChevronDown
             className="actions-icon"
-            onClick={toggleContentVisibility}
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleContentVisibility();
+            }}
           />
         </div>
       </div>
@@ -160,7 +161,10 @@ function Watchlist({ watchlistData }) {
               </p>
               <button
                 className="btn"
-                onClick={() => addTab("watchlist", watchlistData)}
+                onClick={() => {
+                  addTab("watchlist", watchlistData);
+                  toggleWatchlistModalVisibility();
+                }}
               >
                 Add
               </button>
@@ -174,12 +178,8 @@ function Watchlist({ watchlistData }) {
   );
 }
 function WatchListModal() {
-  const {
-    watchlistModalVisibility,
-    toggleWatchlistModalVisibility,
-    userData,
-    addTab,
-  } = useGlobalContext();
+  const { watchlistModalVisibility, userData, toggleWatchlistModalVisibility } =
+    useGlobalContext();
   const [createMode, setCreateMode] = useState(false);
   const toggleCreateMode = () => {
     setCreateMode(!createMode);
@@ -187,43 +187,50 @@ function WatchListModal() {
   return (
     <>
       {watchlistModalVisibility && (
-        <div className="watchlistModal">
-          <div
-            className="watchlistModal-heading"
-            //onClick={() => addTab("watchlist")}
-          >
-            Watchlists
-          </div>
-          {userData && userData.watchList.length === 0 && !createMode && (
-            <div className="watchlistModal-noWatchlists">
-              <div className="watchlistModal-noWatchlists-container">
-                <div className="iconContainer">
-                  <GrClear className="icon" />
-                </div>
-                <p className="heading">No watchlist present</p>
-                <p className="desc">
-                  You can create multiple watchlists and add crypto assets in
-                  them.
-                </p>
-                <button onClick={toggleCreateMode}>Create</button>
-              </div>
-            </div>
-          )}
-          {createMode && <CreateSection toggleCreateMode={toggleCreateMode} />}
-          {!createMode && userData && userData.watchList.length > 0 && (
-            <div className="watchlistModal-watchlistSection">
-              <div className="watchlistContainer">
-                <div className="watchlistModal-watchlistSection-list">
-                  {userData.watchList.map((item) => {
-                    return <Watchlist key={item._id} watchlistData={item} />;
-                  })}
+        <>
+          <div className="watchlistModal">
+            <div className="watchlistModal-heading">Watchlists</div>
+            <IoIosClose
+              className="watchlistModal-close"
+              onClick={toggleWatchlistModalVisibility}
+            />
+            {userData && userData.watchList.length === 0 && !createMode && (
+              <div className="watchlistModal-noWatchlists">
+                <div className="watchlistModal-noWatchlists-container">
+                  <div className="iconContainer">
+                    <GrClear className="icon" />
+                  </div>
+                  <p className="heading">No watchlist present</p>
+                  <p className="desc">
+                    You can create multiple watchlists and add crypto assets in
+                    them.
+                  </p>
+                  <button onClick={toggleCreateMode}>Create</button>
                 </div>
               </div>
+            )}
+            {createMode && (
+              <CreateSection toggleCreateMode={toggleCreateMode} />
+            )}
+            {!createMode && userData && userData.watchList.length > 0 && (
+              <div className="watchlistModal-watchlistSection">
+                <div className="watchlistContainer">
+                  <div className="watchlistModal-watchlistSection-list">
+                    {userData.watchList.map((item) => {
+                      return <Watchlist key={item._id} watchlistData={item} />;
+                    })}
+                  </div>
+                </div>
 
-              <button onClick={toggleCreateMode}>New</button>
-            </div>
-          )}
-        </div>
+                <button onClick={toggleCreateMode}>New</button>
+              </div>
+            )}
+          </div>
+          <div
+            className="watchlistModal-overlay"
+            onClick={toggleWatchlistModalVisibility}
+          ></div>
+        </>
       )}
     </>
   );

@@ -40,6 +40,18 @@ const CurrentPrice = ({ coinInfo }) => {
         ? price
         : coinInfo.market_data.high_24h.usd,
     pricePercent = ((price - price24hLow) * 100) / (price24hHigh - price24hLow);
+  const [pricePercentTime, setPricePercentTime] = useState("24h"); //24h,7d,1m,1y
+  const [priceChange, setPriceChange] = useState(priceChangePercentage24h);
+  const [selectTime, setSelectTime] = useState(false);
+  const toggleSelectTime = () => {
+    setSelectTime(!selectTime);
+  };
+  useEffect(() => {
+    pricePercentTime === "24h" && setPriceChange(priceChangePercentage24h);
+    pricePercentTime === "7d" && setPriceChange(priceChangePercentage7d);
+    pricePercentTime === "30d" && setPriceChange(priceChangePercentage30d);
+    pricePercentTime === "1y" && setPriceChange(priceChangePercentage1y);
+  }, [pricePercentTime]);
   return (
     <>
       <div className="coin-price">${price}</div>
@@ -47,18 +59,48 @@ const CurrentPrice = ({ coinInfo }) => {
         <p className="coin-priceChange-topic">price change: </p>
         <p
           className={`coin-priceChange-change ${
-            (priceChangePercentage24h < 0 && "coin-priceChange-change-low") ||
-            (priceChangePercentage24h > 0 && "coin-priceChange-change-high")
+            (priceChange < 0 && "coin-priceChange-change-low") ||
+            (priceChange > 0 && "coin-priceChange-change-high")
           }`}
         >
-          {priceChangePercentage24h !== null
-            ? priceChangePercentage24h.toFixed(2)
+          {priceChange !== null
+            ? priceChange <= 0
+              ? priceChange.toFixed(2)
+              : "+" + priceChange.toFixed(2)
             : "-"}
         </p>
-        <p className="coin-priceChange-time">
+        <p className="coin-priceChange-time" onClick={toggleSelectTime}>
           <span className="time">24h</span>
           <span className="dropdownIcon"></span>
         </p>
+        {selectTime && (
+          <div className="timeDropdown">
+            <p
+              className="timeDropdown-item"
+              onClick={() => setPricePercentTime("24h")}
+            >
+              24h
+            </p>
+            <p
+              className="timeDropdown-item"
+              onClick={() => setPricePercentTime("7d")}
+            >
+              7d
+            </p>
+            <p
+              className="timeDropdown-item"
+              onClick={() => setPricePercentTime("30d")}
+            >
+              30d
+            </p>
+            <p
+              className="timeDropdown-item"
+              onClick={() => setPricePercentTime("1y")}
+            >
+              1y
+            </p>
+          </div>
+        )}
       </div>
       <div className="coin-progress">
         <p className="coin-progress-level">

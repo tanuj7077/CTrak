@@ -71,8 +71,6 @@ function HomePage({ pageData }) {
                 <tr className="header">
                   <td className="header-data header-data-fixed-rank">#</td>
                   <td className="header-data header-data-fixed-name">Coin</td>
-                  {/* decide on left position from measuring distance between 
-                table left and Name left */}
                   <td className="header-data header-data-price">Price</td>
                   <td className="header-data">24h %</td>
                   <td className="header-data">Market Cap</td>

@@ -25,14 +25,15 @@
             width: 15rem;
             height: 15rem;
             @include respond(phone) {
-              width: 6rem;
-              height: 6rem;
+              width: 8.5rem;
+              height: 8.5rem;
             }
           }
           &-textual {
             &-name {
               font-size: 3rem;
               letter-spacing: 0.2rem;
+              font-weight: 700;
               @include respond(phone) {
                 font-size: 2rem;
                 letter-spacing: 0.1rem;
@@ -72,7 +73,7 @@
                 color: hsl(227, 96%, 60%);
               }
               @include respond(phone) {
-                display: none;
+                //display: none;
               }
             }
           }
@@ -97,6 +98,7 @@
             display: flex;
             gap: 1rem;
             align-items: center;
+            position: relative;
             &-topic {
               font-size: 1.2rem;
               text-transform: uppercase;
@@ -137,6 +139,29 @@
               }
               &:hover {
                 cursor: pointer;
+              }
+            }
+            .timeDropdown {
+              position: absolute;
+              top: calc(100% + 0.5rem);
+              right: 0;
+              background-color: white;
+              //padding: 0.5rem 1.5rem;
+              display: flex;
+              flex-flow: column;
+              z-index: 1;
+              box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+              border-radius: 0.4rem;
+              //background-color: hsl(216, 100%, 97%);
+              border: 0.1rem solid hsl(216, 100%, 97%);
+              color: hsl(218, 18%, 42%);
+              &-item {
+                font-size: 1.2rem;
+                padding: 0.25rem 1.5rem;
+                &:hover {
+                  cursor: pointer;
+                  background-color: hsl(216, 100%, 97%);
+                }
               }
             }
           }

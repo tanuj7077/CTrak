@@ -29,6 +29,17 @@ breakpoint argument choices:
     transform: scale(1);
   }
 }
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 *,
 *::after,
 *::before {
@@ -107,6 +118,25 @@ textarea {
 a:link, a:visited, a:hover, a:active {
   text-decoration: none;
   color: white;
+}
+
+.loadingAnim {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 0.4rem;
+  width: 100vw;
+  background-color: white;
+  z-index: 3000;
+  opacity: 1;
+  background: linear-gradient(-45deg, #ec7956, #e64080, #21a6d6, #25d3aa);
+  background-size: 200% 200%;
+  animation: gradient 2s ease infinite;
+  transition: opacity 0.3s ease;
+}
+.loadingAnim-invisible {
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .layout {
@@ -261,12 +291,28 @@ a:link, a:visited, a:hover, a:active {
   gap: 4rem;
   align-items: center;
 }
-.topNav-content-right-item {
+.topNav-content-right-item span {
   font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
   color: #3b3b3b;
   font-weight: 700;
+}
+@media only screen and (max-width: 37.5em) {
+  .topNav-content-right-item span {
+    display: none;
+  }
+}
+.topNav-content-right-item .icon {
+  display: none;
+  width: 2rem;
+  height: 2rem;
+  color: #343d4b;
+}
+@media only screen and (max-width: 37.5em) {
+  .topNav-content-right-item .icon {
+    display: block;
+  }
 }
 .topNav-content-right-item:hover {
   cursor: pointer;
@@ -610,10 +656,20 @@ a:link, a:visited, a:hover, a:active {
   color: #5e6d87;
 }
 .searchModal-watchList {
+  width: 80%;
   top: 50%;
   right: unset;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.searchModal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  z-index: 11;
 }
 
 .loginModalContainer {
@@ -940,11 +996,11 @@ a:link, a:visited, a:hover, a:active {
     top: 0;
     left: 0;
     width: 100%;
+    padding-top: 2rem;
   }
 }
 .watchlistModal-heading {
   width: 100%;
-  text-align: center;
   font-size: 1.6rem;
   font-weight: 700;
   padding: 0.5rem 0 0.5rem 0;
@@ -952,6 +1008,22 @@ a:link, a:visited, a:hover, a:active {
 }
 .watchlistModal-heading:hover {
   cursor: pointer;
+}
+.watchlistModal-close {
+  width: 3rem;
+  height: 3rem;
+  color: #343d4b;
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+}
+.watchlistModal-close:hover {
+  cursor: pointer;
+}
+@media only screen and (max-width: 37.5em) {
+  .watchlistModal-close {
+    top: 2rem;
+  }
 }
 .watchlistModal-noWatchlists {
   width: 100%;
@@ -1154,6 +1226,11 @@ a:link, a:visited, a:hover, a:active {
 }
 .watchlistModal-watchlistSection-list .watchlist-heading .actions-icon:hover {
   cursor: pointer;
+  color: #5b96f5;
+}
+.watchlistModal-watchlistSection-list .watchlist-heading:hover {
+  cursor: pointer;
+  background-color: #e1e4ea;
 }
 .watchlistModal-watchlistSection-list .watchlist-content {
   border-bottom-left-radius: 0.5rem;
@@ -1285,6 +1362,15 @@ a:link, a:visited, a:hover, a:active {
   color: #343d4b;
   cursor: pointer;
 }
+.watchlistModal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  z-index: 11;
+}
 
 .addToWatchlistModal {
   position: fixed;
@@ -1310,18 +1396,24 @@ a:link, a:visited, a:hover, a:active {
 }
 @media only screen and (max-width: 37.5em) {
   .selectWatchlist {
-    top: 0;
-    left: 0;
-    width: 100%;
+    top: 50%;
+    left: 50%;
+    width: 80%;
   }
 }
 .selectWatchlist-heading {
   width: 100%;
-  text-align: center;
   font-size: 1.6rem;
   font-weight: 700;
   padding: 0.5rem 0 1.5rem 0;
   text-transform: uppercase;
+}
+.selectWatchlist .closeIcon {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  width: 2rem;
+  height: 2rem;
 }
 .selectWatchlist-list {
   list-style: none;
@@ -1390,10 +1482,22 @@ a:link, a:visited, a:hover, a:active {
 }
 @media only screen and (max-width: 37.5em) {
   .createWatchlist {
-    top: 0;
-    left: 0;
-    width: 100%;
+    top: 50%;
+    left: 50%;
+    width: 80%;
   }
+}
+.createWatchlist .heading {
+  font-size: 2rem;
+  color: #343d4b;
+  font-weight: 700;
+}
+.createWatchlist .closeIcon {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  top: 1rem;
+  right: 2rem;
 }
 .createWatchlist .inputGrp {
   width: 100%;
@@ -1743,13 +1847,14 @@ a:link, a:visited, a:hover, a:active {
 }
 @media only screen and (max-width: 37.5em) {
   .coinPage-coin-info .left .coin-img {
-    width: 6rem;
-    height: 6rem;
+    width: 8.5rem;
+    height: 8.5rem;
   }
 }
 .coinPage-coin-info .left .coin-textual-name {
   font-size: 3rem;
   letter-spacing: 0.2rem;
+  font-weight: 700;
 }
 @media only screen and (max-width: 37.5em) {
   .coinPage-coin-info .left .coin-textual-name {
@@ -1791,11 +1896,6 @@ a:link, a:visited, a:hover, a:active {
 .coinPage-coin-info .left .coin-textual .btn:hover {
   color: #3762fb;
 }
-@media only screen and (max-width: 37.5em) {
-  .coinPage-coin-info .left .coin-textual .btn {
-    display: none;
-  }
-}
 .coinPage-coin-info .right {
   display: flex;
   flex-flow: column;
@@ -1817,6 +1917,7 @@ a:link, a:visited, a:hover, a:active {
   display: flex;
   gap: 1rem;
   align-items: center;
+  position: relative;
 }
 .coinPage-coin-info .right .coin-priceChange-topic {
   font-size: 1.2rem;
@@ -1859,6 +1960,27 @@ a:link, a:visited, a:hover, a:active {
 }
 .coinPage-coin-info .right .coin-priceChange-time:hover {
   cursor: pointer;
+}
+.coinPage-coin-info .right .coin-priceChange .timeDropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background-color: white;
+  display: flex;
+  flex-flow: column;
+  z-index: 1;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  border-radius: 0.4rem;
+  border: 0.1rem solid #f0f6ff;
+  color: #58667e;
+}
+.coinPage-coin-info .right .coin-priceChange .timeDropdown-item {
+  font-size: 1.2rem;
+  padding: 0.25rem 1.5rem;
+}
+.coinPage-coin-info .right .coin-priceChange .timeDropdown-item:hover {
+  cursor: pointer;
+  background-color: #f0f6ff;
 }
 .coinPage-coin-info .right .coin-progress {
   display: flex;

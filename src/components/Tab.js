@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useGlobalContext } from "../context";
-import { AiOutlineCloseCircle } from "react-icons/ai";
 import { IoIosClose } from "react-icons/io";
 
 function Tab({ tabData, deleteTab }) {

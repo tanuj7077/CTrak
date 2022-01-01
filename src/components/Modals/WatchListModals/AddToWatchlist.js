@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useGlobalContext } from "../../../context";
 import axios from "axios";
 import { GrClear } from "react-icons/gr";
+import { IoIosClose } from "react-icons/io";
 
 function CreateSection({ toggleCreateMode }) {
   const { setUserData, userData } = useGlobalContext();
@@ -24,6 +25,8 @@ function CreateSection({ toggleCreateMode }) {
   };
   return (
     <div className="createWatchlist">
+      <div className="heading">Create Watchlist</div>
+      <IoIosClose className="closeIcon" onClick={toggleCreateMode} />
       <div className="inputGrp">
         <label>Name</label>
         <input
@@ -107,6 +110,10 @@ function AddToWatchlist({ coin }) {
             userData.watchList.length > 0 && (
               <div className="selectWatchlist">
                 <div className="selectWatchlist-heading">Select watchlist</div>
+                <IoIosClose
+                  className="closeIcon"
+                  onClick={toggleSelectWatchlistModal}
+                />
                 <ul className="selectWatchlist-list">
                   {userData.watchList.map((watchlist) => {
                     return (
