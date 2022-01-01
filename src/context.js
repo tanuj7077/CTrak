@@ -27,7 +27,11 @@ const AppProvider = ({ children }) => {
 
   const [selectWatchlistModal, setSelectWatchlistModal] = useState(false);
   const toggleSelectWatchlistModal = () => {
-    setSelectWatchlistModal(!selectWatchlistModal);
+    if (isLoggedIn) {
+      setSelectWatchlistModal(!selectWatchlistModal);
+    } else {
+      toggleLoginModalVisibility();
+    }
   };
 
   const [alert, setAlert] = useState({});

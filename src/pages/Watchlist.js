@@ -130,6 +130,92 @@ function SearchModal({
     </>
   );
 }
+function NewWatchlist({ toggleNewWatchlist, watchListData, editMode }) {
+  const { setUserData, userData, changeAlert } = useGlobalContext();
+  const [name, setName] = useState(editMode ? watchListData.name : "");
+  const [desc, setDesc] = useState(editMode ? watchListData.desc : "");
+
+  const handleCreate = async () => {
+    let obj = {
+      userId: userData._id,
+      name: name,
+      desc: desc,
+    };
+    axios
+      .post(`${process.env.REACT_APP_BASE_URL}/user/createWatchlist`, obj)
+      .then((res) => {
+        console.log(res.data);
+        setUserData(res.data.userData);
+        changeAlert(res.data.message);
+        toggleNewWatchlist();
+      });
+  };
+  const handleEdit = async () => {
+    let obj = {
+      userId: userData._id,
+      watchlistName: name,
+      watchlistDesc: desc,
+      watchlistId: watchListData._id,
+    };
+    axios
+      .post(`${process.env.REACT_APP_BASE_URL}/user/editWatchlist`, obj)
+      .then((res) => {
+        setUserData(res.data.userData);
+        changeAlert(res.data.message);
+        toggleNewWatchlist();
+      });
+  };
+  return (
+    <div className="newWatchlistModal">
+      <p className="newWatchlistModal-heading">
+        {editMode ? "Edit Watchlist" : "New Watchlist"}
+      </p>
+      <div className="watchlistModal-createSection">
+        <div className="inputGrp">
+          <label>Name</label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div className="inputGrp">
+          <label>
+            Description
+            <span> (optional)</span>
+          </label>
+          <textarea
+            type="text"
+            value={desc}
+            onChange={(e) => setDesc(e.target.value)}
+          ></textarea>
+        </div>
+        <div className="buttons">
+          <button
+            className={`${
+              ((!editMode && name.length === 0) ||
+                (editMode &&
+                  name === watchListData.name &&
+                  desc === watchListData.desc)) &&
+              "disabled"
+            }`}
+            onClick={() => {
+              if (!editMode) {
+                name.length > 0 && handleCreate();
+              } else {
+                (name !== watchListData.name || desc !== watchListData.desc) &&
+                  handleEdit();
+              }
+            }}
+          >
+            {editMode ? "Save" : "Create"}
+          </button>
+          <button onClick={toggleNewWatchlist}>Cancel</button>
+        </div>
+      </div>
+    </div>
+  );
+}
 function Watchlist({ pageData }) {
   const { userData, addTab, setUserData, changeAlert, closeTab } =
     useGlobalContext();
@@ -137,11 +223,17 @@ function Watchlist({ pageData }) {
   const [coins, setCoins] = useState([]);
   const [selectCoin, setSelectCoin] = useState(false);
   const [searchModalVisibility, setSearchModalVisibility] = useState(false);
+  const [newWatchlistModalVisibility, setNewWatchlistModalVisibility] =
+    useState(false);
+  const [editMode, setEditMode] = useState(false);
   const toggleSelectCoin = () => {
     setSelectCoin(!selectCoin);
   };
   const toggleSearchModalVisibility = () => {
     setSearchModalVisibility(!searchModalVisibility);
+  };
+  const toggleNewWatchlist = () => {
+    setNewWatchlistModalVisibility(!newWatchlistModalVisibility);
   };
   const getWatchListCoinsData = async (coinList) => {
     if (coinList && coinList.length > 0) {
@@ -241,7 +333,13 @@ function Watchlist({ pageData }) {
               <div className="heading">
                 <p className="name">{watchlistData.name}</p>
                 <div className="icons">
-                  <div className="icons-iconContainer">
+                  <div
+                    className="icons-iconContainer"
+                    onClick={() => {
+                      setEditMode(true);
+                      toggleNewWatchlist();
+                    }}
+                  >
                     <MdEdit className="icons-icon" />
                   </div>
                   <div className="icons-iconContainer" onClick={handleDelete}>
@@ -270,7 +368,15 @@ function Watchlist({ pageData }) {
                         );
                       })}
                     </ul>
-                    <button className="btn">New</button>
+                    <button
+                      className="btn"
+                      onClick={() => {
+                        setEditMode(false);
+                        toggleNewWatchlist();
+                      }}
+                    >
+                      New
+                    </button>
                   </div>
                 )}
               </div>
@@ -403,6 +509,13 @@ function Watchlist({ pageData }) {
           toggleSearchModalVisibility={toggleSearchModalVisibility}
           handleAdd={handleAdd}
         />
+        {newWatchlistModalVisibility && (
+          <NewWatchlist
+            toggleNewWatchlist={toggleNewWatchlist}
+            watchListData={watchlistData}
+            editMode={editMode}
+          />
+        )}
       </div>
     </div>
   );

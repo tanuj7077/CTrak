@@ -158,7 +158,12 @@ function Watchlist({ watchlistData }) {
                 You can add coins to watchlist by visiting any coin page. You
                 can visit a coin page by using the search feature as well.
               </p>
-              <button className="btn">Add</button>
+              <button
+                className="btn"
+                onClick={() => addTab("watchlist", watchlistData)}
+              >
+                Add
+              </button>
             </div>
           </div>
         ) : (
@@ -185,7 +190,7 @@ function WatchListModal() {
         <div className="watchlistModal">
           <div
             className="watchlistModal-heading"
-            onClick={() => addTab("watchlist")}
+            //onClick={() => addTab("watchlist")}
           >
             Watchlists
           </div>
