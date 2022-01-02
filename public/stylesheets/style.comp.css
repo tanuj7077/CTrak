@@ -262,8 +262,14 @@ a:link, a:visited, a:hover, a:active {
 .tab-content-heading {
   font-size: 1rem;
 }
+.tab-content-heading::selection {
+  background-color: transparent;
+}
 .tab-content-subheading {
   font-weight: bold;
+}
+.tab-content-subheading::selection {
+  background-color: transparent;
 }
 .topNav {
   background-color: white;
@@ -282,21 +288,57 @@ a:link, a:visited, a:hover, a:active {
   }
 }
 .topNav-content-left-logo {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.topNav-content-left-logo .icon {
+  width: 3rem;
+  height: 3rem;
+}
+@media only screen and (max-width: 37.5em) {
+  .topNav-content-left-logo .icon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+.topNav-content-left-logo .text {
   font-weight: bold;
-  font-size: 1.8rem;
+  font-size: 2.5rem;
   letter-spacing: 0.2rem;
+}
+@media only screen and (max-width: 37.5em) {
+  .topNav-content-left-logo .text {
+    font-size: 1.8rem;
+  }
 }
 .topNav-content-right {
   display: flex;
   gap: 4rem;
   align-items: center;
 }
-.topNav-content-right-item {
+.topNav-content-right-item span {
   font-size: 1.2rem;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
   color: #3b3b3b;
   font-weight: 700;
+}
+@media only screen and (max-width: 37.5em) {
+  .topNav-content-right-item span {
+    display: none;
+  }
+}
+.topNav-content-right-item .icon {
+  display: none;
+  width: 2rem;
+  height: 2rem;
+  color: #343d4b;
+}
+@media only screen and (max-width: 37.5em) {
+  .topNav-content-right-item .icon {
+    display: block;
+  }
 }
 .topNav-content-right-item:hover {
   cursor: pointer;
@@ -645,6 +687,20 @@ a:link, a:visited, a:hover, a:active {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+@media only screen and (max-width: 37.5em) {
+  .searchModal-watchList {
+    width: 80%;
+  }
+}
+.searchModal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  z-index: 11;
+}
 
 .loginModalContainer {
   position: fixed;
@@ -960,7 +1016,7 @@ a:link, a:visited, a:hover, a:active {
   width: 42.5rem;
   height: max-content;
   background-color: white;
-  z-index: 11;
+  z-index: 12;
   border-radius: 1rem;
   padding: 1rem 2rem 2rem 2rem;
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
@@ -970,6 +1026,7 @@ a:link, a:visited, a:hover, a:active {
     top: 0;
     left: 0;
     width: 100%;
+    padding-top: 2rem;
   }
 }
 .watchlistModal-heading {
@@ -992,6 +1049,11 @@ a:link, a:visited, a:hover, a:active {
 }
 .watchlistModal-close:hover {
   cursor: pointer;
+}
+@media only screen and (max-width: 37.5em) {
+  .watchlistModal-close {
+    top: 2rem;
+  }
 }
 .watchlistModal-noWatchlists {
   width: 100%;
@@ -1330,6 +1392,15 @@ a:link, a:visited, a:hover, a:active {
   color: #343d4b;
   cursor: pointer;
 }
+.watchlistModal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  z-index: 11;
+}
 
 .addToWatchlistModal {
   position: fixed;
@@ -1355,18 +1426,24 @@ a:link, a:visited, a:hover, a:active {
 }
 @media only screen and (max-width: 37.5em) {
   .selectWatchlist {
-    top: 0;
-    left: 0;
-    width: 100%;
+    top: 50%;
+    left: 50%;
+    width: 80%;
   }
 }
 .selectWatchlist-heading {
   width: 100%;
-  text-align: center;
   font-size: 1.6rem;
   font-weight: 700;
   padding: 0.5rem 0 1.5rem 0;
   text-transform: uppercase;
+}
+.selectWatchlist .closeIcon {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  width: 2rem;
+  height: 2rem;
 }
 .selectWatchlist-list {
   list-style: none;
@@ -1435,10 +1512,22 @@ a:link, a:visited, a:hover, a:active {
 }
 @media only screen and (max-width: 37.5em) {
   .createWatchlist {
-    top: 0;
-    left: 0;
-    width: 100%;
+    top: 50%;
+    left: 50%;
+    width: 80%;
   }
+}
+.createWatchlist .heading {
+  font-size: 2rem;
+  color: #343d4b;
+  font-weight: 700;
+}
+.createWatchlist .closeIcon {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  top: 1rem;
+  right: 2rem;
 }
 .createWatchlist .inputGrp {
   width: 100%;
@@ -1788,13 +1877,14 @@ a:link, a:visited, a:hover, a:active {
 }
 @media only screen and (max-width: 37.5em) {
   .coinPage-coin-info .left .coin-img {
-    width: 6rem;
-    height: 6rem;
+    width: 8.5rem;
+    height: 8.5rem;
   }
 }
 .coinPage-coin-info .left .coin-textual-name {
   font-size: 3rem;
   letter-spacing: 0.2rem;
+  font-weight: 700;
 }
 @media only screen and (max-width: 37.5em) {
   .coinPage-coin-info .left .coin-textual-name {
@@ -1857,6 +1947,7 @@ a:link, a:visited, a:hover, a:active {
   display: flex;
   gap: 1rem;
   align-items: center;
+  position: relative;
 }
 .coinPage-coin-info .right .coin-priceChange-topic {
   font-size: 1.2rem;
@@ -1899,6 +1990,27 @@ a:link, a:visited, a:hover, a:active {
 }
 .coinPage-coin-info .right .coin-priceChange-time:hover {
   cursor: pointer;
+}
+.coinPage-coin-info .right .coin-priceChange .timeDropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background-color: white;
+  display: flex;
+  flex-flow: column;
+  z-index: 1;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  border-radius: 0.4rem;
+  border: 0.1rem solid #f0f6ff;
+  color: #58667e;
+}
+.coinPage-coin-info .right .coin-priceChange .timeDropdown-item {
+  font-size: 1.2rem;
+  padding: 0.25rem 1.5rem;
+}
+.coinPage-coin-info .right .coin-priceChange .timeDropdown-item:hover {
+  cursor: pointer;
+  background-color: #f0f6ff;
 }
 .coinPage-coin-info .right .coin-progress {
   display: flex;
