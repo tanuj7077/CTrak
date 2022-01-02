@@ -34,7 +34,7 @@ function TopNav() {
         <div className="topNav-content-left">
           <div className="topNav-content-left-logo">
             <img src={Asset2} alt="" className="icon" />
-            <p className="text">CoinTracker</p>
+            <p className="text">CTrak</p>
           </div>
         </div>
         <div className="topNav-content-right">
