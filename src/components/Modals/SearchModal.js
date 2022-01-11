@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from "react";
 import { useGlobalContext } from "../../context";
 import { IoSearch } from "react-icons/io5";
 import { IoIosCloseCircle } from "react-icons/io";
@@ -17,11 +18,15 @@ function SearchModal() {
   const [searchText, setSearchText] = useState("");
   //const [isSearchLoading, setIsSearchLoading] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
-  const handleSearch = (text) => {
-    setSearchText(text);
-    text.length > 0 &&
+  const handleSearch = () => {
+    //setSearchText(text);
+    searchText.length > 0 &&
       axios
-        .get(`${process.env.REACT_APP_BASE_URL}/coin/search/${text}`)
+        .get(
+          `${
+            process.env.REACT_APP_BASE_URL
+          }/coin/search/${searchText.toLowerCase()}`
+        )
         .then((res) => {
           setSearchResults(res.data);
         });
@@ -40,6 +45,9 @@ function SearchModal() {
         setUserData(res.data.userData);
       });
   };
+  useEffect(() => {
+    handleSearch();
+  }, [searchText]);
   return (
     <>
       {searchModalVisibility && (
@@ -50,7 +58,7 @@ function SearchModal() {
               <input
                 type="text"
                 value={searchText}
-                onChange={(e) => handleSearch(e.target.value)}
+                onChange={(e) => setSearchText(e.target.value)}
                 placeholder="What are you looking for?"
               />
               <IoIosCloseCircle
@@ -67,33 +75,34 @@ function SearchModal() {
                       <FaFire className="icon" />
                     </p>
                     <ul className="searchModal-trendingSection-list">
-                      {trending.coins.map((coin) => {
-                        return (
-                          <li
-                            key={`treding_${coin.item.id}`}
-                            className="searchModal-trendingSection-list-item"
-                            onClick={() => {
-                              toggleSearchModalVisibility();
-                              addTab("coin", coin.item);
-                            }}
-                          >
-                            <div className="left">
-                              <img
-                                src={coin.item.thumb}
-                                alt=""
-                                className="img"
-                              />
-                              <div className="name">{coin.item.name}</div>
-                              <div className="symbol">{coin.item.symbol}</div>
-                            </div>
-                            <div className="right">
-                              <div className="rank">
-                                #{coin.item.market_cap_rank}
+                      {trending.coins &&
+                        trending.coins.map((coin) => {
+                          return (
+                            <li
+                              key={`treding_${coin.item.id}`}
+                              className="searchModal-trendingSection-list-item"
+                              onClick={() => {
+                                toggleSearchModalVisibility();
+                                addTab("coin", coin.item);
+                              }}
+                            >
+                              <div className="left">
+                                <img
+                                  src={coin.item.thumb}
+                                  alt=""
+                                  className="img"
+                                />
+                                <div className="name">{coin.item.name}</div>
+                                <div className="symbol">{coin.item.symbol}</div>
                               </div>
-                            </div>
-                          </li>
-                        );
-                      })}
+                              <div className="right">
+                                <div className="rank">
+                                  #{coin.item.market_cap_rank}
+                                </div>
+                              </div>
+                            </li>
+                          );
+                        })}
                     </ul>
                   </div>
                 )}

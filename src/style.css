@@ -347,7 +347,7 @@ a:link, a:visited, a:hover, a:active {
   width: 80%;
   margin: 0 10%;
   overflow: hidden;
-  overflow-x: scroll;
+  overflow-x: auto;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 }
@@ -358,7 +358,16 @@ a:link, a:visited, a:hover, a:active {
   }
 }
 .topNav-global::-webkit-scrollbar {
-  display: none;
+  height: 0.3rem;
+}
+.topNav-global::-webkit-scrollbar-track {
+  background: #bfbfbf;
+}
+.topNav-global::-webkit-scrollbar-thumb {
+  background: #e6e6e6;
+}
+.topNav-global::-webkit-scrollbar-thumb:hover {
+  background: white;
 }
 .topNav-global-slider {
   width: max-content;
@@ -698,7 +707,7 @@ a:link, a:visited, a:hover, a:active {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.05);
   z-index: 11;
 }
 

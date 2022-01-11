@@ -303,13 +303,13 @@ a:link, a:visited, a:hover, a:active {
   }
 }
 .topNav-content-left-logo .text {
-  font-weight: bold;
+  font-weight: 900;
   font-size: 2.5rem;
   letter-spacing: 0.2rem;
 }
 @media only screen and (max-width: 37.5em) {
   .topNav-content-left-logo .text {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
   }
 }
 .topNav-content-right {
@@ -347,7 +347,7 @@ a:link, a:visited, a:hover, a:active {
   width: 80%;
   margin: 0 10%;
   overflow: hidden;
-  overflow-x: scroll;
+  overflow-x: auto;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 }
@@ -358,7 +358,16 @@ a:link, a:visited, a:hover, a:active {
   }
 }
 .topNav-global::-webkit-scrollbar {
-  display: none;
+  height: 0.3rem;
+}
+.topNav-global::-webkit-scrollbar-track {
+  background: #bfbfbf;
+}
+.topNav-global::-webkit-scrollbar-thumb {
+  background: #e6e6e6;
+}
+.topNav-global::-webkit-scrollbar-thumb:hover {
+  background: white;
 }
 .topNav-global-slider {
   width: max-content;

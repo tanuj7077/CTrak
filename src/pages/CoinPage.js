@@ -70,32 +70,44 @@ const CurrentPrice = ({ coinInfo }) => {
             : "-"}
         </p>
         <p className="coin-priceChange-time" onClick={toggleSelectTime}>
-          <span className="time">24h</span>
+          <span className="time">{pricePercentTime}</span>
           <span className="dropdownIcon"></span>
         </p>
         {selectTime && (
           <div className="timeDropdown">
             <p
               className="timeDropdown-item"
-              onClick={() => setPricePercentTime("24h")}
+              onClick={() => {
+                toggleSelectTime();
+                setPricePercentTime("24h");
+              }}
             >
               24h
             </p>
             <p
               className="timeDropdown-item"
-              onClick={() => setPricePercentTime("7d")}
+              onClick={() => {
+                toggleSelectTime();
+                setPricePercentTime("7d");
+              }}
             >
               7d
             </p>
             <p
               className="timeDropdown-item"
-              onClick={() => setPricePercentTime("30d")}
+              onClick={() => {
+                toggleSelectTime();
+                setPricePercentTime("30d");
+              }}
             >
               30d
             </p>
             <p
               className="timeDropdown-item"
-              onClick={() => setPricePercentTime("1y")}
+              onClick={() => {
+                toggleSelectTime();
+                setPricePercentTime("1y");
+              }}
             >
               1y
             </p>

@@ -19,7 +19,9 @@ function SearchModal({
     setSearchText(text);
     text.length > 0 &&
       axios
-        .get(`${process.env.REACT_APP_BASE_URL}/coin/search/${text}`)
+        .get(
+          `${process.env.REACT_APP_BASE_URL}/coin/search/${text.toLowerCase()}`
+        )
         .then((res) => {
           setSearchResults(res.data);
         });
@@ -27,104 +29,114 @@ function SearchModal({
   return (
     <>
       {searchModalVisibility && (
-        <div className="searchModal searchModal-watchList">
-          <div className="searchModal-inputContainer">
-            <IoSearch className="searchIcon" />
-            <input
-              type="text"
-              value={searchText}
-              onChange={(e) => handleSearch(e.target.value)}
-              placeholder="What are you looking for?"
-            />
-            <IoIosCloseCircle
-              className="closeIcon"
-              onClick={toggleSearchModalVisibility}
-            />
-          </div>
-          {searchText.length === 0 && (
-            <div className="searchModal-noInput">
-              {trending && (
-                <div className="searchModal-trendingSection">
-                  <p className="searchModal-trendingSection-heading">
-                    <span className="text">Trending Coins</span>
-                  </p>
-                  <ul className="searchModal-trendingSection-list">
-                    {trending.coins.map((coin) => {
-                      return (
-                        <li
-                          key={`treding_${coin.item.id}`}
-                          className="searchModal-trendingSection-list-item"
-                          onClick={() => {
-                            handleAdd(coin.item.id);
-                          }}
-                        >
-                          <div className="left">
-                            <img src={coin.item.thumb} alt="" className="img" />
-                            <div className="name">{coin.item.name}</div>
-                            <div className="symbol">{coin.item.symbol}</div>
-                          </div>
-                          <div className="right">
-                            <div className="rank">
-                              #{coin.item.market_cap_rank}
+        <>
+          <div
+            className="searchModal-overlay"
+            onClick={toggleSearchModalVisibility}
+          ></div>
+          <div className="searchModal searchModal-watchList">
+            <div className="searchModal-inputContainer">
+              <IoSearch className="searchIcon" />
+              <input
+                type="text"
+                value={searchText}
+                onChange={(e) => handleSearch(e.target.value)}
+                placeholder="What are you looking for?"
+              />
+              <IoIosCloseCircle
+                className="closeIcon"
+                onClick={toggleSearchModalVisibility}
+              />
+            </div>
+            {searchText.length === 0 && (
+              <div className="searchModal-noInput">
+                {trending && (
+                  <div className="searchModal-trendingSection">
+                    <p className="searchModal-trendingSection-heading">
+                      <span className="text">Trending Coins</span>
+                    </p>
+                    <ul className="searchModal-trendingSection-list">
+                      {trending.coins.map((coin) => {
+                        return (
+                          <li
+                            key={`treding_${coin.item.id}`}
+                            className="searchModal-trendingSection-list-item"
+                            onClick={() => {
+                              handleAdd(coin.item.id);
+                            }}
+                          >
+                            <div className="left">
+                              <img
+                                src={coin.item.thumb}
+                                alt=""
+                                className="img"
+                              />
+                              <div className="name">{coin.item.name}</div>
+                              <div className="symbol">{coin.item.symbol}</div>
                             </div>
-                          </div>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              )}
-            </div>
-          )}
-          {searchText.length > 0 && searchResults.length > 0 && (
-            <div className="searchModal-results">
-              <p className="searchModal-results-heading">
-                <span className="text">Crypto Coins</span>
-              </p>
-              <ul className="searchModal-results-list">
-                {searchResults.map((coin) => {
-                  return (
-                    <li
-                      key={`searchResults_${coin.id}`}
-                      className="searchModal-results-list-item"
-                      onClick={() => {
-                        handleAdd(coin.id);
-                        setSearchText("");
-                      }}
-                    >
-                      <div className="left">
-                        <img src={coin.image} alt="" className="img" />
-                        <div className="name">
-                          {coin.name.length <= 21
-                            ? coin.name
-                            : coin.name.substr(0, 17) + "..."}
-                        </div>
-                        <div className="symbol">{coin.symbol}</div>
-                      </div>
-                      <div className="right">
-                        <div className="rank">#{coin.market_cap_rank}</div>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          )}
-          {searchText.length > 0 && searchResults.length === 0 && (
-            <div className="searchModal-notFound">
-              <div className="searchModal-notFound-container">
-                <div className="iconContainer">
-                  <IoSearch className="icon" />
-                </div>
-                <p className="heading">No results for '{searchText}'</p>
-                <p className="desc">
-                  We couldn't find anything matching your search. Try again with
-                  a different term.
-                </p>
+                            <div className="right">
+                              <div className="rank">
+                                #{coin.item.market_cap_rank}
+                              </div>
+                            </div>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
               </div>
-            </div>
-          )}
-        </div>
+            )}
+            {searchText.length > 0 && searchResults.length > 0 && (
+              <div className="searchModal-results">
+                <p className="searchModal-results-heading">
+                  <span className="text">Crypto Coins</span>
+                </p>
+                <ul className="searchModal-results-list">
+                  {searchResults.map((coin) => {
+                    return (
+                      <li
+                        key={`searchResults_${coin.id}`}
+                        className="searchModal-results-list-item"
+                        onClick={() => {
+                          handleAdd(coin.id);
+                          setSearchText("");
+                        }}
+                      >
+                        <div className="left">
+                          <img src={coin.image} alt="" className="img" />
+                          <div className="name">
+                            {coin.name.length <= 21
+                              ? coin.name
+                              : coin.name.substr(0, 17) + "..."}
+                          </div>
+                          <div className="symbol">{coin.symbol}</div>
+                        </div>
+                        <div className="right">
+                          <div className="rank">#{coin.market_cap_rank}</div>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            )}
+            {searchText.length > 0 && searchResults.length === 0 && (
+              <div className="searchModal-notFound">
+                <div className="searchModal-notFound-container">
+                  <div className="iconContainer">
+                    <IoSearch className="icon" />
+                  </div>
+                  <p className="heading">No results for '{searchText}'</p>
+                  <p className="desc">
+                    We couldn't find anything matching your search. Try again
+                    with a different term.
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        </>
       )}
     </>
   );

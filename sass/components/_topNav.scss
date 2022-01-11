@@ -74,15 +74,28 @@
     width: 80%;
     margin: 0 10%;
     overflow: hidden;
-    overflow-x: scroll;
+    overflow-x: auto;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     @include respond(phone) {
       width: 90%;
       margin: 0 5%;
     }
+    // &::-webkit-scrollbar {
+    //   display: none;
+    // }
     &::-webkit-scrollbar {
-      display: none;
+      height: 0.3rem;
+    }
+    &::-webkit-scrollbar-track {
+      background: hsl(0, 0%, 75%);
+    }
+    &::-webkit-scrollbar-thumb {
+      //border: 0.05rem solid hsl(0, 0%, 75%);
+      background: hsl(0, 0%, 90%);
+      &:hover {
+        background: white;
+      }
     }
     &-slider {
       width: max-content;
